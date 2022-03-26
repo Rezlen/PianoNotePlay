@@ -50,7 +50,7 @@ app.use(errorHandler);
 // app.get('/api/chat', (req, res) => {
 //   res.send(chats);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
   const server = app.listen(
     PORT,
