@@ -1,0 +1,51 @@
+add in h1
+	line-height: 200%
+	font-family: Georgia, “Times New Roman”, serif;
+	text-indent: 1em;
+	text-shadow: 3px 3px 5px #CCCCCC;
+
+
+add in h2
+	font-family: Georgia, "Times New Roman", serif;
+	text-align: center;
+
+nav {font-weight: bold; font-size: 1.25em; word-spacing: 1em;}
+
+p {font-size: .90em; text-indent: 3em;}
+
+ul {font-weight: bold;}
+
+-------------------
+Span Element
+.company {font-weight: bold;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 1.25em;
+	}
+<p><span class="company">Trillium...</span></p>
+
+----------------------------
+External style sheet
+body { background-color: #0000FF;
+	color: #FFFFFF;
+	}
+
+<link rel="stylesheet" href="color.css">
+<p>This webpage uses and external style sheet.</p>
+
+-----------------------
+trillium.css
+<link rel="stylesheet" href="trillium.css">
+
+----------------------------
+3.8 trillium.css
+#wrapper {width:960px;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+--------------------------
+The "cascade"
+
+body {background-color: #FFFFCC;
+	color: #000000;
+	}

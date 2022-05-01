@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Direction</title>
+  <link href='style.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet'>
+</head>
+
+<body>
+  <h1>Flex-Direction: Row</h1>
+  <div class='container' id='row'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+  <h1>Flex-Direction: Row-Reverse</h1>
+  <div class='container' id='row-reverse'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+  <h1>Flex-Direction: Column</h1>
+  <div class='container' id='column'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+  <h1>Flex-Direction: Column-Reverse</h1>
+  <div class='container' id='column-reverse'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<!--
+  flex-flow
+Like the shorthand flex property, the shorthand flex-flow property is used to declare both the flex-wrap and flex-direction properties in one line.
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+In the example above, we take two lines to accomplish what can be done with one.
+
+.container {
+  display: flex;
+  flex-flow: column wrap;
+}
+In the example above, the first value in the flex-flow declaration is a flex-direction value and the second is a flex-wrap value. All values for flex-direction and flex-wrap are accepted.
+-->

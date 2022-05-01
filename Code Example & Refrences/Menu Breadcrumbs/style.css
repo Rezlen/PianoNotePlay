@@ -1,0 +1,38 @@
+.breadcrumb > li {
+    display: inline;
+  }
+  
+  .breadcrumb li+li::before {
+    content: ">";
+    padding: 1px;
+  
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+  color: red;
+  }
+
+  //*
+
+Another common feature of breadcrumbs is that they are separated by a symbol, often > or /.
+Instead of having to manually add this to all of the breadcrumbs in our breadcrumb trail, we can use a CSS pseudo-element.
+This requires some complicated CSS, but it will save us time in the long run!
+.breadcrumb li+li::before is the selector that we want! View the hint if you want more information about how this complicated selector works!
+
+  The + is called the adjacent sibling combinator; it will only select two li‘s when they are immediately next to each other,
+   with the same parent. The element that actually gets selected is the second element of this sibling pair.
+The ::before part of this selector creates a pseudo-element. 
+The ::before pseudo-element is often used with the content property, 
+to add content that will be displayed just before the selected element.
+
+
+.breadcrumb li+li::before {
+  content: "/";
+}
+The code above adds a “/“ symbol inbetween all adjacent breadcrumbs.
+  
+  *//

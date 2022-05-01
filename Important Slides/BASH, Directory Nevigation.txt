@@ -1,0 +1,7 @@
+ls  = list all the directory
+cd ../ = return to the previous directory
+cd ../.. = returns you to the home directory
+mkdir  = creats adirectory
+touch = creats a file
+touch folderName/me.txt  = creats new file (me.txt) in thet folder/directory.
+pwd = shows which path/directory yu are in. 

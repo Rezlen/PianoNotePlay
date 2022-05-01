@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Savory</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header>
+        <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/savory.svg" class="logo">
+      </header>
+
+      <main>
+        <div class="recipe a">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-1.png" />
+          <h2>CHOCOLATE MOUSSE</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">20 mins</p>
+          <p class="description">
+            This delicious chocolate mousse will delight dinner guests of all ages!</p>
+        </div>
+        <div class="recipe b">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-2.png" />
+          <h2>SMOKED LAMB WITH RICE</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">120 mins</p>
+          <p class="description">
+            Want to feel like your favorite relative came over and made you dinner? This comfort meal of smoked lamb and rice will quickly become a weekend favorite!
+          </p>
+        </div>
+        <div class="recipe c">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-5.png" />
+          <h2>GOAT CHEESE SALAD</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">25 mins</p>
+          <p class="description">
+            In addition to the full flavor of goat cheese, this salad includes kale, avocado, and farro to balance it out.</p>
+        </div>
+        <div class="recipe d">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-4.png" />
+          <h2>CHICKEN SANDWICH</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">45 mins</p>
+          <p class="description">
+            We've packed a lot into this one - shredded cabbage, carmalized onions, deep-fried chicken, chipotle mayo, half-sour pickles, and a toasted sesame bun will leave you thoroughly satisfied!</p>
+        </div>
+        <div class="recipe e">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-3.png" />
+          <h2>SWEET CHURROS</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">90 mins</p>
+          <p class="description">
+            Making this classic summer treat at home will remind you of a childhood spent in the park.</p>
+        </div>
+        <div class="recipe f">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-6.png" />
+          <h2>BERRY PARFAIT</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">10 mins</p>
+          <p class="description">
+            This low-calorie, vitamin-packed parfait is great for breakfast, dessert, or post-workout!</p>
+        </div>
+      </main>
+
+      <footer>
+        <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/savory.svg" class="logo">
+      </footer>
+
+    </div>
+  </body>
+
+</html>
+
+
+<!--Justify Content
+In the previous exercise, we learned how to position elements within their columns. In this exercise, we will learn how to position a grid within its parent element.
+
+We can use justify-content to position the entire grid along the row axis. This property is declared on grid containers.
+
+It accepts these values:
+
+start — aligns the grid to the left side of the grid container
+end — aligns the grid to the right side of the grid container
+center — centers the grid horizontally in the grid container
+stretch — stretches the grid items to increase the size of the grid to expand horizontally across the container
+space-around — includes an equal amount of space on each side of a grid element, resulting in double the amount of space between elements as there is before the first and after the last element
+space-between — includes an equal amount of space between grid items and no space at either end
+space-evenly — places an even amount of space between grid items and at either end
+There are several other values that justify-content accepts, which you can read about on the Mozilla Developer Network. The definitions for these values can also be found in the documentation. It is important to note that the page with the definitions includes some values that are not accepted in CSS Grid layout.
+
+<main>
+  <div class="left">Left</div>
+  <div class="right">Right</div>
+</main>
+main {
+  display: grid;
+  width: 1000px;
+  grid-template-columns: 300px 300px;
+  grid-template-areas: "left right"; 
+  justify-content: center;
+}
+In the example above, the grid container is 1000 pixels wide, but we only specified two columns that are 300 pixels each. This will leave 400 pixels of unused space in the grid container.
+justify-content: center; positions the columns in the center of the grid, leaving 200 pixels on the right and 200 pixels on the left of the grid.
+-->

@@ -1,0 +1,81 @@
+/*Main BreadCrump effect from here down*/
+
+.breadcrumb {
+    text-align: left;
+  }
+  .breadcrumb li {
+    float: left;
+  }
+  .breadcrumb a {
+    color: #fff;
+    background: darkcyan;
+    text-decoration: none;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-right: 15px;
+    padding: 0 5px;
+  }
+  
+  .breadcrumb a::before,
+  .breadcrumb a::after {
+    content: "";
+    position: absolute;
+    border-color: darkcyan;
+    border-style: solid;
+    border-width: 15px 5px;
+  }
+  
+  .breadcrumb a::before {
+    left: -10px;
+    border-left-color: transparent;
+  }
+  .breadcrumb a::after {
+    left: 100%;
+    border-color: transparent;
+    border-left-color: darkcyan;
+  }
+  
+/*Below is just to add hover element*/
+
+  .breadcrumb a:hover {
+    background-color: blue;
+  }
+  .breadcrumb a:hover::before {
+    border-color: blue;
+    border-left-color: transparent;
+  }
+  .breadcrumb a:hover::after {
+    border-left-color: blue;
+  }
+
+
+
+
+
+
+  /*
+  
+  The total width of our pseudo-elements is 10px, since the border has 5px on the left and 5px on the right. Given this, move the pseudo-elements to the proper location using the following CSS:
+
+.breadcrumb a::before {
+  left: -10px;
+}
+.breadcrumb a::after {
+  left: 100%;
+}
+
+
+The last step is to use the CSS trick to turn these into arrows. Style the after elements as “heads” by setting the border color to transparent except for the border-left-color:
+
+.breadcrumb a::after {
+  left: 100%;
+  border-color: transparent;
+  border-left-color: darkcyan;
+}
+
+
+
+  
+  */

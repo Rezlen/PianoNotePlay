@@ -1,0 +1,191 @@
+html,
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  background-color: white;
+  
+}
+
+* {
+  border: red 0.25px dotted; 
+}
+
+
+
+/*=====================
+Starts Form with Animated PlaceHolder 
+==================*/
+.ContactDetails {  /*Converts the whole area to flex/mobile friendly, so everything stays in their place*/
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+
+form {
+  margin: 1rem;
+}
+
+.field {
+  box-sizing: border-box;
+  width: 20rem;
+  height: 2.5rem; /*Changing the height of the fields*/
+  margin: 0;
+  padding: 1rem; /*Changing the TYPING PLACE padding inside the fields*/
+  border: 1px solid #ccc;
+  border-radius: 1.5em;
+  background: #fff;
+  resize: none;
+  outline: none;
+}
+
+.label-field {
+  display: flex; /**/
+  pointer-events: none;
+  line-height: 1.25em;
+  margin: -2rem 2rem 1rem; /*Adjusts the placeholder word in middle of the field*/
+  width: 10rem;
+}
+
+.field:focus {  /*Changing the border color*/
+  border-color: #00bafa;
+}
+
+.field:focus + .label-field::before { /*Changing the font color*/
+  color: #00bafa;
+}
+
+.field:focus + .label-field:before,
+.field:valid + .label-field:before {
+  transition-duration: 0.2s; /*Adjust the placeholder's 'speed' moving up to it's field's line*/
+  transform: translate(0, -1.1rem) scale(0.9, 0.9); /*The SCALE, changes the placeholder 'word' height or width when moves on the field's line*/
+/*The TRANSLATE; adjust the amount of movement of the placeholder to go up/down; after entering a content.*/
+}
+
+.label-field:before {
+  content: attr(placeholder);
+  color: #898989; /*Changing the placeholder's font-color*/
+  transition: 0.3s ease-in-out;  /*Adjust the placeholder's 'speed' coming back to it's field*/
+  background-image: linear-gradient(to bottom, #fff, #fff); /*Center of the placeholder word coloring*/
+  background-size:100% 0.5rem;
+  background-repeat: no-repeat;/*Avoids unnecessarily background color under the PLACEHOLDER WORD*/
+  background-position: center; /*Places a background color under the placeholder, when moves up/down on the field's line*/
+}
+
+.FormSubmitBTN {
+  background-color: #00bafa;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 1rem;
+}
+
+.FormSubmitBTN:hover {
+  background-color: rgb(72, 37, 228);
+}
+
+.CommentFiled {
+  height: 7rem;
+}
+
+#CommentLabel {
+  transform: translate(0, -5.8rem) scale(0.9, 0.9); 
+}
+/*=====================
+Ends Form with Animated PlaceHolder 
+==================*/
+
+/*=====================
+Start form with Animated Border & FIXED PlaceHolder/Label
+==================*/
+.ContactDetails { /*Converts the whole area to flex/mobile friendly, so everything stays in their place*/
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+
+form {
+  margin: 1rem;
+}
+
+.TestForm {
+  display: flex;
+  flex-direction: column;
+  position: relative; /*Made position relative so the background colour of the Input Label covers the border field's line*/
+}
+
+.TestInput {
+  width: 20rem;
+  height: 0.5rem; /*Changing the height of the fields*/
+  padding: 1rem; /*Changing the TYPING PLACE padding inside the fields*/
+  border: 1px solid #ccc;
+  border-radius: 1.5em;
+  resize: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.TestLabel {
+  width: 5rem;
+  border-radius: 1.5em;
+  line-height: 1.25em;
+  margin-bottom: -0.7rem; /*Adjusts the placeholder word in middle of the field*/
+  margin-left: 2rem;/**/
+  background-color: #ffffff;
+  color: #696161;
+  z-index: 1; /*Related directly to Position: relative;*/
+  font-size: 0.9rem;
+}
+
+.TestInput:hover, .TestInput:focus { /*This cause the fields to move/expand when they are hovered on*/
+  transform: scale(1.05);
+  border-color: #00bafa;
+}
+
+.FormSubmitBTN {
+  background-color: #00bafa;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 1rem;
+}
+
+.FormSubmitBTN:hover {
+  background-color: rgb(72, 37, 228);
+}
+
+.CommentFiled {
+  height: 7rem;
+  margin-bottom: 1rem;
+}
+
+
+/*=====================
+Start form with Animated Border & FIXED PlaceHolder/Label
+==================*/
+
+/*Footer area with London's Image*/
+footer {
+  display: flex;
+  align-items: flex-start;
+  background-image: url("images/footer-copy.png");
+  height: 20rem; /* set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+/*For Mobile Display*/
+@media only screen and (max-width: 760px) {
+  div {
+  display: flex;
+  flex-direction: column;
+}

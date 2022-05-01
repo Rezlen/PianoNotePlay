@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Direction</title>
+  <link href='style.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet'>
+</head>
+
+<body>
+  <h1>Flex-Direction: Row</h1>
+  <div class='container' id='row'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+  <h1>Flex-Direction: Row-Reverse</h1>
+  <div class='container' id='row-reverse'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+  <h1>Flex-Direction: Column</h1>
+  <div class='container' id='column'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+  <h1>Flex-Direction: Column-Reverse</h1>
+  <div class='container' id='column-reverse'>
+    <div class='box'>
+      <h2>1</h2>
+    </div>
+    <div class='box'>
+      <h2>2</h2>
+    </div>
+    <div class='box'>
+      <h2>3</h2>
+    </div>
+    <div class='box'>
+      <h2>4</h2>
+    </div>
+    <div class='box'>
+      <h2>5</h2>
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+
+
+<!--
+flex-direction
+Up to this point, we’ve only covered flex items that stretch and shrink horizontally and wrap vertically. As previously stated, flex containers have two axes: a main axis and a cross axis. By default, the main axis is horizontal and the cross axis is vertical.
+
+The main axis is used to position flex items with the following properties:
+
+justify-content
+flex-wrap
+flex-grow
+flex-shrink
+The cross axis is used to position flex items with the following properties:
+
+align-items
+align-content
+The main axis and cross axis are interchangeable. We can switch them using the flex-direction property. If we add the flex-direction property and give it a value of column, the flex items will be ordered vertically, not horizontally.
+
+<div class='container'>
+  <div class='item'>
+    <h1>1</h1>
+  </div>
+  <div class='item'>
+    <h1>2</h1>
+  </div>
+  <div class='item'>
+    <h1>3</h1>
+  </div>
+  <div class='item'>
+    <h1>4</h1>
+  </div>
+  <div class="item">
+    <h1>5</h1>
+  </div>
+</div>
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+}
+.item {
+  height: 100px;
+  width: 100px;
+}
+In the example above, the five divs will be positioned in a vertical column. 
+All of these divs could fit in one horizontal row. However, the column value tells the browser to stack the divs one on top of the other.
+ As explained above, properties like justify-content will not behave the way they did in previous examples.
+
+The flex-direction property can accept four values:
+
+row — elements will be positioned from left to right across the parent element starting from the top left corner (default).
+row-reverse — elements will be positioned from right to left across the parent element starting from the top right corner.
+column — elements will be positioned from top to bottom of the parent element starting from the top left corner.
+column-reverse — elements will be positioned from the bottom to the top of the parent element starting from the bottom left corner.
+-->

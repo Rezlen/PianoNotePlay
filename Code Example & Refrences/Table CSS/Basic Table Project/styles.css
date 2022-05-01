@@ -1,0 +1,22 @@
+
+Body{
+  background-color:rgb(235, 227, 224);
+  color:rgb(0, 0, 0);
+}
+h1{
+  color:Mediumvioletred;
+  font-family:monospace;
+}
+main {
+  font-family:monospace;
+  text-align: center;
+  padding: 5px 30px;
+  
+}
+thead{
+  background:pink;
+  color:deeppink;
+}
+tbody{
+  background:bisque;
+}

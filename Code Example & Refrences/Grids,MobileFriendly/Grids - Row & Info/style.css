@@ -1,0 +1,62 @@
+.grid {
+  display: grid;
+  border: 2px blue solid;
+  height: 500px;
+  width:500px;
+  grid-template: repeat(4, 1fr 2fr) / repeat(4, 3fr 2fr);
+  gap: 5px;
+}
+/*fr= fractional unit. below first set of numbers are for ROWs and the second for COLUMNs. 
+REPEAT means to repeat the rows/columns for that number.
+
+
+grid-template: repeat(3, 1fr) / 3fr 50% 1fr;  here first it creates 3 equal rows. Then 3 columns then 50% of the space, then 1 column 
+  grid-row: 4 / span 2; /*This also means create two rows, like the 5/7 */
+
+.a {
+  grid-row: 5 / 7;
+  grid-column: 1/ span 2;
+}
+
+.b {
+  grid-row: 2 / span 3;
+  grid-column: 2/span 6;
+}
+
+.c {
+  grid-area: 6 / 8 / span 3 / span 1;
+}
+
+.box {
+  background-color: beige;
+  color: black;
+  border-radius: 5px;
+  border: 2px dodgerblue solid;
+}
+
+/*
+.grid {
+  display: grid;
+  width: 1000px;
+  height: 400px;
+  grid-template: 2fr 1fr 1fr / 1fr 3fr 1fr;
+}
+
+grid-template: 2fr 1fr 1fr / 1fr 3fr 1fr; here from the available 400px it creates 3 rows from the total 4. The first row will take 2, and the others take 1 each.
+For columns, it creates 5 in total. the middle column will be made of 3 and the side ones will be 1 each.
+ 
+
+New style:
+.item {
+  grid-area: 2 / 3 / 4 / span 5;
+}
+grid-area takes four values separated by slashes. The order is important! This is how grid-area will interpret those values.
+
+grid-row-start
+grid-column-start
+grid-row-end
+grid-column-end
+
+In the above example, the item will occupy rows two and three and columns three through eight.
+
+/*

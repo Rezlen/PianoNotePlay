@@ -1,0 +1,212 @@
+﻿CSS Selector Reference: https://www.w3schools.com/cssref/css_selectors.asp
+
+Image Link
+<img src="kayakdc.gif" alt="KayakDoorCounty.net" width="500" height="60"></h1>
+Image Hyperlink:
+<a href="index.html"><img src="home.gif" alt="home" width="90" height="35"></a> &nbsp;
+------------
+Graph codes; 
+<meter value="1043"  min="0" max="14417">1043</meter> 1,043 Safari<br>
+<meter value="312"  min="0" max="14417">312</meter> &nbsp;&nbsp; 312 Opera<br>
+Progress Report
+<progress value="5" max="10">50%</progress> Progress Toward Our Go
+--------
+put Background photo:
+img {border: none;}
+main {background-image: url(heroback.jpg);
+background-repeat: no-repeat;}
+--------
+Image Map;
+<area href="http://nature.org"  shape="rect" coords="0,51,416,170" alt="The Nature Conservancy" title="The Nature Conservancy">
+
+Float Css:
+.float { float: left; margin-right: 10px; border: 3px ridge #000000; }
+<div>
+<img class="float" src="yls.jpg" alt="Yellow Lady Slipper" height="100" width="100">
+------------------------
+Universal BOX sizing; (STAR is for universal selecting)
+ * { box-sizing: border-box; }
+
+File adderssing;
+	<li><a href="juniper.html">Juniper Room</a></li>
+	<li><a href="../events/weekend.html">Weekend Events</a></li>
+	<li><a href="../events/festival.html">Festivals</a></li>
+	<li><a href="../contact.html">Contact</a></li>
+  </ul>
+
+CSS Sprite: combines the smaller images to larger images like Using the same image in nav menue. Using the same css iamge for the background. csssprites.com
+Combines few images into one infact; with codes.
+----------------------
+Moving the window to a specific part of the page-Fragment Identifiers.png:
+<ul>
+  <li><a href="#hobbies">Hobbies</a></li>
+  <li><a href="#HTML5">HTML5</a></li>
+  <li><a href="#CSS">CSS</a></li>
+</ul>
+<h2 id="Hobbies">Hobbies</h2>
+     <dl>
+       <dt>Running</dt>
+         <dd><a target="_blank" href="http://www.runningnetwork.com">http://www.runningnetwork.com</a></d> /Target Help opening a new page.
+--------------------------------
+Page Block Block kardan be komak tagseem bandi: and for older browsers:
+header, nav, main, footer, aside { display: block; }
+* { box-sizing: border-box;} {if older browsers, they know everyting is in order, boxing and rendered}
+
+body { margin:0;
+       background-color: #FFFFFF; }
+For older browsers, body margin 0 means there wont be extra area outside of our "body" page, the same for colour.
+
+Module 7: Links, Layout, & Mobile
+Three-column CSS Page Layout Pt 3
+
+Important cause explain the need/how to code for older browsers. always rememeber.
+
+View Port Meta tag was developed by Alplle for Safari browser, to be viewable better on android devices.
+<meta name= "viewport" content="width=device, initial-scale=1.0"> 
+
+Container minimum, ensure if the browser size reachs that size, scrolling option appears.
+#container { background-color: #EEEEEE;
+             color: #0fc40f;
+             min-width: 960px;
+             font-family: Verdana, Arial, sans-serif; }
+---------------------------
+Media & Mobil design;
+@media only screen and (max-width: 1024px) {
+    body { margin: 0; }
+    #wrapper { width: auto; }
+    main { margin-left: 0; }
+    nav { float: none; width: auto; }
+    nav li { display: inline-block; padding: 0.5em; }
+    nav ul { text-align: center; }
+    nav a { border-style: none; }
+    h1, h2 { font-size: 120%; }
+    p { font-size: 90%; }
+--------------------------
+Image Responsive;
+<picture>
+        <source media="(min-width: 1200px)" srcset="large.jpg">
+        <source media="(min-width: 800px)" srcset="medium.jpg">
+		<source media="(min-width: 320px)" srcset="small.jpg">
+        <img src="fallback.jpg" alt="water wheel"> 
+</picture>
+-------------------
+Mobine device Display coloumn;
+@media only screen and (max-width: 1024px) {
+            body { margin: 0; padding: 0; } 
+            #wrapper { width: auto; margin: 0; }
+		    h1 { font-size: 200%; }
+			#demo { flex-direction: column;
+            }
+		    nav ul { display: flex;
+                     flex-direction: row;
+				     justify-content: center; 
+			}
+			nav li { padding: 0 0.5em; 
+				     font-size: 1.2em;
+			}
+			
+}		
+@media only screen and (max-width: 768px) {
+         	nav { order: 1;   }
+		   nav ul { flex-wrap: wrap; }
+}
+-----------------------
+Grid Design Mobile friendly;
+header, h1, #wrapper{ margin-top: 0; }
+#wrapper {  background-color: #F4E8BC; 
+	        width: 90%;
+			margin: auto;
+            color: #330000;
+			display: grid;
+            grid-template-columns: 160px 1fr 160px;
+            grid-template-rows: 200px auto 100px;
+nav { grid-row: 2 / 3;
+	  grid-column: 1 / 2;
+}
+main {   grid-row: 2 / 3;
+         grid-column: 2 / 3;
+}
+aside { grid-row: 2 / 3;
+        grid-column: 3 / 4;
+}
+
+=====JavaScript
+  userInput=userInput.toLowerCase();
+    const randomNumber = Math.floor(Math.random()*3);
+
+======================
+To bring up a blank page, we can enter about:blank into the browser’s address bar. We can confirm that there is no HTML inside the <body> element of the page by checking document.body.innerHTML in the console:
+============
+document.body.innerHTML = "<h1> Adding a heading using JS</h1>"
+$("body").style.fontStyle="italic"
+==========
+function generateTarget() {
+ return Math.floor(Math.random()*10 );
+ ===============
+ // here remover the negative/minues sign from the number, and find which nimber is nearer to our target number
+function compareGuesses(humanGuess, computerGuess, targetGuess) {
+const humanDiff = Math.abs(targetGuess-humanGuess); // 2-9=7
+const computerDiff = Math.abs(targetGuess-computerGuess); // 2-3=1
+  if (humanDiff <= computerDiff) { // 1<6
+    return true;
+  } else {
+    return false;
+   } // or insteas of this If use this: return humanDiff <= computerDiff; 
+};
+
+// here we update th winner score after each win
+const updateScore = winner => {
+   if (winner==='human') {
+    humanScore++;
+  } else if (winner==='computer') {
+    computerScore++;
+  } 
+}; 
+
+===================
+const countries = ['Japan', 'Denmark', 'Mexico', 'Morocco'];
+countries.shift();
+console.log(countries); 
+countries =  ['England', 'Mozambique', 'Cambodia', 'Peru']; 
+console.log(countries); 
+
+The second array will not be logged to the console because a variable declared with const cannot be reassigned.
+
+============Git Guide============
+git init= Initilise Git
+git add "a file name"
+git Status= display all file in RED or Green (Green means it is added to the staging area AND ready to be commited to the Repository). (Red means it is NOT added to the staging area)
+git diff filename=  check the differences between the working directory and the staging area. It showes the changes in GREEN colour.
+git commit -m "My First Commit"
+git log= Commits are stored chronologically in the repository and can be viewed
+git show HEAD= The output of this command will display everything the git log command displays for the HEAD commit, plus all the file changes that were committed.
+git checkout HEAD filename = Discards changes in the working directory.You could rewrite the line how it was originally, but what if you forgot the exact wording? The command. will restore the file in your working directory to look exactly as it did when you last made a commit. Here, filename again is the actual name of the file. If the file is named changes.txt, the command would be "git checkout HEAD changes.txt"
+git add filename_1 filename_2 = 
+git reset HEAD filename = Unstages file changes in the staging area.. This command resets the file in the staging area to be the same as the HEAD commit. It does not discard file changes from the working directory, it just removes them from the staging area. Outcome in Terminal: "M" Notice in the output, “Unstaged changes after reset”: M filename.
+git reset commit_SHA AND git reset 5d69206 = (Return the previous commit). Resets to a previous commit in your commit history..This command works by using the first 7 characters of the SHA of a previous commit. For example, if the SHA of the previous commit is 5d692065cf51a2f50ea8e7b19b5a7ae512f633ba
+git add . = The . means “all files”. Adding files to the staging area with . is faster than specifying each file individually, but it’s easy to accidentally add files you don’t want there. Make sure you always know what you’re adding.
+
+git stash = git stash, which allows you to get back to a clean commit point with a synchronized working tree, and avoid losing your local changes in the process. You’re “stashing” your local work temporarily in order to update a previous commit and later on retrieve your work.
+Few kind of GIT LOG:
+git log --oneline= shows the list of commits in one line format.
+git log -S "keyword" = displays a list of commits that contain the keyword in the message. In the screenshot below, we use git log -S "Add" to find any commits with “Add” in the message.
+git log --oneline --graph - --graph = Displays a visual representation of how the branches and commits were created in order to help you make sense of your repository history. When used alone, the description can be very lengthy, so you can combine the command with --oneline in order to shorten the description.
+Git’s --amend = (git commit --amend) flag is extremely useful when updating a commit, it allows you to correct mistakes and edit commits easily instead of creating a completely new one.
+$ git commit --amend --no-edit = However, if you want to keep the same commit message, you can simply add the flag --no-edit:
+
+Git alias = If you have a set of commands that you use regularly and want to save some time from typing them, you can easily set up an alias for each command using Git config.
+Once the aliases are configured, next time you want to check out to another branch you could type the command:
+$ git co example_branch
+Instead of:
+$ git checkout example_branch
+$ rm -fr .git = delete every file in the repostory
+$ git add . = Sends everything to STAGE section ready to commit
+git commit -m "My First Commit"
+git branch -M maing = Sends/Pushes everyting to the remote repo
+git push -u origin main = Sends/Pushes everyting to the remote repo
+git push -u origin main
+
+
+$ git config --global user.name "Rezlen"
+$ git config --global user.email "soheilyreza@yahoo.com"
+====================

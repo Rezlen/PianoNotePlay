@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Nested</title>
+  <link href='style.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet'>
+</head>
+
+<body>
+  <div class='main'>
+    <div class='container'>
+      <div class='child'><h2>Child 1</h2></div>
+      <div class='child'><h2>Child 2</h2></div>
+      <div class='child'><h2>Child 3</h2></div>
+    </div>
+    <div class='container'></div>
+  </div>
+</body>
+
+</html>
+
+
+<!--
+  So far, we’ve had multiple flex containers on the same page to explore flex item positioning. 
+  It is also possible to position flex containers inside of one another.
+
+<div class='container'>
+  <div class='left'>
+    <img class='small' src='#'/>
+    <img class='small' src='#'/>
+    <img class='small' src='#' />
+  </div>
+  <div class='right'>
+    <img class='large' src='#' />
+  </div>
+</div>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.left {
+  display: inline-flex;
+  flex: 2 1 200px;
+  flex-direction: column;
+}
+ 
+.right {
+  display: inline-flex;
+  flex: 1 2 400px;
+  align-items: center;
+}
+ 
+.small {
+  height: 200px;
+  width: auto;
+}
+ 
+.large {
+  height: 600px; 
+  width: auto;
+}
+In the example above, a div with three smaller images will display from top to bottom on the left of the page (.left).
+ There is also a div with one large image that will display on the right side of the page (.right). 
+ The left div has a smaller flex-basis but stretches to fill more extra space; the right div has a larger flex-basis but stretches to fill less extra space.
+  Both divs are flex items and flex containers. The items have properties that dictate how they will be
+   positioned in the parent container and how their flex item children will be positioned in them.
+-->

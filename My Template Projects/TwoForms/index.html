@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Company Home Page with Flexbox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:700" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+
+    <!--Bottom Section Area For ContactUs FORM With Animation PlaceHolder-->
+    <div class="ContactDetails">
+      <div>
+        <h3>Flex Form With Animated PlaceHolder, Focussed Label & Border</h3>
+        <!--ContactUs FORM from here-->
+        <form  method="get" action="/admin/faq">
+          <input class="field"  required="yes" type="text" name="First Name field">
+          <label class="label-field" required="yes" alt="First Name Section" placeholder="First Name"></label>
+          <!--/*The word for "alt" sits as the placeholder then if anything typed, the actual PLACEHOLDER moves on the field's line-->
+          
+          <input class="field"  required="yes" type="text" name="Last Name field">
+          <label class="label-field" required="yes" alt="Last Name Section" placeholder="Last Name"></label>
+
+          <input class="field"  required="yes" type="text" name="Email Address field">
+          <label class="label-field" required="yes" alt="Email Address Section" placeholder="Email Address"></label>     
+          
+          <textarea class="field CommentFiled"  required="yes" type="text" name="Comment field"></textarea>
+          <label  class=" label-field" id="CommentLabel"  required="yes" alt="Comment Section" placeholder="Comment"></label> 
+          <button class="FormSubmitBTN" type="submit" >Submit</button>
+
+        </form>
+        <!--ContactUs FORM until here-->
+      </div>
+
+      <div class="ContactDetails">
+        <div>
+          <h3>Flex Form With Fixed Label & Animated Border</h3>
+          <form  class="TestForm">
+              <label class="TestLabel" required="yes" alt="Address Section" >Address</label>     
+              <input class="TestInput"  required="yes" type="text" name="Address field">
+              <label class="TestLabel" required="yes" alt="Address Section" >Address</label>     
+              <input class="TestInput"  required="yes" type="text" name="Address field">
+
+              <label  class="TestLabel"  required="yes" alt="Comment Section">Comment</label>
+              <textarea class="TestInput CommentFiled"  required="yes" type="text" name="Comment field"></textarea>
+ 
+              <button class="FormSubmitBTN" type="submit" >Submit</button>
+
+            </form>
+        </div>
+      </div>
+    </div>
+    <footer>All Rights Reserved @2022</footer>
+  </body>
+  <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+</html>

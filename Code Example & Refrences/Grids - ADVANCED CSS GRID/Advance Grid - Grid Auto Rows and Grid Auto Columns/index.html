@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Savory</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header>
+        <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/savory.svg" class="logo">
+      </header>
+
+      <main>
+        <div class="recipe a">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-1.png" />
+          <h2>CHOCOLATE MOUSSE</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">20 mins</p>
+          <p class="description">
+            This delicious chocolate mousse will delight dinner guests of all ages!</p>
+        </div>
+        <div class="recipe b">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-2.png" />
+          <h2>SMOKED LAMB WITH RICE</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">120 mins</p>
+          <p class="description">
+            Want to feel like your favorite relative came over and made you dinner? This comfort meal of smoked lamb and rice will quickly become a weekend favorite!
+          </p>
+        </div>
+        <div class="recipe c">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-5.png" />
+          <h2>GOAT CHEESE SALAD</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">25 mins</p>
+          <p class="description">
+            In addition to the full flavor of goat cheese, this salad includes kale, avocado, and farro to balance it out.</p>
+        </div>
+        <div class="recipe d">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-4.png" />
+          <h2>CHICKEN SANDWICH</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">45 mins</p>
+          <p class="description">
+            We've packed a lot into this one - shredded cabbage, carmalized onions, deep-fried chicken, chipotle mayo, half-sour pickles, and a toasted sesame bun will leave you thoroughly satisfied!</p>
+        </div>
+        <div class="recipe e">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-3.png" />
+          <h2>SWEET CHURROS</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">90 mins</p>
+          <p class="description">
+            Making this classic summer treat at home will remind you of a childhood spent in the park.</p>
+        </div>
+        <div class="recipe f">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-6.png" />
+          <h2>BERRY PARFAIT</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">10 mins</p>
+          <p class="description">
+            This low-calorie, vitamin-packed parfait is great for breakfast, dessert, or post-workout!</p>
+        </div>
+         <div class="recipe e">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-3.png" />
+          <h2>SWEET CHURROS</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">90 mins</p>
+          <p class="description">
+            Making this classic summer treat at home will remind you of a childhood spent in the park.</p>
+        </div>
+        <div class="recipe f">
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/image-6.png" />
+          <h2>BERRY PARFAIT</h2>
+          <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/time.svg" class="time" />
+          <p class="mins">10 mins</p>
+          <p class="description">
+            This low-calorie, vitamin-packed parfait is great for breakfast, dessert, or post-workout!</p>
+        </div>
+      </main>
+
+      <footer>
+        <img src="https://content.codecademy.com/courses/learn-css-grid/lesson-ii/savory.svg" class="logo">
+      </footer>
+
+    </div>
+  </body>
+
+</html>
+
+<!--
+Grid Auto Rows and Grid Auto Columns
+CSS Grid provides two properties to specify the size of grid tracks added implicitly: grid-auto-rows and grid-auto-columns. These properties are declared on grid containers.
+
+grid-auto-rows specifies the height of implicitly added grid rows. grid-auto-columns specifies the width of implicitly added grid columns.
+
+grid-auto-rows and grid-auto-columns accept the same values as their explicit counterparts, grid-template-rows and grid-template-columns:
+
+pixels (px)
+percentages (%)
+fractions (fr)
+the repeat() function
+<body>
+  <div>Part 1</div>   
+  <div>Part 2</div>
+  <div>Part 3</div>
+  <div>Part 4</div>
+  <div>Part 5</div>
+</body>
+body {
+  display: grid;
+  grid: repeat(2, 100px) / repeat(2, 150px); 
+  grid-auto-rows: 50px;
+}
+In the example above, there are 5 <div>s. However, in the body ruleset, we only specify a 2-row, 2-column grid — four grid cells.
+
+The fifth <div> will be added to an implicit row that will be 50 pixels tall.
+
+If we did not specify grid-auto-rows, the rows would be auto-adjusted to the height of the content of the grid items.
+
+Grid Auto Flow
+In addition to setting the dimensions of implicitly-added rows and columns, we can specify the order in which they are rendered.
+
+grid-auto-flow specifies whether new elements should be added to rows or columns, and is declared on grid containers.
+
+grid-auto-flow accepts these values:
+
+row — specifies the new elements should fill rows from left to right and create new rows when there are too many elements (default)
+column — specifies the new elements should fill columns from top to bottom and create new columns when there are too many elements
+dense — this keyword invokes an algorithm that attempts to fill holes earlier in the grid layout if smaller elements are added
+You can pair row or column with dense, like this: grid-auto-flow: row dense;.
+
+-->
