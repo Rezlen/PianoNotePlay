@@ -1,0 +1,100 @@
+<html>
+
+<head>
+  <title>Amazing Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="page-title">
+      <div class="logo"></div>
+      <h1>Amazing Space</h1>
+      <h5>At Amazing Space, there's always space for you.&trade;</h5>
+    </div>
+  </header>
+  <div class="main">
+    <p class="page-description clearfix">
+      Otherworldly views, uncompromising service, unparallelled luxury. This is Amazing Space, the world's first, and finest, space adventure company. With private and group voyages embarking weekly, you can book your tickets in advance or on the fly.
+      <a class="learn-more" href="#">Learn More</a>
+    </p>
+    <div class="gallery">
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space01.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space02.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space03.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space04.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space05.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space06.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space07.jpg">
+      </figure>
+      <figure class="gallery-item">
+        <img class="thumbnail" src="https://content.codecademy.com/projects/make-a-website/lesson-3/space08.jpg">
+      </figure>
+    </div>
+  </div>
+  <nav class="footer">
+    <ul>
+      <li>ABOUT</li>
+      <li>MISSIONS</li>
+      <li>ARCHIVE</li>
+    </ul>
+    <div class="contact-btn">
+      <a>CONTACT US</a>
+    </div>
+  </nav>
+</body>
+
+</html>
+
+
+<!--
+
+MEDIA QUERIES
+Media Queries
+CSS uses media queries to adapt a website’s content to different screen sizes. With media queries, CSS can detect the size of the current screen and apply different CSS styles depending on the width of the screen.
+
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+}
+The example above demonstrates how a media query is applied. The media query defines a rule for screens smaller than 480 pixels (approximately the width of many smartphones in landscape orientation).
+
+Let’s break this example down into its parts:
+
+@media — This keyword begins a media query rule and instructs the CSS compiler on how to parse the rest of the rule.
+only screen — Indicates what types of devices should use this rule. In early attempts to target different devices, CSS incorporated different media types (screen, print, handheld). The rationale was that by knowing the media type, the proper CSS rules could be applied. However, “handheld” and “screen” devices began to occupy a much wider range of sizes and having only one CSS rule per media device was not sufficient. screen is the media type always used for displaying content, no matter the type of device. The only keyword is added to indicate that this rule only applies to one media type (screen).
+and (max-width : 480px) — This part of the rule is called a media feature, and instructs the CSS compiler to apply the CSS styles to devices with a width of 480 pixels or smaller. Media features are the conditions that must be met in order to render the CSS within a media query.
+CSS rules are nested inside of the media query’s curly braces. The rules will be applied when the media query is met. In the example above, the text in the body element is set to a font-size of 12px when the user’s screen is less than 480px.
+-------------------------------------
+
+Review: Media Queries
+Incredible work! You learned how to change the way a website appears on different screens with media queries and breakpoints
+
+Throughout this lesson, you learned:
+
+When a website responds to the size of the screen it’s viewed on, it’s called a responsive website.
+You can write media queries to help with different screen sizes.
+Media queries require media features. Media features are the conditions that must be met to render the CSS within a media query.
+Media features can detect many aspects of a user’s browser, including the screen’s width, height, resolution, orientation, and more.
+The and operator requires multiple media features to be true at once.
+A comma separated list of media features only requires one media feature to be true for the code within to be applied.
+The best practice for identifying where media queries should be set is by resizing the browser to determine where the content naturally breaks. Natural breakpoints are found by resizing the browser.
+With your knowledge of media queries and CSS, you can make websites that look great on any device, from a small phone to a huge television. By making your websites responsive, you’ll make it possible for any of your users to have a great experience.
+-->
