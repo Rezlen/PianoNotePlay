@@ -1,0 +1,54 @@
+html,
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    background-color: rgb(243, 243, 243);
+  
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.QuoteBodyDiv {
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: large;
+    margin: 1rem;
+    color: rgb(25, 36, 18);
+    text-align: center;
+    border: rgb(33, 21, 36) 0.5px solid;
+}
+
+p {
+    padding: 1rem 0rem;
+    font-size: 1rem;
+    font-style: italic;
+    border: rgb(226, 141, 43) 0.1rem solid;
+}
+
+#SubmitBTN {
+    background-color: #00bafa;
+    height: 4rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: large;
+    margin: 1rem;
+    color: aliceblue;
+    text-align: center;
+    cursor: pointer;
+}
+
+#SubmitBTN:hover {
+    background-color: rgb(72, 37, 228);
+}
+
+.BTNdiv {
+    text-align: center;
+}
+
+
+

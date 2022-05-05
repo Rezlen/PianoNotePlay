@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Company Home Page with Flexbox</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:700" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!--Start Script is for Mobile menu display-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $(".toggle").on("click", function(){
+          if($(".nav-item").hasClass("active")){
+              $(".nav-item").removeClass("active");
+          }
+          else{
+            $(".nav-item").addClass("active");
+          }
+        })
+      });
+    </script> <!--Ends Script is for Mobile menu display-->
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-list">
+          <li class="nav-item1"><a href= 'index.html'><img  src= 'favicon.ico'></a></li>
+          <li class="nav-item"><a href= "#"  title="Find Out About All Businesses Here">First Menu</a></li>
+          <!--TITLE acts as a tooltip HOWEVER; <span class= "TooltipContent" >Tooltip text</span> a kind of tooltip is SPAN tooltip, check the css page's explanation-->
+          <li class="nav-item" data-tooltip="TooltipTest" ><a href= "#" >Second Menu</a></li>
+          <li class="nav-item"><a href= "#">Third Menu</a></li> <!--Adding TITLE here helps you create TOOLTIP-->
+          
+          <li class="nav-item button"><a href= "#" >Login</a></li>          
+          <li class="nav-item button Secondary"><a href= "#">Sign Up</a></li>
+          <li class="toggle"><span class="bars"></span>Menu</li>
+        </ul>
+      </nav>
+        
+      <!--Top Section area-->
+      <div class="ImageCoverHome">
+        <h1>Your Business Title Here</h1>
+        <p>Your Few Line Mission Statement Here</p>
+      </div>  
+    </header>
+    <h2>Your Service Display Here</h2>
+    <div class="YourServicesHere">
+      <div>
+        <h3> Service 1</h3>
+        <img src="images/filter-2.png" title="Service1ImageTooltip" alt="Service1Image1">
+      </div>
+      <div>
+        <h3> Service 2</h3>
+        <img src="images/allie.png" title="Service2ImageTooltip" alt="Service1Image2">
+      </div>
+      <a href="https://www.google.com/">
+        <div>
+          <h3> Service 3</h3>
+          <img src="images/filter-4.png" title="Service3ImageTooltip" alt="Service1Image3">
+        </div>
+      </a>
+    </div>
+
+    <!--Bottom Section Area For Team Members display-->
+    <h2>Your Team Members Display Here</h2>
+    <div class="BusinessTeam">
+      <div>
+        <img src="images/staff/employee-one.webp" title="Team1ImageTooltip" alt="Team1Image">
+        <h3> Team 1</h3>
+      </div>
+      <div>
+        <img src="images/staff/employee-three.webp" title="Team2ImageTooltip" alt="Team2Image">
+        <h3> Team 2</h3>
+      </div>
+      <a href="https://www.google.com/">
+        <div>
+          <img src="images/staff/employee-two.webp" title="Team3ImageTooltip" alt="Team3Image">
+          <h3> Team 3</h3>
+        </div>
+      </a>
+    </div>
+
+    <!--Bottom Section Area For ContactUs FORM, Map, Address Display-->
+    <div class="ContactDetails">
+      <div>
+        <p>Fill The Form Below To Contact Us. We Get Back To You In Less Than 24hrs</p>
+        <!--ContactUs FORM from here-->
+        <form  method="get" action="/admin/faq">
+          <input class="field"  required="yes" type="text" name="First Name field">
+          <label class="label-field" required="yes" alt="First Name Section" placeholder="First Name"></label>
+          <!--/*The word for "alt" sits as the placeholder then if anything typed, the actual PLACEHOLDER moves on the field's line-->
+          
+          <input class="field"  required="yes" type="text" name="Last Name field">
+          <label class="label-field" required="yes" alt="Last Name Section" placeholder="Last Name"></label>
+         
+          <input class="field"  required="yes" type="text" name="Email Address field">
+          <label class="label-field" required="yes" alt="Email Address Section" placeholder="Email Address"></label>     
+          
+          <textarea class="field CommentFiled"  required="yes" type="text" name="Comment field"></textarea>
+          <label  class=" label-field" id="CommentLabel"  required="yes" alt="Comment Section" placeholder="Comment"></label> 
+          <button class="FormSubmitBTN" type="submit" >Submit</button>
+
+        </form>
+        <!--ContactUs FORM until here-->
+      </div>
+      <p>WeWork Moorgate, 1 Fore Street, London, EC2Y 5EJ <br>Whatsapp, Phone, Telegram, Instagram: (0044)1234567891</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.739362939668!2d-0.09248803422963602!3d51.51799752963689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761caba849ec05%3A0x781a75c80a30bd1!2sFore%20St%2C%20London%20EC2Y%205EJ!5e0!3m2!1sen!2suk!4v1648219306618!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <footer>All Rights Reserved @2022</footer>
+  </body>
+  <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+</html>
+
