@@ -156,11 +156,15 @@ form {
 footer {
   display: flex;
   align-items: flex-start;
-  background-image: url("images/footer-copy.png");
+  background-image: url("../images/footer-copy.png");
   height: 20rem; /* set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.ContactDetails p {
+  margin: 0.5rem;
 }
 
 /*For Mobile Display*/
