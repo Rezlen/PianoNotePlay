@@ -6,9 +6,9 @@ body {
   background-color: white;
 }
 
-* {
+/** {
   border: red 0.25px dotted; 
-}
+} */
 
 /*The Menu bar is place in menu.css file in css folder*/
 
@@ -94,6 +94,9 @@ h2 {
   align-items: center;
   height: auto;
   width: auto;
+  margin: 2rem;
+  background-color: rgb(132, 138, 125);
+  box-shadow: 0px 0px 10px;
 }
 
 

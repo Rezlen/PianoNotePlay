@@ -7,9 +7,9 @@ body {
   
 }
 
-* {
+/** {
   border: red 0.25px dotted; 
-}
+} */
 
 /*The Menu bar is place in menu.css file in css folder*/
 
@@ -27,6 +27,7 @@ h2 {
   text-align: center;
   background-color: rgb(241, 247, 235);
   box-shadow: 0px 0px 10px;
+  margin: 2rem;
 }
 
 
@@ -44,6 +45,13 @@ h2 {
   align-items: center;
   height: auto;
   width: auto;
+  margin: 2rem;
+  background-color: rgb(132, 138, 125);
+  box-shadow: 0px 0px 10px;
+}
+
+.BusinessTeamContent {
+ margin: 2rem;
 }
 
 .BusinessTeamContent ul li {
