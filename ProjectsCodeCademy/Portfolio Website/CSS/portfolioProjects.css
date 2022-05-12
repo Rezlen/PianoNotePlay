@@ -4,11 +4,14 @@ body {
   font-size: 16px;
   margin: 0;
   background-color: white;
-  
 }
 
-* {
+/** {
   border: red 0.25px dotted; 
+} */
+div {
+  border-color: #898989;
+ 
 }
 
 /*The Menu bar is place in menu.css file in css folder*/
@@ -24,11 +27,12 @@ h2 {
 /*Puts everything in order*/
 .YourProjectsHere {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
   background-color: rgb(241, 247, 235);
   box-shadow: 0px 0px 10px;
+  flex-wrap: wrap;
 }
 
 .YourProjectsHere a, .YourProjectsHere p {
@@ -36,10 +40,15 @@ h2 {
   width: 20rem;
 }
 
+div {
+border: 0.5rem solid #7e927c;
+margin: 1rem;
+}
+
 /*Limits the images*/
 .YourProjectsHere img {
-  height: 20rem;
-  width: auto;
+  height: 25rem;
+  max-width: 100%;
 }
 
 /*========================To display the Map Iframe-Address- Contact Details*/

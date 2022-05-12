@@ -1,3 +1,16 @@
+html,
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+
+  background-color: rgb(105, 84, 84);
+}
+
+img {
+  height: 25rem;
+  max-width: 100%;
+}
+
 header {
   background-color: #0e0e0e;
   color: white;
@@ -12,6 +25,7 @@ nav {
   margin-bottom: 10px;
   position: fixed;
   top: 87px;
+  right: 20px;
   width: 100%;
   z-index: 2;
 }
@@ -26,6 +40,11 @@ nav li {
 nav a {
   text-decoration: none;
   color: white;
+}
+
+.content {
+  max-width: 1000px;
+  margin: auto;
 }
 
 p {
