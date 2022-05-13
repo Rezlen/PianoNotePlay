@@ -47,16 +47,16 @@ h2 {
 /*Puts everything in order*/
 .YourProjectsHere {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
   background-color: rgb(241, 247, 235);
   box-shadow: 0px 0px 10px;
+  flex-wrap: wrap;
 }
 
 .YourProjectsHere a, .YourProjectsHere p {
   text-decoration: none;
-  text-underline-offset: none;
   width: 20rem;
 }
 
@@ -195,10 +195,6 @@ footer {
   div {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  }
-  .YourProjectsHere img {
-    width: fit-content;
   }
 
 }
