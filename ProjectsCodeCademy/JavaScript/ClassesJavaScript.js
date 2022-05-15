@@ -447,44 +447,44 @@ The example above will result in an error, because you cannot call static method
 =============================
 
 class HospitalEmployee {
-    constructor(name) {
-      this._name = name;
-      this._remainingVacationDays = 20;
-    }
-    
-    get name() {
-      return this._name;
-    }
-    
-    get remainingVacationDays() {
-      return this._remainingVacationDays;
-    }
-    
-    takeVacationDays(daysOff) {
-      this._remainingVacationDays -= daysOff;
-    }
-  
-    static generatePassword() {
-      return Math.floor(Math.random()*10000);
-    } 
-  
+  constructor(name) {
+    this._name = name;
+    this._remainingVacationDays = 20;
   }
   
-  class Nurse extends HospitalEmployee {
-    constructor(name, certifications) {
-      super(name);
-      this._certifications = certifications;
-    } 
-    
-    get certifications() {
-      return this._certifications;
-    }
-    
-    addCertification(newCertification) {
-      this.certifications.push(newCertification);
-    }
-  
+  get name() {
+    return this._name;
   }
+  
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+  
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+
+  static generatePassword() {
+    return Math.floor(Math.random()*10000);
+  } 
+  
+}
+  
+class Nurse extends HospitalEmployee {
+  constructor(name, certifications) {
+    super(name);
+    this._certifications = certifications;
+  } 
+  
+  get certifications() {
+    return this._certifications;
+  }
+  
+  addCertification(newCertification) {
+    this.certifications.push(newCertification);
+  }
+  
+}
   
   const nurseOlynyk = new Nurse('Olynyk', ['Trauma','Pediatrics']);
   nurseOlynyk.takeVacationDays(5);
@@ -492,7 +492,7 @@ class HospitalEmployee {
   nurseOlynyk.addCertification('Genetics');
   console.log(nurseOlynyk.certifications);
   
-===========Project  =================  
+===========Project ; Parent Class =================  
 class Media {
   constructor(title) {
     this._title = title;
@@ -514,24 +514,21 @@ class Media {
     this._isCheckedOut = value;
   }
   
-//Under your getters, create a method named toggleCheckOutStatus that changes the value saved to the _isCheckedOut property. If the value is true, then change it to false. If the value is false, then change it to true.
+  //Under your getters, create a method named toggleCheckOutStatus that changes the value saved to the _isCheckedOut property. If the value is true, then change it to false. If the value is false, then change it to true.
   toggleCheckOutStatus() {
     this._isCheckedOut = !this.isCheckedOut;
   }
-
   getAverageRating() {
     let ratingsSum = this.ratings.reduce((accumulator, rating) => accumulator + rating);
     return ratingsSum / this.ratings.length;      
   } 
-
   addRating(value) {
     this.ratings.push(value);
   }
 
 }
 
-// Book Class Extention =================
-
+// Book Class Extention ; Child class =================
 class Book extends Media {
   constructor(title, author, pages) {
     super(title);
@@ -545,7 +542,8 @@ class Book extends Media {
     return this._pages;
   }
 }
-// Movie Class Extention =================
+
+// Movie Class Extention ; child class =================
 class Movie extends Media {
  constructor(title, director, runTime) {
     super(title);
@@ -562,21 +560,28 @@ class Movie extends Media {
 //Create a Book instance with the following properties:
 const historyOfEverything = new Book('A Short History of Nearly Everything', 'Bill Bryson', 544);
 
-
 historyOfEverything.toggleCheckOutStatus();
-console.log(historyOfEverything.isCheckedOut);
+console.log(historyOfEverything.isCheckedOut); // output TRUE
 historyOfEverything.addRating(4);
 historyOfEverything.addRating(5);
 historyOfEverything.addRating(5);
-console.log(historyOfEverything.getAverageRating());
+console.log(historyOfEverything.getAverageRating()); // output 4.66666
 
 /* Create a Movie instance with the following properties. Save the instance to a constant variable named speed. */
 const speed = new Movie('Jan de Bont', 'Jan de Bont', 116);
 
 speed.toggleCheckOutStatus();
-console.log(speed.isCheckedOut);
+console.log(speed.isCheckedOut); // Output TRUE
 speed.addRating(1);
 speed.addRating(1);
 speed.addRating(5);
-console.log(speed.getAverageRating());
+console.log(speed.getAverageRating()); // output 4.66666
 ==================================
+/* 
+
+$ dig www.rezasoheily.co.uk +nostats +nocomments +nocmd
+    > ;www.rezasoheily.co.uk.                     IN      A
+    > www.rezasoheily.co.uk.              3592    IN      CNAME   rezlen.github.io.
+    > rezlen.github.io.      43192   IN      CNAME    GITHUB-PAGES-SERVER .
+    >  GITHUB-PAGES-SERVER .         22      IN      A       192.0.2.1
+    */

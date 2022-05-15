@@ -156,3 +156,10 @@ footer {
 
 }
 
+/*
+dig http://portfolio-projects.rezasoheily.co.uk/ +nostats +nocomments +nocmd
+    > ;http://portfolio-projects.rezasoheily.co.uk/.                     IN      A
+    > http://portfolio-projects.rezasoheily.co.uk/.              3592    IN      CNAME   rezlen.github.io.
+    > rezlen.github.io.      43192   IN      CNAME    GITHUB-PAGES-SERVER .
+    >  GITHUB-PAGES-SERVER .         22      IN      A       192.0.2.1
+*/
