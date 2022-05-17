@@ -585,3 +585,21 @@ $ dig www.rezasoheily.co.uk +nostats +nocomments +nocmd
     > rezlen.github.io.      43192   IN      CNAME    GITHUB-PAGES-SERVER .
     >  GITHUB-PAGES-SERVER .         22      IN      A       192.0.2.1
     */
+=========test==================
+    class Network {
+      constructor(data, users) {
+        this.data = data;
+        this.users = users;
+      }
+      // Insert code below
+       movieTime() {
+         const userDataUsed = this.users*5;
+         if (this.data - userDataUsed >= 10) {
+           return true;
+         }
+          return false;
+       }
+    }
+    Rez=new Network(50,3)
+    console.log(Rez.movieTime()) //outcome true
+    ===============================
