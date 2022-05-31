@@ -795,14 +795,14 @@ const assert = require('assert');
 
 describe('+', () => {
   it('returns the sum of two values', () => {
-    // Setup
+    // Setup. In setup define your expected result
 		let expected = [3, 4, 7];
 		let sum = [3, 4];
 
-    // Exercise
+    // Exercise. In exercise call the function under test
 		sum.push(3 + 4);
 
-    // Verify
+    // Verify. In verify use an assert function
     assert.deepEqual(sum, expected);
   });
 });
@@ -817,4 +817,101 @@ describe('Numbers', () => {
 });
 
 ==================
+
+Within the it block, write the relevant test using an assert function.
+
+Don’t forget to use the four phases of a test: setup, exercise, and verify in your it block (teardown optional).
+
+In setup define your expected result
+In exercise call the function under test
+In verify use an assert function
+===============
+
+Red To Green I
+Congrats you’re in the red!
+The red error messages describe the failures of our implementation code, so we can specifically address each issue that is preventing our test from passing.
+
+Let’s look at the error message from our Phrase.initials() example in the last exercise:
+
+ReferenceError: Phrase is not defined
+
+The error tells us that Phrase is not defined. This is because we have not created an object named Phrase yet. Let’s do that now:
+
+const Phrase = {}
+When we run our test again the error would look like this:
+
+TypeError: Phrase.initials is not a function
+
+We’re still in the red, but we have a new error. The error says that Phrase.initials is not a function. That’s because we haven’t added an .initials method to the Phrase object. Let’s do that now:
+
+const Phrase = {
+    initials() {
+  }
+}
+Now when we run our test we get the following error:
+
+AssertionError:  undefined == 'NM'
+
+This is the first error that is referencing the actual behavior of the .initials method.
+
+The assert statement we wrote looked like this:
+
+assert.strictEqual(Phrase.initials('Nelson Mandela'), 'NM');
+We expected the result of passing Nelson Mandela to Phrase.initials() to be NM, but the actual result was undefined. This is because our method has not been programmed to return anything.
+
+Following TDD, the next step would be writing the minimum possible implementation code to make our test pass. In this example, that would involve adding a line of implementation code so that .initials() returns our expected result, which is NM.
+
+The minimum possible implementation code to make the test pass:
+
+const Phrase = {
+  initials(phr) {
+    return 'NM';
+  }
+}
+Now our test would pass and we would be in the green. But that doesn’t mean our method is working as intended. If we entered “Jody Williams” our method would return ‘NM’, not ‘JW’. We will address this issue when it is time, but following TDD, now that we have progressed from the red to the green, we will move into the refactor phase.
+===================
+
+Refactor I
+Congrats you’re in the green!
+Once all your tests pass, you can confidently refactor your code — restructure and improve it without changing its external behavior. The confidence comes from knowing that our tests will catch us if we make a misstep.
+
+When refactoring, it’s critical to test early and often — if our tests turn red, then we know that something went wrong while we were refactoring, and we can undo those changes.
+
+A good place to start with refactoring is to restructure tests to reflect the four phases of a good test: setup, exercise, verification, teardown.
+
+Let’s consider the test for our Phrase.initials method. We could rewrite the test with setup, exercise, and verification stages to make it more expressive and maintainable.
+
+describe('Phrase', () => {
+  describe('.initials', () => {
+    it('returns the first letter of each word in a phrase.', () => {
+      // Setup
+      const inputName = 'Nelson Mandela';
+      const expectedInitials = 'NM';
+      // Exercise
+      const result = Phrase.initials(inputName);
+      // Verification
+      assert.strictEqual(result, expectedInitials);
+    });
+  });
+});
+Here, we have re-written the same test, but we have created variables to hold the values that we will use to test the behavior of .initials(), and broken up the test into distinct phases, which are marked by the comments in the code.
+
+Now that we have refactored our test code, we can refactor our implementation code. Our earlier code looked like this:
+
+const Phrase = {
+  initials(phr) {
+    return 'NM';
+  }
+}
+ 
+In order to make our implementation code more expressive, we can change the name of the input argument of .initials() like this:
+
+const Phrase = {
+  initials(inputName) {
+    return 'NM';
+  }
+}
+ 
+Refactoring will look different for each project and each iteration of the red-green-refactor cycle. In some cases you won’t need to refactor at all! Regardless, you should consider how you can improve your code and — although it is optional — it can set you up for success moving forward.
+====================
 
