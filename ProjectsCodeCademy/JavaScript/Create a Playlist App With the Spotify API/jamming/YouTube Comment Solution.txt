@@ -1,0 +1,12 @@
+
+Rowan Winkels @youtube
+10 months ago
+It took me a while, after finishing step 95, to actually get this to work. 
+
+My major fixes were:
+- Adding an onClick attribute in the search bar's <button> element. The onClick should equal to {this.search}. (See Muhammad's original comment below.)
+- Running by my inconsistent naming of variables, notably I was writing trackURIs, but also writing trackUris (These mistakes stem from the walkthrough video applying all caps to URI, but not all caps to the likes of Id and Url)
+- Double-checking the redirect URL's added into Spotify.js for the syntactically  correct `${variable}` implementations.
+
+Side-note; from step 29 onward I had this walk-through video carry me through the whole exercise
+Side-note2; it still takes 3 seach button clicks to actually get search results to show
