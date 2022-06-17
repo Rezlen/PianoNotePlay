@@ -53,7 +53,7 @@ const Spotify = {
     const accessToken = Spotify.getAccessToken();
     const headers = {Authorization: `Bearer ${accessToken}`};
     let userId;
-// an erro here: src\util\Spotify.js   Line 58:12:  'response' is not defined  no-undef   Line 58:23:  'response' is not defined  no-undef
+// an error here: src\util\Spotify.js   Line 58:12:  'response' is not defined  no-undef   Line 58:23:  'response' is not defined  no-undef
     return fetch(`https://api.spotify.com/v1/me`, {headers: headers}
     ).then(response => response.json()
     ).then(jsonResponse => {
