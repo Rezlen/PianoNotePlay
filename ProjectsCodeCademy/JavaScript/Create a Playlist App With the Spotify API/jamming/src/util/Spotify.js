@@ -1,6 +1,6 @@
-const clientId = '7af13fe261434eec9f26f8d37112661f';
-const redirectURI = 'http://rez-surge-school.surge.sh';
-let accessToken;
+const clientId = 'c1a614b7fbf74f7984eb7d3468f00ee7';
+const redirectURI = 'http://RezSchool.surge.sh/';
+let accessToken = '';
 
 const Spotify = {
   getAccessToken() {
@@ -31,8 +31,8 @@ const Spotify = {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
-    }).then(Response => {
-      return Response.json();
+    }).then(response => {
+      return response.json();
     }).then(jsonResponse => {
       if (!jsonResponse.tracks) {
         return [];
@@ -40,7 +40,7 @@ const Spotify = {
       return jsonResponse.tracks.items.map(track => ({
         id: track.id,
         name: track.name,
-        artist: track.artist[0].name,
+        artist: track.artists[0].name,
         album: track.album.name,
         uri: track.uri
       }));
