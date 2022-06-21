@@ -1700,6 +1700,112 @@ Split state into multiple, simpler variables instead of throwing it all into one
 
 ===================
 
+THE EFFECT HOOK
+Why Use useEffect?
+Before Hooks, function components were only used to accept data in the form of props and return some JSX to be rendered. However, as we learned in the last lesson, the State Hook allows us to manage dynamic data, in the form of component state, within our function components.
 
+In this lesson, we’ll use the Effect Hook to run some JavaScript code after each render, such as:
 
+fetching data from a backend service
+subscribing to a stream of data
+managing timers and intervals
+reading from and making changes to the DOM
+Why after each render?
+Most interesting components will re-render multiple times throughout their lifetime and these key moments present the perfect opportunity to execute these “side effects”.
+
+There are three key moments when the Effect Hook can be utilized:
+
+When the component is first added, or mounted, to the DOM and renders
+When the state or props change, causing the component to re-render
+When the component is removed, or unmounted, from the DOM.
+Later on in this lesson, we’ll learn how to further fine-tune exactly when this code executes.
+==================
+Function Component Effects
+Let’s break down how our PageTitle() function component is using the Effect Hook to execute some code after each render!
+
+import React, { useState, useEffect } from 'react';
+ 
+function PageTitle() {
+  const [name, setName] = useState('');
+ 
+  useEffect(() => {
+    document.title = `Hi, ${name}`;
+  });
+ 
+  return (
+    <div>
+      <p>Use the input field below to rename this page!</p>
+      <input onChange={({target}) => setName(target.value)} value={name} type='text' />
+    </div>
+  );
+}
+First, we import the Effect Hook from the react library, like so:
+
+import { useEffect } from 'react';
+The Effect Hook is used to call another function that does something for us so there is nothing returned when we call the useEffect() function.
+
+The first argument passed to the useEffect() function is the callback function that we want React to call after each time this component renders. We will refer to this callback function as our effect.
+
+In our example, the effect is:
+
+() => { document.title = `Hi, ${name}`; }
+In our effect, we assign the value of the name variable to the document.title within a string. For more on this syntax, have a look at this explanation of the document’s title property.
+
+Notice how we use the current state inside of our effect. Even though our effect is called after the component renders, we still have access to the variables in the scope of our function component! When React renders our component, it will update the DOM as usual, and then run our effect after the DOM has been updated. This happens for every render, including the first and last one.
+==================
+Clean Up Effects
+Some effects require cleanup. For example, we might want to add event listeners to some element in the DOM, beyond the JSX in our component. When we add event listeners to the DOM, it is important to remove those event listeners when we are done with them to avoid memory leaks!
+
+Let’s consider the following effect:
+
+useEffect(()=>{
+  document.addEventListener('keydown', handleKeyPress);
+  return () => {
+    document.removeEventListener('keydown', handleKeyPress);
+  };
+})
+If our effect didn’t return a cleanup function, then a new event listener would be added to the DOM’s document object every time that our component re-renders. Not only would this cause bugs, but it could cause our application performance to diminish and maybe even crash!
+
+Because effects run after every render and not just once, React calls our cleanup function before each re-render and before unmounting to clean up each effect call.
+
+If our effect returns a function, then the useEffect() Hook always treats that as a cleanup function. React will call this cleanup function before the component re-renders or unmounts. Since this cleanup function is optional, it is our responsibility to return a cleanup function from our effect when our effect code could create memory leaks.
+==============
+Control When Effects Are Called
+The useEffect() function calls its first argument (the effect) after each time a component renders. We’ve learned how to return a cleanup function so that we don’t create performance issues and other bugs, but sometimes we want to skip calling our effect on re-renders altogether.
+
+It is common, when defining function components, to run an effect only when the component mounts (renders the first time), but not when the component re-renders. The Effect Hook makes this very easy for us to do! If we want to only call our effect after the first render, we pass an empty array to useEffect() as the second argument. This second argument is called the dependency array.
+
+The dependency array is used to tell the useEffect() method when to call our effect and when to skip it. Our effect is always called after the first render but only called again if something in our dependency array has changed values between renders.
+
+We will continue to learn more about this second argument over the next few exercises, but for now, we’ll focus on using an empty dependency array to call an effect when a component first mounts, and if a cleanup function is returned by our effect, calling that when the component unmounts.
+
+useEffect(() => {
+  alert("component rendered for the first time");
+  return () => {
+    alert("component is being removed from the DOM");
+  };
+}, []); 
+Without passing an empty array as the second argument to the useEffect() above, those alerts would be displayed before and after every render of our component, which is clearly not when those messages are meant to be displayed. Simply, passing [] to the useEffect() function is enough to configure when the effect and cleanup functions are called!
+-------------------
+Fetch Data
+When building software, we often start with default behaviors then modify them to improve performance. We’ve learned that the default behavior of the Effect Hook is to call the effect function after every single render. Next, we learned that we can pass an empty array as the second argument for useEffect() if we only want our effect to be called after the component’s first render. In this exercise, we’ll learn to use the dependency array to further configure exactly when we want our effect to be called!
+
+When our effect is responsible for fetching data from a server, we pay extra close attention to when our effect is called. Unnecessary round trips back and forth between our React components and the server can be costly in terms of:
+
+Processing
+Performance
+Data usage for mobile users
+API service fees
+When the data that our components need to render doesn’t change, we can pass an empty dependency array, so that the data is fetched after the first render. When the response is received from the server, we can use a state setter from the State Hook to store the data from the server’s response in our local component state for future renders. Using the State Hook and the Effect Hook together in this way is a powerful pattern that saves our components from unnecessarily fetching new data after every render!
+
+An empty dependency array signals to the Effect Hook that our effect never needs to be re-run, that it doesn’t depend on anything. Specifying zero dependencies means that the result of running that effect won’t change and calling our effect once is enough.
+
+A dependency array that is not empty signals to the Effect Hook that it can skip calling our effect after re-renders unless the value of one of the variables in our dependency array has changed. If the value of a dependency has changed, then the Effect Hook will call our effect again!
+
+Here’s a nice example from the official React docs:
+
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if the value stored by count changes
+-----------------
 
