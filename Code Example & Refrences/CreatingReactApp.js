@@ -1809,3 +1809,199 @@ useEffect(() => {
 }, [count]); // Only re-run the effect if the value stored by count changes
 -----------------
 
+Fetch Data
+When building software, we often start with default behaviors then modify them to improve performance. We’ve learned that the default behavior of the Effect Hook is to call the effect function after every single render. Next, we learned that we can pass an empty array as the second argument for useEffect() if we only want our effect to be called after the component’s first render. In this exercise, we’ll learn to use the dependency array to further configure exactly when we want our effect to be called!
+
+When our effect is responsible for fetching data from a server, we pay extra close attention to when our effect is called. Unnecessary round trips back and forth between our React components and the server can be costly in terms of:
+
+Processing
+Performance
+Data usage for mobile users
+API service fees
+When the data that our components need to render doesn’t change, we can pass an empty dependency array, so that the data is fetched after the first render. When the response is received from the server, we can use a state setter from the State Hook to store the data from the server’s response in our local component state for future renders. Using the State Hook and the Effect Hook together in this way is a powerful pattern that saves our components from unnecessarily fetching new data after every render!
+
+An empty dependency array signals to the Effect Hook that our effect never needs to be re-run, that it doesn’t depend on anything. Specifying zero dependencies means that the result of running that effect won’t change and calling our effect once is enough.
+
+A dependency array that is not empty signals to the Effect Hook that it can skip calling our effect after re-renders unless the value of one of the variables in our dependency array has changed. If the value of a dependency has changed, then the Effect Hook will call our effect again!
+
+Here’s a nice example from the official React docs:
+
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if the value stored by count changes
+----------------------------------
+
+Rules of Hooks
+There are two main rules to keep in mind when using Hooks:
+
+only call Hooks at the top level
+only call Hooks from React functions
+As we have been practicing with the State Hook and the Effect Hook, we’ve been following these rules with ease, but it is helpful to keep these two rules in mind as you take your new understanding of Hooks out into the wild and begin using more Hooks in your React applications.
+
+When React builds the Virtual DOM, the library calls the functions that define our components over and over again as the user interacts with the user interface. React keeps track of the data and functions that we are managing with Hooks based on their order in the function component’s definition. For this reason, we always call our Hooks at the top level; we never call hooks inside of loops, conditions, or nested functions.
+
+Instead of confusing React with code like this:
+
+if (userName !== '') {
+
+  useEffect(() => {
+    localStorage.setItem('savedUserName', userName);
+  });
+}
+We can accomplish the same goal, while consistently calling our Hook every time:
+
+useEffect(() => {
+  if (userName !== '') {
+    localStorage.setItem('savedUserName', userName);
+  }
+});
+Secondly, Hooks can only be used in React Functions. We cannot use Hooks in class components and we cannot use Hooks in regular JavaScript functions. We’ve been working with useState() and useEffect() in function components, and this is the most common use. The only other place where Hooks can be used is within custom hooks. Custom Hooks are incredibly useful for organizing and reusing stateful logic between function components. For more on this topic, head to the React Docs.
+
+import React, { useState, useEffect } from 'react';
+import { get } from './mockBackend/fetch';
+
+export default function Shop() {
+  const [categories, setCategories] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [items, setItems] = useState({});
+    
+    useEffect(() => {
+      get('/categories').then((response) => {
+        setCategories(response.data);
+      });
+  }, []);
+
+   useEffect(() => {
+ if (selectedCategory && !items[selectedCategory]) {
+      get(`/items?category=${selectedCategory}`).then((response) => {
+      setItems((prev) => ({ ...prev, [selectedCategory]: response.data }));
+     });
+    }
+  }, [items, selectedCategory]);
+
+  if (!categories) {
+    return <p>Loading..</p>;
+  }
+
+  return (
+    <div className='App'>
+      <h1>Clothes 'n Things</h1>
+      <nav>
+        {categories.map((category) => (
+          <button key={category} onClick={() => setSelectedCategory(category)}>
+            {category}
+          </button>
+        ))}
+      </nav>
+      <h2>{selectedCategory}</h2>
+      <ul>
+        {!items[selectedCategory]
+          ? null
+          : items[selectedCategory].map((item) => <li key={item}>{item}</li>)}
+      </ul>
+    </div>
+  );
+}
+
+----------
+Separate Hooks for Separate Effects
+When multiple values are closely related and change at the same time, it can make sense to group these values in a collection like an object or array. Packaging data together can also add complexity to the code responsible for managing that data. Therefore, it is a good idea to separate concerns by managing different data with different Hooks.
+
+Compare the complexity here, where data is bundled up into a single object:
+
+// Handle both position and menuItems with one useEffect hook.
+const [data, setData] = useState({ position: { x: 0, y: 0 } });
+useEffect(() => {
+  get('/menu').then((response) => {
+    setData((prev) => ({ ...prev, menuItems: response.data }));
+  });
+  const handleMove = (event) =>
+    setData((prev) => ({
+      ...prev,
+      position: { x: event.clientX, y: event.clientY }
+    }));
+  window.addEventListener('mousemove', handleMove);
+  return () => window.removeEventListener('mousemove', handleMove);
+}, []);
+To the simplicity here, where we have separated concerns:
+
+// Handle menuItems with one useEffect hook.
+const [menuItems, setMenuItems] = useState(null);
+useEffect(() => {
+  get('/menu').then((response) => setMenuItems(response.data));
+}, []);
+ 
+// Handle position with a separate useEffect hook.
+const [position, setPosition] = useState({ x: 0, y: 0 });
+useEffect(() => {
+  const handleMove = (event) =>
+    setPosition({ x: event.clientX, y: event.clientY });
+  window.addEventListener('mousemove', handleMove);
+  return () => window.removeEventListener('mousemove', handleMove);
+}, []);
+It is not always obvious whether to bundle data together or separate it, but with practice, we get better at organizing our code so that it is easier to understand, add to, reuse, and test!
+import React, { useState, useEffect } from 'react';
+import { get } from './mockBackend/fetch';
+
+export default function SocialNetwork() {
+  const [menu, setMenu] = useState(null);
+  useEffect(() => {
+    get('/menu').then((response) => {
+    setMenu(response.data);
+    });
+  }, []);
+  const [newsFeed, setNewsFeed] = useState(null);
+  useEffect(() => {
+    get('/news-feed').then((response) => {
+    setNewsFeed(response.data);
+    });
+  }, []);
+  const [friends, setFriends] = useState(null);
+  useEffect(() => {
+    get('/friends').then((response) => {
+    setFriends(response.data);
+    });
+  }, []);
+
+  return (
+    <div className='App'>
+      <h1>My Network</h1>
+      {!menu ? <p>Loading..</p> : (
+        <nav>
+          {menu.map((menuItem) => (
+            <button key={menuItem}>{menuItem}</button>
+          ))}
+        </nav>
+      )}
+      <div className='content'>
+        {!newsFeed ? <p>Loading..</p> : (
+          <section>
+            {newsFeed.map(({ id, title, message, imgSrc }) => (
+              <article key={id}>
+                <h3>{title}</h3>
+                <p>{message}</p>
+                <img src={imgSrc} alt='' />
+              </article>
+            ))}
+          </section>
+        )}
+        {!friends ? <p>Loading..</p> : (
+          <aside>
+            <ul>
+              {friends
+                .sort((a, b) => (a.isOnline && !b.isOnline ? -1 : 0))
+                .map(({ id, name, isOnline }) => (
+                  <li key={id} className={isOnline ? 'online' : 'offline'}>
+                    {name}
+                  </li>
+                ))}
+            </ul>
+          </aside>
+        )}
+      </div>
+    </div>
+  );
+}
+------------------
+
+
