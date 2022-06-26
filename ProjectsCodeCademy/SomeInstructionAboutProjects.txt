@@ -1,1 +1,1 @@
-Copycat project is React/Compiled, can be added to the platform/server(Netlify) that can displaye/handel project with cmpiler for FREE. 
+Copycat project is React/Compiled, can be added to the platform/server(Netlify) that can displaye/handel project with cmpiler for FREE. https://spontaneous-arithmetic-41c23f.netlify.app/  
