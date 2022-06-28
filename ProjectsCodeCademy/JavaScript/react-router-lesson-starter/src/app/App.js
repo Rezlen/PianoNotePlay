@@ -14,19 +14,41 @@ React Router provides several router components however the most common one is t
 
 For the sake of simplicity and readability, it is common to alias BrowserRouter as Router when importing, like so:
 import { BrowserRouter as Router} from ‘react-router-dom’*/
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import "./App.css";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <main>
-        {/* Add Routes here! */}
-      </main>
-      <Footer />
-    </div>
+    <Router>
+    <Header />
+    <main>
+      <Switch>
+        <Route path='/articles/:title'>
+            <Article />
+        </Route>
+        <Route path='/articles'>
+          <Articles />
+        </Route>
+        <Route path='/authors/:name'>
+            <Author />
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/sign-up'>
+          <SignUp />
+        </Route>
+        <Route path='/categories'>
+          <Categories />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
+        </Route>
+      </Switch>
+    </main>
+    <Footer />
+  </Router>
   );
 }
 

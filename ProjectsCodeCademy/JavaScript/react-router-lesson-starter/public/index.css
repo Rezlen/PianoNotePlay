@@ -21,6 +21,7 @@ a {
 
 .header a.active {
   font-weight: bold;
+  color: purple;
 }
 
 .header {
