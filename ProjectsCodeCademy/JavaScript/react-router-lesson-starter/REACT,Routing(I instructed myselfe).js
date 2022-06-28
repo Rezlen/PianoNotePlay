@@ -492,14 +492,14 @@ As a result, the top-level router can be simplified:
 Rewriting your routes this way makes it very obvious what will happen when the user clicks on a link. It also allows us to clean up our top-level router by removing the route for an individual category. Splitting routes up this way also makes an application more efficient since Routes are not always rendered. Instead, Routes are only rendered when the UI logic requires them to be.
 
 Instructions
-Task 1
+8888888888888888888888 Task 1 8888888888888888888888
 In the running application, navigate to the sign-up form and choose a username. Then navigate to the new “Profile” link that will appear. The URL will change to /profile and you should see the username you just entered, followed by a link to an “Edit” page. Try clicking on this link – you’ll notice that the URL changes, but the page does not.
 
 The EditProfileForm component should render when the URL changes to /profile/edit but it is currently not being rendered by the application. Let’s fix that with a nested routing approach.
 
 First, open up Profile.js which can be found in the src/components/ folder.
 
-Task 2
+888888888888888888888888888 Task 2 888888888888888888888
 Notice that the EditProfileForm component is being imported into Profile.js but isn’t being used.
 
 At the bottom of the <main> element returned by Profile, render EditProfileForm when the URL path matches /profile/edit.
@@ -513,4 +513,359 @@ Notice that the EditProfileForm component is rendered alongside the Profile comp
 If EditProfileForm were rendered in the App component’s Switch component, then only one would be rendered at a time.
 =====================
 
+useRouteMatch: https://www.youtube.com/watch?v=k05c1m6ozrc
+In the previous exercise, we created a nested Link and Route in the Categories component.
 
+// Ex: Create a link for the '/categories/html' page
+<Link to={`/categories/${category}`}>
+  {category}
+</Link>
+ 
+... 
+// Ex: When the user visits `/categories/html`, a Category component is rendered
+<Route path={'/categories/:categoryName'}>
+  <Category />
+</Route>
+Route nesting improves the organization of Link and Route components in our application. As in the Categories component, it is common that nested Link and Route components stem from the same base URL (in this case, the /categories URL).
+
+Instead of writing out the full URL path, it would be much more flexible if we could create relative paths based on the /categories URL. React Router provides a hook, useRouteMatch(), that makes it incredibly easy to do this.
+
+Below, you can see the basic usage in a component called BandPage that gets rendered by the route '/bands/:band/'. Suppose that the user visits the page /bands/queen/. This page should render a list of relative Links based on the various songs by the band Queen. A Route is also created to render a SongPage for any chosen song:
+
+import { useRouteMatch, Link, Route } from 'react-router-dom';
+import { SongPage } from '../SongPage.js'
+ 
+function BandPage ({ songs }) {
+  let { path, url } = useRouteMatch();
+ 
+  // path = '/band/:band'
+  // url = '/band/queen' 
+ 
+  // Render a list of relative Links and a Route to render a SongPage
+  return (
+    <div>
+      <ul>
+        {
+          songs.map(songName =>
+            <li>
+              <Link to={`${url}/song/${songName}`}> 
+                {category}
+              </Link>
+            </li>
+          )
+        }
+       </ul>
+ 
+       <Route path={`${path}/song/:songName`}>
+         <SongPage />
+       </Route>
+     </div>
+  )
+}
+Let’s break this down.
+
+useRouteMatch() should be called inside a component and returns an object with a url and a path property. This object is sometimes referred to as the match object:
+The path property contains the dynamic path pattern with URL parameters (eg. /bands/:band) and should be used for creating relative path props for Route components (eg. /bands/:band/songs/:songName)
+The url property has the values of URL parameters filled in (eg. /bands/queen) and should be used for creating relative to props for Link components (eg. /bands/queen/songs/we_are_the_champions).
+Let’s see how we can use these values within the Categories component to create relative routes to the Category component:
+
+import { Link, Route, useRouteMatch } from 'react-router-dom'
+ 
+function Categories ({ categories }) {
+  let { path, url } = useRouteMatch();
+ 
+  // path = '/categories'
+  // url = '/categories' 
+ 
+  // Even though path and url are the same in this case, use path for relative Routes and url for relative Links
+  return (
+    <div>
+      <ul>
+        {
+          categories.map(category =>
+            <li>
+              <Link to={`${url}/${category}`}>
+                {category}
+              </Link>
+            </li>
+          )
+        }
+       </ul>
+ 
+       <Route path={`${path}/:category`}>
+        <Category />
+       </Route>
+     </div>
+  )
+}
+Using the relative url and path values to generate the Link and Route components ensures that they accurately route the user to the correct URL regardless of the route that caused the Categories component to render.
+
+Instructions
+88888888888888888888888 Task 1 8888888888888888
+Let’s now return to the Profile component. We want to use relative paths to construct the Link and Route components for the EditProfileForm component.
+
+In src/components/Profile.js, import useRouteMatch from react-router-dom.
+
+Hint
+
+You can either add useRouteMatch to the list of existing imports, or import it on its own.
+
+88888888888888888888888 Task 2 8888888888888888
+Next, inside the Profile component, use destructuring assignment to get the url and path properties from the object returned by useRouteMatch.
+
+Hint
+
+Your code should look something like this:
+
+const { valueA, valueB } = useRouteMatch();
+888888888888888888888888888 Task 3 88888888888888888888
+Refactor the Route and Link components by replacing hard-coded instances of /profile with the path and url values from useRouteMatch as appropriate.
+
+Hint
+
+Though both path and url will have the same value ('/profile'), it’s important to consistently use path when constructing Route components, and url when constructing Link components.
+
+Your code may look like this (using plain string concatenation):
+
+<Link to={url+"/edit"}>Edit</Link>
+<Route path={path+"/edit"}>
+  <EditProfileForm />
+</Route>
+or like this (using template literals):
+
+<Link to={`${url}/edit`}>Edit</Link>
+<Route path={`${path}/edit`}>
+  <EditProfileForm />
+</Route>
+Note: The url and path values are mixed up in the video!
+
+==================
+<Redirect> https://www.youtube.com/watch?v=haQ-5XBKOcY
+If you take anything away from this lesson, it should be that React Router treats everything as a component. To get fully comfortable using React Router in your code, you have to embrace this idea and the declarative coding style that follows from it. For the most part, this is pretty intuitive, but it can feel a bit counterintuitive when it comes to redirecting users.
+
+To appreciate the declarative pattern, consider a common case for redirecting a user: a user wants to access a /profile page that requires authentication but is not currently signed in.
+
+The Redirect component provided by React Router makes this easy! Like a Link or NavLink, the Redirect component has a to prop. However, once the Redirect is rendered, the user will immediately be taken to the location specified by the to prop:
+
+import { Redirect } from 'react-router-dom'
+ 
+const UserProfile = ({ loggedIn }) => {
+  if (!loggedIn) {
+    return (
+      <Redirect to='/' />
+    )
+  }
+ 
+  return (
+    // ... user profile contents here
+  )  
+}
+In this example, when the UserProfile component renders, if the loggedIn prop is false, then the Redirect component will be returned and then rendered, sending the user to the / page. Otherwise, the component will render normally.
+
+Instructions
+8888888888888888888888 Task 1 888888888888888888 
+If you had been previously signed in, press the “Log Out” button. Then, manually navigate to http://localhost:3000/profile/ which will render the Profile component.
+
+As you can see, the component will render but there will be no username to show. Instead, the Profile component should only be viewable if there is a user logged in and it should redirect the user to the SignUp page otherwise.
+
+First, import Redirect from react-router-dom.
+
+Hint
+
+You may either add Redirect to the existing list of imports or you can import it on its own.
+
+88888888888888888888888 Task 2 888888888888888888
+Now, above the return statement in the Profile component, return a Redirect to the path '/sign-up' if loggedIn is false.
+
+Test that your code works by first making sure that you are signed out. Then by revisiting /profile. You should be redirected to the /sign-up page.
+===============
+useHistory: https://www.youtube.com/watch?v=ozhqPr9Od6A
+
+In the previous exercise you learned how to redirect declaratively by rendering a Redirect component that updates the browser’s current location. Though this approach follows React Router’s declarative coding style, it does introduce a few extra steps in the React rendering lifecycle:
+
+The Redirect component must be returned
+The Redirect is then rendered
+The URL is then updated
+And finally the appropriate route is rendered.
+React Router also provides a mechanism for updating the browser’s location imperatively: the Router‘s history object which is accessible via the useHistory() hook.
+
+import { useHistory } from 'react-router-dom';
+The history object that useHistory() returns has a number of methods for imperatively redirecting users. The first and most straightforward is history.push(location) which redirects the user to the provided location.
+
+Consider this example which immediately triggers a redirect back to the / page after a user successfully submits a <form>:
+
+import { useHistory } from `react-router-dom`
+ 
+export const ExampleForm = () => {
+ 
+  const history = useHistory()
+ 
+  const handleSubmit = e => {
+    e.preventDefault();
+    history.push('/')
+  }
+ 
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* form elements */ }
+    </form>
+  )
+}
+By enabling imperative updates to the browser location, the history object allows you to respond immediately to user input without having to wait.
+
+You might be wondering how the history object works. Internally, the BrowserRouter‘s history object uses the html5 history API. In brief, browser history is a stack that stores the URLs visited by the user and maintains a pointer to the user’s current location. This history API allows you to navigate through a user’s session history and alter the history stack if necessary.
+
+In addition to history.push(), the history object has a few more useful methods for navigating through the browser’s history:
+
+history.goBack() which navigates to the previous URL in the history stack
+history.goForward() which navigates to the next URL in the history stack
+history.go(n) which navigates n entries (where positive n values are forward and negative n values are backward) through the history stack
+Below, we can see how the .goBack() method is used to create a “Go Back” button:
+
+import { useHistory } from `react-router-dom`
+ 
+export const BackButton = () => {
+  const history = useHistory()
+ 
+  return (
+    <button onClick={() => history.goBack()}>
+      Go Back
+    </button>
+  )
+}
+Instructions
+888888888888888888888 Task 1 8888888888888888888
+So far, you may have noticed the “Back” and “Forward” buttons in the Footer component. However, if you try clicking on them, nothing will happen. Let’s fix that using the history object and its methods!
+
+First, navigate to Footer.js and import the useHistory hook.
+
+Hint
+
+Use the named import syntax to import the useHistory method from 'react-router-dom':
+
+import { value } from 'package-name';
+888888888888888888 Task 2 88888888888888888888888
+Next, inside the Footer component, call useHistory() to get the history object.
+
+Hint
+
+Your code should look like this:
+
+const history = useHistory();
+888888888888888888 Task 3 888888888888888888888
+Finally, modify the goBack and goForward click handlers such that they imperatively redirect the user.
+
+Verify your work by navigating to a few URLs and then using the “Back” and “Forward” buttons in the footer.
+
+Hint
+
+Call the history object’s .goBack() method inside the goBack handler. Call the history object’s .goForward() method inside the goForward handler.
+
+8888888888888888888 Task 4 88888888888888888888
+Lastly, let’s add an imperative redirect to the SignUp component such that after a user submits their username they are redirected to the /profile page.
+
+Navigate to SignUp.js and import the useHistory hook.
+
+Then, use the appropriate history method to redirect the user to '/profile' at the end of the handleSubmit method.
+
+Test that your code works by signing up and ensuring that you are redirected to the profile page (which you can now view since loggedIn is now true).
+
+Hint
+
+Import the useHistory hook from react-router-dom, call it to get a history object, and use the history object’s push function to redirect the user to '/profile'.
+===================
+
+Query Parameters: https://www.youtube.com/watch?v=p7LeZWUh8BA
+Query parameters appear in URLs beginning with a question mark (?) and are followed by a parameter name assigned to a value. They are optional and are most often used to search, sort and/or filter resources.
+
+For example, if you were to visit the URL below…
+
+https://www.google.com/search?q=codecademy
+… you would be taken to Google’s /search page displaying results for the search term codecademy. In this example, the name of the query parameter is q.
+
+React Router provides a mechanism for grabbing the values of query parameters: the useLocation() hook. When called, useLocation() returns a location object with a search property that is often directly extracted with destructuring syntax. This search value corresponds to the current URL’s query string.
+
+Consider this example of a SortedList component:
+
+import { useLocation } from 'react-router-dom'
+ 
+// Rendered when a user visits "/list?order=DESC"
+export const SortedList = (numberList) => {
+  const { search } = useLocation();
+  console.log(search); // Prints "?order=DESC"
+};
+While we could parse this search string on our own to get the query parameter value ('DESC'), the native URLSearchParams constructor is often used to do this for us:
+
+import { useLocation } from 'react-router-dom'
+ 
+// Rendered when a user visits "/list?order=DESC"
+export const SortedList = (numberList) => {
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const order = queryParams.get('order');
+  console.log(order); // Prints 'DESC'
+};
+Let’s break down this example:
+
+First, we import useLocation() and call it within SortedList to get the search query parameter string '?order=DESC'
+Next, we pass the search string into the new URLSearchParams() constructor which returns an object, often called queryParams. This object has a .get() method for retrieving query parameter values.
+Finally, to get the value of a specific query parameter, we pass in the name of the query parameter whose value we want to obtain as a string ('order') to the queryParams.get() method. The value ('DESC') is then stored in the variable order.
+Let’s expand the SortedList example so that the component uses the order value to render a list of data either in ascending order, in descending order, or in its natural order.
+
+import { useLocation } from 'react-router-dom'
+ 
+// Rendered when a user visits "/list?order=DESC"
+export const SortedList = (numberList) => {
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const sortOrder = queryParams.get('order');
+ 
+  if (sortOrder === 'ASC') {
+    // render the numberList in ascending order
+  } else if (sortOrder === 'DESC') {
+    // render the numberList in descending order
+  } else {
+    // render the numberList as is
+  }
+}
+Now, if the user were to visit /list?order=DESC, the value 'DESC' would be extracted and we can render the SortedList component in descending order. Likewise, visiting /list?order=ASC will render the list in ascending order. Finally, since query parameters are optional, if we were to visit /list, the SortedList component would render in its natural order.
+
+Instructions
+88888888888888888888 Task 1 8888888888888888888888
+You’re going to add a search feature to the Articles page that filters the listed articles by whether or not their titles match the search string. For example, if the path is /articles?title=react, only the articles with 'react' in the title should be displayed.
+
+Navigate to Articles.js and import useLocation from react-router-dom.
+
+Hint
+
+Import useLocation from react-router-dom.
+
+8888888888888888888888888888 Task 2 8888888888888888888
+Next, inside the Articles component, call useLocation to get access to the current URL’s query string (accessible via the location object’s search property) and store it in a variable called search.
+
+Hint
+
+Often, the search value is extracted from useLocation() using destructuring assignment, like so:
+
+const { search } = useLocation();
+888888888888888888888888888 Task 3 888888888888888888
+Pass the search string to the URLSearchParams() constructor to get the queryParams value.
+
+Hint
+
+You do not need to import URLSearchParams. Your code should look like this:
+
+const queryParams = new URLSearchParams(search);
+888888888888888888888 Task 4 88888888888888888
+Finally, you should see a variable named title declared and assigned to the empty string value ''. Replace this hard-coded '' value with queryParams.get(), passing in the name of the query parameter whose value we would like to extract.
+
+Verify your code works by navigating to /articles?title=browser and ensuring that only articles with “browser” in the title show up on the page.
+
+Hint
+
+The query parameter we want to extract is called ?title so your code should look like this:
+
+const title = queryParams.get('title');
+
+===============
+Review of all above: https://www.youtube.com/watch?v=P1YK6iqlS00
