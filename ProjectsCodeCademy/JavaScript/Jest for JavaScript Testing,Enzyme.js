@@ -421,3 +421,42 @@ To learn more about UI testing I highly suggest taking a look at JavaScript End 
 You can find the code for this tutorial on Github: getting-started-with-jest alongside with the solution for the exercises.
 
 Thanks for reading and stay tuned!
+=========================
+Writing Tests for React Applications Using Jest and Enzyme
+Learn about the testing frameworks Jest and Enzyme.
+
+→ Writing Tests for React Applications Using Jest and Enzyme
+
+In this article, you will learn how to write tests for your React application using Jest and Enzyme. This is helpful if you want to write tests to catch edge cases, regressions, and have more confidence in shipping updates to your users.
+
+This article uses yarn instead of npm. Yarn is an alternative package manager. The syntax for Yarn is slightly different compared to npm. You can use either package manager when following along.
+
+Running packages
+Using Yarn:
+
+yarn create-react-app my-app
+
+Using npm (specifically the npx command to execute a package without installing it):
+
+npx create-react-app my-app
+
+Adding dependencies
+Using Yarn:
+
+yarn add enzyme enzyme-adapter-react-16 --dev
+
+Using npm:
+
+npm install enzyme enzyme-adapter-react-16 --save-dev
+
+Running package.json scripts
+Using Yarn:
+
+yarn run test
+
+Using npm:
+
+npm run test
+====================
+
+
