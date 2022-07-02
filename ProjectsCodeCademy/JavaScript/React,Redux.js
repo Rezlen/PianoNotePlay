@@ -356,34 +356,6 @@ wagon = gameProgress(wagon, {type: 'theft'});
 console.log(wagon)
 -----------------
 
-INTRO TO THE CORE REDUX API
-What is the Redux API?
-In this lesson, you will learn how to apply the core concepts of Redux to a real Redux application.
-
-Remember, Redux applications are built upon a one-way flow of data model and are managed by the store:
-
-The state is the set of data values that describes the application. It is used to render the user interface (UI).
-Users interact with the UI which dispatch actions to the store. An action is an object that expresses a desired change to the state.
-The store generates its next state using a reducer function which receives the most recent action and the current state as inputs.
-Finally, the UI is re-rendered based on the new state of the store and the entire process can begin again.
-Building an application that follows the core principles of Redux can be done without external libraries. However, the dedicated Redux library provides some very useful tools for handling the most common aspects of building a Redux application and helps ensure that the core Redux principles are enforced.
-
-This lesson will focus on creating a basic Redux application with the createStore() method from the Redux API and the following related store methods:
-
-store.getState()
-store.dispatch(action)
-store.subscribe(listener)
-Note: The store method store.replaceReducer(nextReducer) is an advanced method and will not be covered in this course.
-
-----------
-
-Install the Redux Library
-The core concepts of Redux are closely tied to a framework known as Flux. Both share the same concept of a one-way flow of data and a centralized store to reduce actions into the application’s next state. While Flux was designed as a general pattern which one could follow to build applications, Redux is a library that provides concrete methods to help implement the framework.
-
-To make use of the Redux package, it can be installed using the Node Package Manager (npm). Then, its methods can be imported.
-
-Let’s start by installing the redux package and importing its createStore() method. In the next exercise you’ll learn how to use this method.
-----------
 
 
 
