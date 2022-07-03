@@ -745,5 +745,5 @@ export const FavoriteRecipes = (props) =>{
 };
 --------------
 
-
-
+Project video: https://www.youtube.com/watch?v=z8vbKfVrBgs for: https://www.codecademy.com/paths/full-stack-engineer-career-path/tracks/fscp-22-redux/modules/wdcp-22-core-redux-api/projects/codecademy-store
+Project called: Codecademy Store : https://shop.codecademy.com/?_gl=1*rytot3*_ga*MTI3NDUxNDA0Ni4xNjQ5OTIwNDg0*_ga_3LRZM6TM9L*MTY1NjgzMDQ4MS42MTUuMS4xNjU2ODMyNTM5LjUz
