@@ -191,39 +191,20 @@ export const selectFilteredFavoriteRecipes = (state) => {
 
 ---------------favoriteRecipesSlice.js----------------
 import { createSlice } from '@reduxjs/toolkit';
-import { selectSearchTerm } from '../searchTerm/searchTermSlice.js';
+import { selectSearchTerm } from './searchTermSlice.js';
 
-/* Create your Slice object here. */
-const options = {
-  name: 'favoriteRecipes',
+export const favoriteRecipesSlice = createSlice({
+  name: "favoriteRecipes",
   initialState: [],
   reducers: {
     addRecipe: (state, action) => {
-      return [...state, action.payload]
+      state.push(action.payload);
     },
     removeRecipe: (state, action) => {
       return state.filter(recipe => recipe.id !== action.payload.id)
     },
   },
-}
-
-export const favoriteRecipesSlice = createSlice(options);
-
-export function addRecipe(recipe) {
-  return {
-    type: 'favoriteRecipes/addRecipe',
-    payload: recipe
-  }
-}
-
-export function removeRecipe(recipe) {
-  return {
-    type: 'favoriteRecipes/removeRecipe',
-    payload: recipe
-  }
-}
-
-/* Do not delete the code below...*/
+});
 
 export const selectFavoriteRecipes = (state) => state.favoriteRecipes;
 
@@ -235,4 +216,165 @@ export const selectFilteredFavoriteRecipes = (state) => {
     recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 };
+
+export const {addRecipe, removeRecipe} = favoriteRecipesSlice.actions;
+
+// Begin writing code here.
+// print the entire object returned by createSlice(). Note how each action type corresponds to the name of a case reducer.
+console.log(favoriteRecipesSlice);
+// export the reducer as the default export.
+export default favoriteRecipesSlice.reducer;
+
+
 -----------------------
+Writing "Mutable" Code with Immer
+Because Redux reducers must never mutate state, we often write immutable updates by using JavaScript’s array and object spread operators and other functions that return copies of the original values. However, accidentally mutating state in reducers is the single most common mistake Redux users make!
+
+While you still have the option of writing immutable updates the old fashioned way, Redux Toolkit’s createSlice() function uses a library called Immer inside of it which helps avoid this mistake.
+
+Immer uses a special JS object called a Proxy to wrap the data you provide and lets you write code that “mutates” that wrapped data. Immer does this by tracking all the changes you’ve made and then uses that list of changes to return an immutably updated value as if you’d written all the immutable update logic by hand.
+
+So, instead of this:
+
+const todosSlice = createSlice({
+  name: 'todos',
+  initialState: [],
+  reducers: {
+    addTodo: (state, action) => {
+      return [
+        ...state,
+        {
+          ...action.payload,
+          completed: false
+        }
+      ]
+    },
+    toggleTodo: (state, action) => {
+      return state.map(todo =>
+        todo.id === action.payload.id ? { ...todo, completed: !todo.completed } : todo
+      )
+    }
+  }
+})
+You can write code that looks like this:
+
+const todosSlice = createSlice({
+  name: 'todos',
+  initialState: [],
+  reducers: {
+    addTodo: (state, action) => {
+      state.push({ 
+        ...action.payload, 
+        completed: false 
+      })
+    },
+    toggleTodo: (state, action) => {
+      const todo = state.find(todo => todo.id === action.payload.id)
+      if (todo) {
+        todo.completed = !todo.completed
+      }
+    }
+  }
+})
+addTodo is calling state.push() here, which is normally bad because the array.push() function mutates the existing array. Similarly, toggleTodo is simply finding the matching todo object, and then mutating it by reassigning its value.
+
+Thanks to Immer, however, this code will work just fine!
+
+You don’t need to learn the Immer library. All you do need to know is that createSlice() takes advantage of it, allowing us to safely “mutate” our state. You may find it useful to look through some of the common update patterns used with Immer.
+
+--------------------
+
+Return Object - Reducers
+Let’s now take a closer look at reducer in the return object of createSlice().
+
+const options = {
+  // options fields omitted.
+}
+const todosSlice = createSlice(options);
+ 
+/* Object returned by todosSlice */
+{
+ name: 'todos',
+ reducer: (state, action) => newState,
+ actions: {
+   addTodo: (payload) => ({type: 'todos/addTodo', payload}),
+   toggleTodo: (payload) => ({type: 'todos/toggleTodo', payload})
+ },
+ // case reducers field omitted
+}
+todosSlice.reducer is the complete reducer function, a.k.a the “slice reducer”.
+
+When an action with the type 'todos/addTodo' is dispatched, todosSlice will execute todosSlice.reducer() to check if the dispatched action’s type matches one of todos.actions case reducers. If so, it will run the matching case reducer function and if not, it will return the current state. This is exactly the same pattern that we had previously implemented with switch/case statements!
+
+Finally, todosSlice.reducer needs to be exported so that it can be passed to the store and be used as the todos slice of state. While the todosSlice.actions are exported as named exports, the todosSlice.reducer value is used as the default export.
+
+export const { addTodo, toggleTodo } = todosSlice.actions;
+export default todosSlice.reducer
+
+--------------------
+THE REDUX TOOLKIT
+Converting the Store to Use `configureStore()`
+Redux Toolkit has a configureStore() method that simplifies the store setup process. configureStore() wraps around the Redux library’s createStore() method and the combineReducers() method, and handles most of the store setup for us automatically.
+
+For example, take a look at this file which creates and exports a rootReducer…
+
+// rootReducer.js
+ 
+import { combineReducers } from 'redux'
+ 
+import todosReducer from './features/todos/todosSlice'
+import filtersReducer from './features/filters/filtersSlice'
+ 
+const rootReducer = combineReducers({
+ // Define a top-level state field named `todos`, handled by `todosReducer`
+ todos: todosReducer,
+ visibilityFilter: visibilityFilterReducer
+})
+ 
+export default rootReducer
+… and this file which creates and exports the store.
+
+// store.js
+ 
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import rootReducer from './reducer'
+ 
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
+ 
+const store = createStore(rootReducer, composedEnhancer)
+export default store
+Now, let’s take a look at how we can refactor these two files using configureStore(). configureStore() accepts a single configuration object parameter. The input object should have a reducer property that defines either a function to be used as the root reducer, or an object of slice reducers which will be combined to create a root reducer.
+
+There are many properties available in this object, but for the purposes of this lesson, just the reducer property will be sufficient.
+
+import { configureStore } from '@reduxjs/toolkit'
+ 
+import todosReducer from './features/todos/todosSlice'
+import filtersReducer from './features/filters/filtersSlice'
+ 
+const store = configureStore({
+ reducer: {
+   // Define a top-level state field named `todos`, handled by `todosReducer`
+   todos: todosReducer,
+   filters: filtersReducer
+ }
+})
+ 
+export default store
+Note all the work that this one call to configureStore() does for us:
+
+It combines todosReducer and filtersReducer into the root reducer function, which will handle a root state that looks like {todos, filters}, removing the need to call combineReducers()
+It creates a Redux store using that root reducer, removing the need to call createStore()
+It automatically adds the thunk middleware (which you will learn about in the next lesson!)
+It automatically adds more middleware to check for common mistakes like accidentally mutating the state
+It automatically sets up the Redux DevTools Extension connection
+Because of how much boilerplate code we’re able to bypass with configureStore(), we can just import the individual slice reducers straight into this file instead of creating a separate file for the root reducer and having to export/import it.
+
+Since this is as simple as switching out the store setup code, all of the application’s existing feature code will work just fine!
+
+Let’s confirm this in the instructions below.
+----------------------
+
+
