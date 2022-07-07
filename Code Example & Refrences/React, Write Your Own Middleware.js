@@ -174,6 +174,109 @@ Suppose we were to call dispatch(getUser(7)) with the thunk middleware applied. 
 
 For contrast, let’s walk through what happens when we dispatch that synchronous action. Since the action is a plain object, typeof action === 'function' will evaluate to false. The redux-thunk middleware therefore skips to line 7, and invokes the next middleware in the pipeline, passing the action along.
 
+function createThunkMiddleware(extraArgument) {
+  return ({ dispatch, getState }) => (next) => (action) => {
+    if (typeof action === 'function') {
+      return action(dispatch, getState, extraArgument);
+    }
+
+    return next(action);
+  };
+}
+
+const thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+export default thunk;
+
+==========================
+
+MANAGING PROMISE LIFECYCLE ACTIONS
+Introduction
+At this point, you can write a Redux app that uses redux-thunk—a middleware included in Redux toolkit—to permit asynchronous operations, such as fetching data from an API. In this lesson, we will explore some common patterns for managing asynchronous operations and the state changes they cause. We will learn about two Redux toolkit utilities—createAsyncThunk and the extraReducers option you can pass to the createSlice function—that simplify the process of performing asynchronous operations and reflecting their results in state.
+
+This lesson uses Mock Service Worker to replicate the functionality of an external API. To use MSW, you’ll want to use Google Chrome and enable third-party cookiesv
+
+----------------------
+MANAGING PROMISE LIFECYCLE ACTIONS
+Promise Lifecycle Actions
+In a perfect world, every network request we make would yield an immediate and successful response. But network requests can be slow, and sometimes fail. As developers, we need to account for these realities in order to create the best possible experience for our users. If we know a request is pending, we can make our application more user-friendly by displaying a loading state. Similarly, if we know a request has failed, we can display an appropriate error state.
+
+In order to create these satisfying user experiences, we need to keep track of the state our async requests are in at any given moment so that we can reflect those states for the user. It is common to dispatch a “pending” action right before performing an asynchronous operation, and “fulfilled” or “rejected” actions depending on the results of the completed operation. Take this simple thunk action creator, fetchUserById.
+
+import { fetchUser } from './api';
+ 
+const fetchUserById = (id) => {
+  return async (dispatch, getState) => {
+    const payload = await fetchUser(id);
+    dispatch({type: 'users/addUser', payload: payload});
+  }
+}
+Rewritten to include pending and rejected actions, it might look like this:
+
+import { fetchUser } from './api'
+const fetchUserById = (id) => {
+  return async (dispatch, getState) => {
+    dispatch({type: 'users/requestPending'})
+    try {
+      const payload = await fetchUser(id)
+      dispatch({type: 'users/addUser', payload: payload})
+    } catch(err) {
+      dispatch({type: 'users/error', payload: err})
+    }
+  }
+}
+We call these pending/fulfilled/rejected actions promise lifecycle actions. This pattern is so common that Redux Toolkit provides a neat abstraction, createAsyncThunk, for including promise lifecycle actions in your Redux apps. We’ll explore that method in the following exercises.
+-------------------
+
+MANAGING PROMISE LIFECYCLE ACTIONS
+createAsyncThunk()
+createAsyncThunk is a function with two parameters—an action type string and an asynchronous callback—that generates a thunk action creator that will run the provided callback and automatically dispatch promise lifecycle actions as appropriate so that you don’t have to dispatch pending/fulfilled/rejected actions by hand.
+
+To use createAsyncThunk, you’ll first need to import it from Redux Toolkit like so:
+
+import { createAsyncThunk } from '@reduxjs/toolkit';
+Next, you’ll need to call createAsyncThunk, passing two arguments. The first is a string representing the asynchronous action’s type. Conventionally, type strings take the form "resourceType/actionName". In this case, since we are getting an individual user by their id, our action type will be users/fetchUserById. The second argument to createAsyncThunk is the payload creator: an asynchronous function that returns a promise resolving to the result of an asynchronous operation. Here is fetchUserById rewritten using createAsyncThunk:
+
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchUser } from './api'
+const fetchUserById = createAsyncThunk(
+  'users/fetchUserById', // action type
+  async (arg, thunkAPI) => { // payload creator
+    const response = await fetchUser(arg);
+    return response.json();
+  }
+)
+There are a few things worth highlighting here. First, observe that the payload creator receives two arguments—arg and thunkAPI. We will elaborate on those in the next exercise. Second, note that the payload creator we provided doesn’t dispatch any actions at all. It just returns the result of an asynchronous operation.
+
+As you can see, createAsyncThunk makes defining thunk action creators more concise. All you have to write is an asynchronous thunk function; createAsyncThunk takes care of the rest, returning an action creator that will dispatch pending/fulfilled/rejected actions as appropriate.
 -----------------
+MANAGING PROMISE LIFECYCLE ACTIONS
+Passing Arguments to Thunks
+In the last exercise, we promised to elaborate on the two arguments that the payload creator (the asynchronous function we pass to createAsyncThunk) receives: arg and thunkAPI. The first argument, arg, will be equal to the first argument passed to the thunk action creator itself. For example, if we call fetchUserById(7), then inside the payload creator, arg will be equal to 7.
+
+But what if you need to pass multiple arguments to your thunk? Since the payload creator only receives the first argument passed to the thunk action creator, you’ll want to bundle multiple arguments into a single object. For example, say we want to search our app’s users by first and last name. If the thunk action creator is called searchUsers, we would call it like this: searchUsers({firstName: 'Ada', lastName: 'Lovelace'}).
+
+If you need to access these variables individually, you can use ES6 destructuring assignment to unpack the object when you declare the payload creator and pass it to createAsyncThunk, like this :
+
+const searchUsers = createAsyncThunk(
+    'users/searchUsers',
+    async ({ firstName, lastName}, thunkAPI) => {
+        // perform the asynchronous search request here    
+    }
+)
+If your thunk requires no arguments, you can just call your thunk action creator without, and the arg argument will be undefined. In the event the thunk requires only one param (for example, fetching a specific resource by id) you should name that first param semantically. Here’s the fetchUserById example from the last exercise, with the arg parameter semantically renamed to userId.
+
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchUser } from './api'
+const fetchUserById = createAsyncThunk(
+    'users/fetchUserById', // action type
+    async (userId, thunkAPI) => { // payload creator
+        const response = await fetchUser(userId)
+        return response.data
+    }
+)
+The payload creator’s second argument, thunkAPI, is an object containing several useful methods, including the store’s dispatch and getState. For an exhaustive list of methods available in the thunkAPI object, you can read the documentation.
+----------------
 
 
