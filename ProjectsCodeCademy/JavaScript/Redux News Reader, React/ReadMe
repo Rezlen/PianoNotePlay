@@ -1,0 +1,3 @@
+A React, Redux, Toolkit, Thunk project. Displaying articles & their comments. Demonstrating the standard use of React, Redux, Toolkit, Thunk to avoid side effect, individual function loading & speed consideration.
+
+This lesson uses Mock Service Worker (MSW) to replicate the functionality of an external API. To use MSW, you’ll want to use Google Chrome and enable third-party cookies.
