@@ -211,5 +211,19 @@ Navigating directories in bash=
 $ git config --global user.name "Rezlen"
 $ git config --global user.email "soheilyreza@yahoo.com"
 
-
+git branch   => Check what branch you are currently on. In the output, the * (asterisk) is showing you what branch you’re on. The project only has one branch at this time.
+git branch new_branch  =>To create a new branch
+git checkout branch_name  => switch to the new branch 
+git add filename   => add files to the staging area
+git commit -m "Commit message"   => for committing
+git log  => command is used to view the commit history and display the necessary information of the git repository.
+git merge branch_name   => merging the branch into master, instead of the BRANCH NAME, add file/brunch that you want to the master.
+to resolve a commit conflict you can remove the git markings:
+<<<<<<< HEAD
+master/code version of code line
+=======
+File/branch Changed version of code line
+>>>>>>> fencing
 ====================
+
+git branch -d branch_name    => delete the specified branch from your Git project.
