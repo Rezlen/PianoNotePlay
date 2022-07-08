@@ -19,6 +19,7 @@
     "mocha": "^10.0.0"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
     "ansi-colors": "^4.1.1",
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
