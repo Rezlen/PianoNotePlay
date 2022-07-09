@@ -206,12 +206,12 @@ git branch -M maing = Sends/Pushes everyting to the remote repo
 git push -u origin main = Sends/Pushes everyting to the remote repo
 git push -u origin main
 
-Navigating directories in bash= 
+Navigating directories in bash= https://www.codecademy.com/courses/learn-the-command-line/lessons/navigation/exercises/learn-the-command-line-review
 
 $ git config --global user.name "Rezlen"
 $ git config --global user.email "soheilyreza@yahoo.com"
 
-git branch   => Check what branch you are currently on. In the output, the * (asterisk) is showing you what branch you’re on. The project only has one branch at this time.
+git branch   => Check what branch you are currently on & List all branches. In the output, the * (asterisk) is showing you what branch you’re on. The project only has one branch at this time.
 git branch new_branch  =>To create a new branch
 git checkout branch_name  => switch to the new branch 
 git add filename   => add files to the staging area
@@ -227,3 +227,23 @@ File/branch Changed version of code line
 ====================
 
 git branch -d branch_name    => delete the specified branch from your Git project.
+git branch -D branchname     => Never Merged= delete the specified branch from your Git project.
+git clone remote_location clone_name    => cloning a git repo. "remote_location" is the path of the rmote to be copied AND "clone_name" is the name of the clone/repo you create
+git remote -v    => see a list of a Git project’s remotes with the command. The remote is listed twice: once for (fetch) and once for (push)
+cd "Repo Name"   => Change directories
+git fetch   => An easy way to see if changes have been made to the remote and bring the changes down to your local copy. This command will not merge changes from the remote into your local repository. It brings those changes onto what’s called a remote branch. Learn better: https://www.codecademy.com/paths/full-stack-engineer-career-path/tracks/fscp-22-git-and-github-part-ii/modules/wdcp-22-git-teamwork/lessons/git-teamwork/exercises/git-fetch
+git merge origin/master   => use the git merge command to integrate origin/master into your local master branch.
+git push origin <your_branch_name>   => Pushes a local branch to the origin remote. will push your branch up to the remote, origin. From there, Shilan can review your branch and merge your work into the master branch, making it part of the definitive project version.
+pwd   => printing the working directory. Seeing where you are
+
+Git workflow
+Now that you’ve merged origin/master into your local master branch, you’re ready to contribute some work of your own. The workflow for Git collaborations typically follows this order:
+1- Fetch and merge changes from the remote
+2- Create a branch to work on a new project feature
+3- Develop the feature on your branch and commit your work
+4- Fetch and merge from the remote again (in case new commits were made while you were working)
+5- Push your branch up to the remote for review
+Steps 1 and 4 are a safeguard against merge conflicts, which occur when two branches contain file changes that cannot be merged with the git merge command. Step 5 involves git push, a command you will learn in the next exercise.
+
+A pull request is a feature of GitHub and other source code management tools to review code before merging it from one branch to another, usually the main branch.
+https://www.youtube.com/watch?v=11qp6nGz-RQ
