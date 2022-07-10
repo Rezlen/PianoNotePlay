@@ -18,6 +18,7 @@ const Home = () => {
   const posts = useSelector(selectFilteredPosts);
   const dispatch = useDispatch();
 
+  //   Line 23:6:  React Hook useEffect has a missing dependency: 'dispatch'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
   useEffect(() => {
     dispatch(fetchPosts(selectedSubreddit));
   }, [selectedSubreddit]);

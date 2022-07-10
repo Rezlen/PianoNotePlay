@@ -211,6 +211,7 @@ Navigating directories in bash= https://www.codecademy.com/courses/learn-the-com
 $ git config --global user.name "Rezlen"
 $ git config --global user.email "soheilyreza@yahoo.com"
 
+all NPM commands: https://docs.npmjs.com/cli/v6/commands/npm-install
 npx create-react-app my-app --template redux    =>  Create React App
 npm install -g node-modules  OR npm install => Installing Node Mudules
 
