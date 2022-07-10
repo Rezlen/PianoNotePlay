@@ -211,6 +211,9 @@ Navigating directories in bash= https://www.codecademy.com/courses/learn-the-com
 $ git config --global user.name "Rezlen"
 $ git config --global user.email "soheilyreza@yahoo.com"
 
+npx create-react-app my-app --template redux    =>  Create React App
+npm install -g node-modules  OR npm install => Installing Node Mudules
+
 git branch   => Check what branch you are currently on & List all branches. In the output, the * (asterisk) is showing you what branch you’re on. The project only has one branch at this time.
 git branch new_branch  =>To create a new branch
 git checkout branch_name  => switch to the new branch 
