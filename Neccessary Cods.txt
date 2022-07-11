@@ -215,6 +215,33 @@ all NPM commands: https://docs.npmjs.com/cli/v6/commands/npm-install
 npx create-react-app my-app --template redux    =>  Create React App
 npm install -g node-modules  OR npm install => Installing Node Mudules
 
+npm run build   => 
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Rezlen/ReactRouting.git
+git push -u origin main
+…or push an existing repository from the command line
+git remote add origin https://github.com/Rezlen/ReactRouting.git
+git branch -M main
+git push -u origin main
+----------
+npm install THEN  npm start
+-------
+npm install --save react-router-dom@5.2.0
+-------
+To check that you were successful, ensure that react-router-dom appears in the "dependencies" object located within your project’s package.json file.
+-----------
+Filename too long in Git for Windows:
+git config --system core.longpaths true
+
+If warning then below:
+git config core.longpaths true
+
+---------------
+
 git branch   => Check what branch you are currently on & List all branches. In the output, the * (asterisk) is showing you what branch you’re on. The project only has one branch at this time.
 git branch new_branch  =>To create a new branch
 git checkout branch_name  => switch to the new branch 
@@ -251,3 +278,16 @@ Steps 1 and 4 are a safeguard against merge conflicts, which occur when two bran
 
 A pull request is a feature of GitHub and other source code management tools to review code before merging it from one branch to another, usually the main branch.
 https://www.youtube.com/watch?v=11qp6nGz-RQ
+--------------------
+netlify error:
+React Hook useEffect has a missing dependency: 'dispatch'. Either include it or remove the dependency array react-hooks/exhaustive-deps
+Failed to compile.
+"build.command" failed 
+Command failed with exit code 127: CI=npm run build 
+
+soloution
+Just delete the entry in the "Build Command" field and sace it empty. Then sometime add a forward slash to the "Publish directory" field after the word BUILD
+OR: create a file: _redirects and add: /* /index.html 200     in this video;  here: https://www.youtube.com/watch?v=WtjeUuz1VhI
+
+
+----------------
