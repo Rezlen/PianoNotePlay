@@ -433,5 +433,333 @@ Congratulations, you have made our glorious Express Yourself Machine fully opera
 
 You are going to add an additional set of functionality to our machine: Animal Mode! This will involve creating similar GET, POST, PUT, and DELETE routes.
 
+const express = require('express');
+const app = express();
+
+const { getElementById, getIndexById, updateElement,
+  seedElements, createElement } = require('./utils');
+
+const PORT = process.env.PORT || 4001;
+// Use static server to serve the Express Yourself Website
+app.use(express.static('public'));
+
+let expressions = [];
+seedElements(expressions, 'expressions');
+let animals = [];
+seedElements(animals, 'animals');
+
+// Get all expressions
+app.get('/expressions', (req, res, next) => {
+  res.send(expressions);
+});
+
+// Get a single expression
+app.get('/expressions/:id', (req, res, next) => {
+  const foundExpression = getElementById(req.params.id, expressions);
+  if (foundExpression) {
+    res.send(foundExpression);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Update an expression
+app.put('/expressions/:id', (req, res, next) => {
+  const expressionIndex = getIndexById(req.params.id, expressions);
+  if (expressionIndex !== -1) {
+    updateElement(req.params.id, req.query, expressions);
+    res.send(expressions[expressionIndex]);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Create an expression
+app.post('/expressions', (req, res, next) => {
+  const receivedExpression = createElement('expressions', req.query);
+  if (receivedExpression) {
+    expressions.push(receivedExpression);
+    res.status(201).send(receivedExpression);
+  } else {
+    res.status(400).send();
+  }
+});
+
+// Delete an expression
+app.delete('/expressions/:id', (req, res, next) => {
+  const expressionIndex = getIndexById(req.params.id, expressions);
+  if (expressionIndex !== -1) {
+    expressions.splice(expressionIndex, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Get all animals
+app.get('/animals', (req, res, next) => {
+  res.send(animals);
+});
+
+// Get a single animal
+app.get('/animals/:id', (req, res, next) => {
+  const animal = getElementById(req.params.id, animals);
+  if (animal) {
+    res.send(animal);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Create an animal
+app.post('/animals', (req, res, next) => {
+  const receivedAnimal = createElement('animals', req.query);
+  if (receivedAnimal) {
+    animals.push(receivedAnimal);
+    res.send(receivedAnimal);
+  } else {
+    res.status(400).send();
+  }
+});
+
+// Update an animal
+app.put('/animals/:id', (req, res, next) => {
+  const animalIndex = getIndexById(req.params.id, animals);
+  if (animalIndex !== -1) {
+    updateElement(req.params.id, req.query, animals);
+    res.send(animals[animalIndex]);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Delete a single animal
+app.delete('/animals/:id', (req, res, next) => {
+  const animalIndex = getIndexById(req.params.id, animals);
+  if (animalIndex !== -1) {
+    animals.splice(animalIndex, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).send();
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on ${PORT}`);
+});
+
 
 -----------------
+In this exercise, you were able to create a full server allowing users to implement all CRUD operations for two kinds of resources: Expressions and Animals! With these skills and knowledge of the HTTP request-response cycle, you could implement an API for any project needing CRUD functionality. You could build a trip planner, an address book, a grocery list, an image-sharing application, an anonymous message board, the sky’s the limit!
+
+Continue on to the next lesson to learn more about how to keep your code clean and modular with Express Routers!
+======================
+
+LEARN EXPRESS ROUTERS
+This File Is Too Big!
+Your Expressions/Animals routes are all working well, and our machine is fully functional! Our app.js file, however, is getting quite long and hard to read. It’s easy to imagine that as we add functionality to an application, this file would get long and cumbersome.
+
+Luckily, Express provides functionality to alleviate this problem: Routers. Routers are mini versions of Express applications — they provide functionality for handling route matching, requests, and sending responses, but they do not start a separate server or listen on their own ports. Routers use all the .get(), .put(), .post(), and .delete() routes that you know and love.
+
+In this lesson, we will use Routers to clean up our code and separate our application into a file to handle all /expressions routes, and another to handle all /animals routes.
+
+----------------
+
+Express.Router
+An Express router provides a subset of Express methods. To create an instance of one, we invoke the .Router() method on the top-level Express import.
+
+To use a router, we mount it at a certain path using app.use() and pass in the router as the second argument. This router will now be used for all paths that begin with that path segment. To create a router to handle all requests beginning with /monsters, the code would look like this:
+
+const express = require('express');
+const app = express();
+ 
+const monsters = {
+  '1': {
+    name: 'godzilla',
+    age: 250000000
+  },
+  '2': {
+    name: 'manticore',
+    age: 21
+  }
+}
+ 
+const monstersRouter = express.Router();
+ 
+app.use('/monsters', monstersRouter);
+ 
+monstersRouter.get('/:id', (req, res, next) => {
+  const monster = monsters[req.params.id];
+  if (monster) {
+    res.send(monster);
+  } else {
+    res.status(404).send();
+  }
+});
+ 
+Inside the monstersRouter, all matching routes are assumed to have /monsters prepended, as it is mounted at that path. monstersRouter.get('/:id') matches the full path /monsters/:id.
+
+When a GET /monsters/1 request arrives, Express matches /monsters in app.use() because the beginning of the path ('/monsters') matches. Express’ route-matching algorithm enters the monstersRouter‘s routes to search for full path matches. Since monstersRouter.get('/:id) is mounted at /monsters, the two paths together match the entire request path (/monsters/1), so the route matches and the callback is invoked. The 'godzilla' monster is fetched from the monsters object and sent back.
+
+const express = require('express');
+const app = express();
+
+const { getElementById, getIndexById, updateElement,
+  seedElements, createElement } = require('./utils');
+
+const PORT = process.env.PORT || 4001;
+// Use static server to serve the Express Yourself Website
+app.use(express.static('public'));
+
+let expressions = [];
+seedElements(expressions, 'expressions');
+let animals = [];
+seedElements(animals, 'animals');
+
+const expressionsRouter = express.Router();
+app.use('/expressions', expressionsRouter);
+// Get all expressions
+expressionsRouter.get('/', (req, res, next) => {
+    res.send(expressions);
+});
+
+// Get a single expression
+app.get('/expressions/:id', (req, res, next) => {
+  const foundExpression = getElementById(req.params.id, expressions);
+  if (foundExpression) {
+    res.send(foundExpression);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Update an expression
+app.put('/expressions/:id', (req, res, next) => {
+  const expressionIndex = getIndexById(req.params.id, expressions);
+  if (expressionIndex !== -1) {
+    updateElement(req.params.id, req.query, expressions);
+    res.send(expressions[expressionIndex]);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Create an expression
+app.post('/expressions', (req, res, next) => {
+  const receivedExpression = createElement('expressions', req.query);
+  if (receivedExpression) {
+    expressions.push(receivedExpression);
+    res.status(201).send(receivedExpression);
+  } else {
+    res.status(400).send();
+  }
+});
+
+// Delete an expression
+app.delete('/expressions/:id', (req, res, next) => {
+  const expressionIndex = getIndexById(req.params.id, expressions);
+  if (expressionIndex !== -1) {
+    expressions.splice(expressionIndex, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Get all animals
+app.get('/animals', (req, res, next) => {
+  res.send(animals);
+});
+
+// Get a single animal
+app.get('/animals/:id', (req, res, next) => {
+  const animal = getElementById(req.params.id, animals);
+  if (animal) {
+    res.send(animal);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Create an animal
+app.post('/animals', (req, res, next) => {
+  const receivedAnimal = createElement('animals', req.query);
+  if (receivedAnimal) {
+    animals.push(receivedAnimal);
+    res.send(receivedAnimal);
+  } else {
+    res.status(400).send();
+  }
+});
+
+// Update an animal
+app.put('/animals/:id', (req, res, next) => {
+  const animalIndex = getIndexById(req.params.id, animals);
+  if (animalIndex !== -1) {
+    updateElement(req.params.id, req.query, animals);
+    res.send(animals[animalIndex]);
+  } else {
+    res.status(404).send();
+  }
+});
+
+// Delete a single animal
+app.delete('/animals/:id', (req, res, next) => {
+  const animalIndex = getIndexById(req.params.id, animals);
+  if (animalIndex !== -1) {
+    animals.splice(animalIndex, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).send();
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on ${PORT}`);
+});
+
+-------------
+
+Exercise: Using Multiple Router Files
+Generally, we will keep each router in its own file, and require them in the main application. This allows us to keep our code clean and our files short.
+
+To do this with monstersRouter, we would create a new file monsters.js and move all code related to /monsters requests into it.
+
+// monsters.js
+const express = require('express');
+const monstersRouter = express.Router();
+ 
+const monsters = {
+  '1': {
+    name: 'godzilla',
+    age: 250000000
+  },
+  '2': {
+    Name: 'manticore',
+    age: 21
+  }
+}
+ 
+monstersRouter.get('/:id', (req, res, next) => {
+  const monster = monsters[req.params.id];
+  if (monster) {
+    res.send(monster);
+  } else {
+    res.status(404).send();
+  }
+});
+ 
+module.exports = monstersRouter;
+This code contains all the monsters specific code. In a more full-fledged API, this file would contain multiple routes. To use this router in another file, we use module.exports so that other files can access monstersRouter. The only other new line of code required is that Express must be required in each file, since we’ll need to create a router with express.Router().
+
+Our main.js file could then be refactored to import the monstersRouter:
+
+// main.js
+const express = require('express');
+const app = express();
+const monstersRouter = require('./monsters.js');
+ 
+app.use('/monsters', monstersRouter);
+In this example, the monstersRouter is required in main.js from monsters.js and used exactly as it was before.
+-----------------
+
