@@ -497,7 +497,7 @@ const bodyParser = (req, res, next) => {
 };
 
 // Logging Middleware // We will replace the logging code in the workspace with morgan, an open-source library for logging information about the HTTP request-response cycle in a server application. morgan() is a function that will return a middleware function, to reiterate: the return value of morgan() will be a function, that function will have the function signature (req, res, next) that can be inserted into an app.use(), and that function will be called before all following middleware functions. Morgan takes an argument to describe the formatting of the logging output.
-app.use(morgan('tiny'));
+app.use(morgan('dev')); // dev: Concise output colored by response status for development use. The :status token will be colored green for success codes, red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for information codes. :method :url :status :response-time ms - :res[content-length]
 
 app.use('/beans/:beanName', (req, res, next) => {
   const beanName = req.params.beanName;
@@ -553,6 +553,454 @@ app.delete('/beans/:beanName', (req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
-});-------------
+});
+
+-------------
+
+Documentation
+With software we’ve personally written, invocation is a simple process. We already know what the code does, what it expects, and may have some notion how things could go wrong. Losing this intuition is the biggest downside to using open-source packages.
+
+This is not meant to be discouraging. The best open-source packages have extremely well written documentation. Documentation is a resource, presented by the package’s author(s), that includes information about what software is, what it does, and how to use it. We’ve seen the Express documentation in this course, and now we’re going to look at the morgan documentation.
+
+
+--------------------
+Open-Source Middleware: Body Parsing
+Being able to use open-source middleware can certainly make our jobs as programmers a lot easier. Not only does it prevent us from having to write the same code every time we want to accomplish a common task, it allows us to perform some tasks that would take a lot of research for us to implement.
+
+When we implement middleware, we take in the req object, so that we can see information about the request. This object includes a good deal of important information about the request that we can use to inform our response, however for some requests it misses a fundamental piece. An HTTP request can include a body, a set of information to be transmitted to the server for processing. This is useful when the end user needs to send information to the server. If you’ve ever uploaded a post onto a social media website or filled out a registration form chances are you’ve sent an HTTP request with a body. The lucky thing about using open-source middleware is that even though parsing the body of an HTTP request is a tricky operation requiring knowledge about network data transfer concepts, we easily manage it by importing a library to do it for us.
+
+If we look at our bodyParser, we see a simplified version of how one might perform request body parsing. Let’s see if there’s a better way that doesn’t involve us trying to create our own body-parser. Maybe we can find a library that does it for us?
+
+Take a look at body-parser. “Node.js body parsing middleware”, that’s just what we needed! Let’s see if we can use this dependency instead of trying to manage our own body-parsing library.
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const app = express();
+
+app.use(express.static('public'));
+
+const PORT = process.env.PORT || 4001;
+
+const jellybeanBag = {
+  mystery: {
+    number: 4
+  },
+  lemon: {
+    number: 5
+  },
+  rootBeer: {
+    number: 25
+  },
+  cherry: {
+    number: 3
+  },
+  licorice: {
+    number: 1
+  }
+};
+
+// Logging Middleware
+app.use(morgan('dev'));
+// Body parsing middleware
+app.use(bodyParser.json());
+
+app.use('/:beanName', (req, res, next) => {
+  const beanName = req.params.beanName;
+  if (!jellybeanBag[beanName]) {
+    return res.status(404).send('Bean with that name does not exist');
+  }
+  req.bean = jellybeanBag[beanName];
+  req.beanName = beanName;
+  next();
+});
+
+app.get('/beans/', (req, res, next) => {
+  res.send(jellybeanBag);
+});
+
+app.post('/beans/', (req, res, next) => {
+  const body = req.body;
+  const beanName = body.name;
+  if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
+    return res.status(400).send('Bag with that name already exists!');
+  }
+  const numberOfBeans = Number(body.number) || 0;
+  jellybeanBag[beanName] = {
+    number: numberOfBeans
+  };
+  res.send(jellybeanBag[beanName]);
+});
+
+app.get('/beans/:beanName', (req, res, next) => {
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/add', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  req.bean.number += numberOfBeans;
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/remove', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  if (req.bean.number < numberOfBeans) {
+    return res.status(400).send('Not enough beans in the jar to remove!');
+  }
+  req.bean.number -= numberOfBeans;
+  res.send(req.bean);
+});
+
+app.delete('/beans/:beanName', (req, res, next) => {
+  const beanName = req.beanName;
+  jellybeanBag[beanName] = null;
+  res.status(204).send();
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+------------
+Error-Handling Middleware
+We’re almost finished with our Code Quality Checklist, there’s just one last problem to fix! When an error is thrown somewhere in our code, we want to be able to communicate that there was a problem to the user. A programming error is never something to be ashamed of. It’s simply another situation for which we should be prepared.
+
+Error handling middleware needs to be the last app.use() in your file. If an error happens in any of our routes, we want to make sure it gets passed to our error handler. The middleware stack progresses through routes as they are presented in a file, therefore the error handler should sit at the bottom of the file. How do we write it?
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+Based on the code above, we can see that error-handling middleware is written much like other kinds of middleware. The biggest difference is that there is an additional parameter in our callback function, err. This represents the error object, and we can use it to investigate the error and perform different tasks depending on what kind of error was thrown. For now, we only want to send an HTTP 500 status response to the user.
+
+Express has its own error-handler, which catches errors that we haven’t handled. But if we anticipate an operation might fail, we can invoke our error-handling middleware. We do this by passing an error object as an argument to next(). Usually, next() is called without arguments and will proceed through the middleware stack as expected. When called with an error as the first argument, however, it will call any applicable error-handling middleware.
+
+app.use((req, res, next) => {
+  const newValue = possiblyProblematicOperation();
+  if (newValue === undefined) {
+    let undefinedError = new Error('newValue was not defined!');
+    return next(undefinedError);
+  }
+  next();
+});
+ 
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  res.status(status).send(err.message);
+});
+In this segment we assign the return value of the function possiblyProblematicOperation() to newValue. Then we check to see if this function returned anything at all. If it didn’t, we create a new Error and pass it to next(). This prompts the error-handling middleware to send a response back to the user, but many other error-handling techniques could be employed (like logging, re-attempting the failed operation, and/or emailing the developer).
+
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+
+app.use(express.static('public'));
+
+const PORT = process.env.PORT || 4001;
+
+const jellybeanBag = {
+  mystery: {
+    number: 4
+  },
+  lemon: {
+    number: 5
+  },
+  rootBeer: {
+    number: 25
+  },
+  cherry: {
+    number: 3
+  },
+  licorice: {
+    number: 1
+  }
+};
+
+// Body-parsing Middleware
+app.use(bodyParser.json());
+
+// Logging Middleware
+if (!process.env.IS_TEST_ENV) {
+  app.use(morgan('dev'));
+}
+
+app.use('/beans/:beanName', (req, res, next) => {
+  const beanName = req.params.beanName;
+  if (!jellybeanBag[beanName]) {
+    const error = new Error('Bean with that name does not exist')
+    error.status = 404;
+    return next(error);
+  }
+  req.bean = jellybeanBag[beanName];
+  req.beanName = beanName;
+  next();
+});
+
+app.get('/beans/', (req, res, next) => {
+  res.send(jellybeanBag);
+});
+
+app.post('/beans/', (req, res, next) => {
+  const body = req.body;
+  const beanName = body.name;
+  if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
+    const error = new Error('Bean with that name already exists!')
+    error.status = 400;
+    return next(error);
+  }
+  const numberOfBeans = Number(body.number) || 0;
+  jellybeanBag[beanName] = {
+    number: numberOfBeans
+  };
+  res.send(jellybeanBag[beanName]);
+});
+
+app.get('/beans/:beanName', (req, res, next) => {
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/add', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  req.bean.number += numberOfBeans;
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/remove', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  if (req.bean.number < numberOfBeans) {
+    const error = new Error('Not enough beans in the jar to remove!')
+    error.status = 400;
+    return next(error);
+  }
+  req.bean.number -= numberOfBeans;
+  res.send(req.bean);
+});
+
+app.delete('/beans/:beanName', (req, res, next) => {
+  const beanName = req.beanName;
+  jellybeanBag[beanName] = null;
+  res.status(204).send();
+});
+
+// Add your error handler here:
+app.use((err, req, res, next) => {
+  if (!err.status) {
+    err.status = 500;
+  }
+  res.status(err.status).send(err.message);
+});
+
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+---------------
+
+Discovering Open-Source Middleware
+While it’s good to know how to write error-handling middleware, it’s a natural curiosity that causes us to ask “isn’t error-handling a common task? Has someone written middleware that performs it for us?” Let’s take a look at the list of Express middleware. This list of middleware includes many things the creators of Express maintain, some of which was included in Express in previous versions. The movement on the Express team’s part to identify separate functionality and modularize their code into independent factors allows developers like us to only take what we need. In this way, they can make major updates to each middleware individually and programmers who do not use that middleware won’t have to worry about their version of Express being out of date.
+
+Can you find something on that list that will help us handle errors?
+
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const errorHandler = require('errorhandler')
+app.use(errorHandler());
+
+app.use(express.static('public'));
+
+const PORT = process.env.PORT || 4001;
+
+const jellybeanBag = {
+  mystery: {
+    number: 4
+  },
+  lemon: {
+    number: 5
+  },
+  rootBeer: {
+    number: 25
+  },
+  cherry: {
+    number: 3
+  },
+  licorice: {
+    number: 1
+  }
+};
+
+// Body-parsing Middleware
+app.use(bodyParser.json());
+
+// Logging Middleware
+app.use(morgan('dev'));
+
+app.use('/beans/:beanName', (req, res, next) => {
+  const beanName = req.params.beanName;
+  if (!jellybeanBag[beanName]) {
+    return res.status(404).send('Bean with that name does not exist');
+  }
+  req.bean = jellybeanBag[beanName];
+  req.beanName = beanName;
+  next();
+});
+
+app.get('/beans/', (req, res, next) => {
+  res.send(jellybeanBag);
+});
+
+app.post('/beans/', (req, res, next) => {
+  const body = req.body;
+  const beanName = body.name;
+  if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
+    return res.status(400).send('Bean with that name already exists!');
+  }
+  const numberOfBeans = Number(body.number) || 0;
+  jellybeanBag[beanName] = {
+    number: numberOfBeans
+  };
+  res.send(jellybeanBag[beanName]);
+});
+
+app.get('/beans/:beanName', (req, res, next) => {
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/add', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  req.bean.number += numberOfBeans;
+  res.send(req.bean);
+});
+
+app.post('/beans/:beanName/remove', (req, res, next) => {
+  const numberOfBeans = Number(req.body.number) || 0;
+  if (req.bean.number < numberOfBeans) {
+    return res.status(400).send('Not enough beans in the jar to remove!');
+  }
+  req.bean.number -= numberOfBeans;
+  res.send(req.bean);
+});
+
+app.delete('/beans/:beanName', (req, res, next) => {
+  const beanName = req.beanName;
+  jellybeanBag[beanName] = null;
+  res.status(204).send();
+});
+
+app.put('/beans/:beanName/name', (req, res, next) => {
+  const beanName = req.beanName;
+  const newName = req.body.name;
+  jellybeanBag[newName] = req.bean;
+  jellybeanBag[beanName] = null;
+  res.send(jellybeanBag[newName]);
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send(err);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+
+============Another example================
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+
+app.use(express.static('public'));
+
+const PORT = process.env.PORT || 4001;
+
+const cards = [
+  {
+    id: 1,
+    suit: 'Clubs',
+    rank: '2'
+  },
+  {
+    id: 2,
+    suit: 'Diamonds',
+    rank: 'Jack'
+  },
+  {
+    id: 3,
+    suit: 'Hearts',
+    rank: '10'
+  }
+];
+let nextId = 4;
+
+// Logging
+if (!process.env.IS_TEST_ENV) {
+  app.use(morgan('short'));
+}
+
+// Parsing
+app.use(bodyParser.json());
+
+// Find card
+app.use('/cards/:cardId', (req, res, next) => {
+  const cardId = Number(req.params.cardId);
+  const cardIndex = cards.findIndex(card => card.id === cardId);
+  if (cardIndex === -1) {
+    return res.status(404).send('Card not found');
+  }
+  req.cardIndex = cardIndex;
+  next();
+});
+
+const validateCard = (req, res, next) => {
+  const newCard = req.body;
+  const validSuits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+  const validRanks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+  if (validSuits.indexOf(newCard.suit) === -1 || validRanks.indexOf(newCard.rank) === -1) {
+    return res.status(400).send('Invalid card!');
+  }
+  next();
+};
+
+// Get all Cards
+app.get('/cards/', (req, res, next) => {
+  res.send(cards);
+});
+
+// Create a new Card
+app.post('/cards/', validateCard, (req, res, next) => {
+  const newCard = req.body;
+  newCard.id = nextId++;
+  cards.push(newCard);
+  res.status(201).send(newCard);
+});
+
+// Get a single Card
+app.get('/cards/:cardId', (req, res, next) => {
+  res.send(cards[req.cardIndex]);
+});
+
+// Update a Card
+app.put('/cards/:cardId', validateCard, (req, res, next) => {
+  const newCard = req.body;
+  const cardId = Number(req.params.cardId);
+  if (!newCard.id || newCard.id !== cardId) {
+    newCard.id = cardId;
+  }
+  cards[req.cardIndex] = newCard;
+  res.send(newCard);
+});
+
+// Delete a Card
+app.delete('/cards/:cardId', (req, res, next) => {
+  cards.splice(req.cardIndex, 1);
+  res.status(204).send();
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+
+
 
 
