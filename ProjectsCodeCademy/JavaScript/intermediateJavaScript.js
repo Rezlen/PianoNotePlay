@@ -6,7 +6,11 @@ const reverseArray = arr => {
     for (let i = arr.length - 1; i >= 0; i--) {
         reversed.push(arr[i]);
     }
+<<<<<<< HEAD
     return spa
+=======
+    return reversed
+>>>>>>> f7fa255699dfbad46b8f303072ace76852bb22a4
 }
 
 // As a function declaration:
