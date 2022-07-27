@@ -293,3 +293,18 @@ OR: create a file: _redirects and add: /* /index.html 200     in this video;  he
 
 node   => listing all of the core modules built into Node.js
 require('module').builtinModules   =>  Once in the REPL, a complete list of core modules can be accessed by typing the command
+===============
+
+
+
+const I  =  {};
+
+I.am = 'a front-end Developer';
+I.love = ['My wife', 'Web Development', 'Inventing', 'Traveling The  World & Going to the Moon', 'Meeting New People' ];
+I.workWith = ['HTML5', 'CSS3', 'React.JS', 'JavaScript', 'Node.JS', 'SnowBallEffects', 'Nuxt.JS', 'Vue.JS']
+I.aspire = 'to inspire others to make the world a better place & live an ever lasing memory after themselves.'
+I.secret = 'Did you know, on browsers you can -with permission- access the contact lists and' 
+           'create a worldwide snowball effect and revolutionize your organization business!';
+
+=============
+
