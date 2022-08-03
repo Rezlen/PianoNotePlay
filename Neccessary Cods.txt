@@ -202,7 +202,7 @@ $ git checkout example_branch
 $ rm -fr .git = delete every file in the repostory
 $ git add . = Sends everything to STAGE section ready to commit
 git commit -m "My First Commit"
-git branch -M maing = Sends/Pushes everyting to the remote repo
+git branch -M main = Sends/Pushes everyting to the remote repo
 git push -u origin main = Sends/Pushes everyting to the remote repo
 git push -u origin main
 
