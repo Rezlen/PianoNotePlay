@@ -20,6 +20,7 @@
     "nodemon": "^2.0.19"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@reduxjs/toolkit": "^1.8.3",
     "ansi-colors": "^4.1.1",
     "ansi-regex": "^5.0.1",

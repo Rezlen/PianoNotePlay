@@ -204,7 +204,14 @@ $ git add . = Sends everything to STAGE section ready to commit
 git commit -m "My First Commit"
 git branch -M main = Sends/Pushes everyting to the remote repo
 git push -u origin main = Sends/Pushes everyting to the remote repo
+----
+git add .
+git commit -m "My First Commit"
+git branch -M main
 git push -u origin main
+----
+Type rfce and that prints a ready function in the editor.
+----
 
 Navigating directories in bash= https://www.codecademy.com/courses/learn-the-command-line/lessons/navigation/exercises/learn-the-command-line-review
 
