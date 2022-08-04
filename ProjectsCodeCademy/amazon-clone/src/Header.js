@@ -1,6 +1,8 @@
 import React from 'react'
 import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+
 
 // This function component, reflect the top bar of the home page 
 function Header() {
@@ -8,30 +10,35 @@ function Header() {
 
     /* Reflects the homepage logo */
     <div className='header'>
-      <img className='header_logo' src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' />
+      <img className='header__logo' src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' />
 
-      {/* Reflects the homepage searchbar*/}
-      <div className='header_search'>
-        <input className='header_searchInput' type='text' />
-        <SearchIcon className='header_searchIcon' />
+      {/* Reflects the homepage searchbar & Icon*/}
+      <div className='header__search'>
+        <input className='header__searchInput' type='text' />
+        <SearchIcon className='header__searchIcon' />
       </div>
 
       {/* Reflects the 3 options on the homepage top right corner */}
-      <div className='header_nav'>
+      <div className='header__nav'>
 
-        <div className='header_option' >
-          <span className='header_optionOne' > Hello Guest</span>
-          <span className='header_optionTwo' > Sign In</span>
+        <div className='header__option' >
+          <span className='header__optionLineOne' > Hello Guest</span>
+          <span className='header__optionLineTwo' > Sign In</span>
         </div>
 
-        <div className='header_option' >
-          <span className='header_optionOne' > Returns </span>
-          <span className='header_optionTwo' > & Orders </span>
+        <div className='header__option' >
+          <span className='header__optionLineOne' > Returns </span>
+          <span className='header__optionLineTwo' > & Orders </span>
         </div>
 
-        <div className='header_option' >
-          <span className='header_optionOne' > Your </span>
-          <span className='header_optionTwo' > Prime </span>
+        <div className='header__option' >
+          <span className='header__optionLineOne' > Your </span>
+          <span className='header__optionLineTwo' > Prime </span>
+        </div>
+
+        <div className='header__optionBasket' >
+          <ShoppingBasketIcon />
+          <span className='header__optionLineTwo header__basketCount' > 0 </span>
         </div>
 
       </div>

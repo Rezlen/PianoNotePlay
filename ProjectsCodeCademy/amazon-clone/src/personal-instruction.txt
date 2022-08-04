@@ -1,0 +1,9 @@
+1- npx create-react-app amazon-clone
+2- remove unnecessary logo & style from app.js and remove test file, logo file.
+3- create Header.js & its css
+4 -remove margin from index.css
+5- Create & connect your FireBase FREE storage/server compiler
+6- import the following: import './Header.css'
+
+7- Instal the ICONS from: https://mui.com/material-ui/icons/#icon-font-icons   by: npm install @mui/icons-material
+8- import the following on your app.js:  import SearchIcon from '@mui/icons-material/Search'; (For importing ICONS)
