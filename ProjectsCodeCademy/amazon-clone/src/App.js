@@ -1,4 +1,4 @@
-// import logo from './logo.svg';
+// import logo from http://pngimg.com/uploads/amazon/amazon_PNG11.png;
 import './App.css';
 
 function App() {
