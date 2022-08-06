@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './Header';
 import Home from './Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Checkout from './Checkout';
 
 
@@ -11,7 +11,7 @@ function App() {
     <Router>
       {/*//BEM*/}
       <div className='app'>
-        <Switch>
+        <Routes>
           <Route path='/checkout'>
             <Header />
               <Checkout />
@@ -21,7 +21,7 @@ function App() {
             <Header />
             <Home />
           </Route>
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
