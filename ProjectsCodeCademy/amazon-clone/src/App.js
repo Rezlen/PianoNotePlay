@@ -13,12 +13,12 @@ function App() {
       <div className='app'>
         <Header />
         <Routes>
-          <Route path='/checkout'>
-              <Checkout />
+          <Route path='/checkout' element={<Checkout />}>
+
           </Route>
           {/*This default route must always be at the bottom otherwise will never be read.*/}
-          <Route path='/'>
-            <Home />
+          <Route exact path='/' element={<Home />}>
+
           </Route>
         </Routes>
       </div>

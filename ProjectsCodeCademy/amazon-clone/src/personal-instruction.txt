@@ -7,8 +7,10 @@
 
 7- Instal the ICONS from: https://mui.com/material-ui/icons/#icon-font-icons   by: npm install @mui/icons-material
 8- import the following on your app.js:  import SearchIcon from '@mui/icons-material/Search'; (For importing ICONS)
-
+ *rfce fro auto import***
 9- to have other pages connected do NOt forget to import Router as well as adding <Router></Router> tags to the APP function in the app.js:
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 10- add the pages inside the <switch></switch> tags. Inside of the add the <Route path= '/'><Route>. This default route must always be at the bottom otherwise will never be read.
+
+Instal 'npm i react-currency-format' in your Subtotal.js
