@@ -13,4 +13,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 10- add the pages inside the <switch></switch> tags. Inside of the add the <Route path= '/'><Route>. This default route must always be at the bottom otherwise will never be read.
 
-Instal 'npm i react-currency-format' in your Subtotal.js
+import CurrencyFormat from 'react-currency-format';     [Did not work for:] Instal 'npm i react-currency-format' in your Subtotal.js. the used: 
+so I used two commands: 
+ npm install --save --legacy-peer-deps Then: npm install react-currency-format --save --force
+
+ redux section 2:00:44
