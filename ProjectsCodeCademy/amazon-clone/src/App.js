@@ -18,7 +18,6 @@ function App() {
           </Route>
           {/*This default route must always be at the bottom otherwise will never be read.*/}
           <Route path='/'>
-            <Header />
             <Home />
           </Route>
         </Routes>
