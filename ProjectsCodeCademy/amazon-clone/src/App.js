@@ -11,9 +11,9 @@ function App() {
     <Router>
       {/*//BEM*/}
       <div className='app'>
+        <Header />
         <Routes>
           <Route path='/checkout'>
-            <Header />
               <Checkout />
           </Route>
           {/*This default route must always be at the bottom otherwise will never be read.*/}
