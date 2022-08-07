@@ -210,7 +210,7 @@ git commit -m "My First Commit"
 git branch -M main
 git push -u origin main
 ----
-Auto import: Type rfce and that prints a ready function in the editor.
+rfce: Auto import: Type rfce and that prints a ready function in the editor.
 npm -v react-dom, it gives you the version of npm not react-dom version, you can check REACT-DOM version by using npm -v or npm -v react-dom
 ----
 
