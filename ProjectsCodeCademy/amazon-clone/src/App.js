@@ -4,12 +4,13 @@ import Header from './Header';
 import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Checkout from './Checkout';
+import { useStateValue } from "./StateProvider";
 
 
 function App() {
   return (
     <Router>
-      {/*//BEM*/}
+      {/*BEM*/}
       <div className='app'>
         <Header />
         <Routes>
