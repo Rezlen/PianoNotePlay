@@ -4,6 +4,9 @@ export const initialState = {
   basket: [],
 };
 
+// Selector function here. This sends the Basket amount to the SUBTOTAL.JS page an displays on basket area
+export const getBasketTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0);
+
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {

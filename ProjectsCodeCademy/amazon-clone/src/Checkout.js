@@ -6,10 +6,10 @@ function Checkout() {
   return (
     <div className='checkout'>
       <div className='checkout__left'>
-        <img  className='checkout__ad' src='https://m.media-amazon.com/images/G/01/AdProductsWebsite/images/AUX/ILB_BrightColors_Approved._TTW_.jpg' alt='Image from https://m.media-amazon.com/images/G/01/AdProductsWebsite/images/AUX/ILB_BrightColors_Approved._TTW_.jpg'/>
+        <img className='checkout__ad' src='https://m.media-amazon.com/images/G/01/AdProductsWebsite/images/AUX/ILB_BrightColors_Approved._TTW_.jpg' alt='Image from https://m.media-amazon.com/images/G/01/AdProductsWebsite/images/AUX/ILB_BrightColors_Approved._TTW_.jpg'/>
       
         <div className='checkout__title'>
-          <h2>Shopping Basket</h2>
+          <h2>My Shopping Basket</h2>
         </div>
 
       </div>

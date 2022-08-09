@@ -211,7 +211,7 @@ git branch -M main
 git push -u origin main
 ----
 rfce: Auto import: Type rfce and that prints a ready function in the editor.
-npm -v react-dom, it gives you the version of npm not react-dom version, you can check REACT-DOM version by using npm -v or npm -v react-dom
+npm -v react-dom OR npm -v gives you the version of npm not react-dom version. npm view react version for React version.
 ----
 
 Navigating directories in bash= https://www.codecademy.com/courses/learn-the-command-line/lessons/navigation/exercises/learn-the-command-line-review

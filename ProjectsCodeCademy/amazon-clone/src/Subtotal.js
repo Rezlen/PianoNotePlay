@@ -1,11 +1,14 @@
-import React from 'react'
-import './Subtotal.css'
+import React from 'react';
+import './Subtotal.css';
 import CurrencyFormat from 'react-currency-format';
 import { useStateValue } from "./StateProvider";
+import { getBasketTotal } from './reducer';
 
 function Subtotal() {
 
   const [{ basket }, dispatch] = useStateValue();
+  
+  
   return (
     <div className='subtotal'>
 
@@ -23,8 +26,8 @@ function Subtotal() {
         )}
         
 
-        decimalScale= {2}
-        value={0} // Part of the homework
+        decimalScale={2}
+        value={getBasketTotal(basket)} // Pulls the amounts from Reducer.JS
         displayType={'text'}
         thousandSeparator={true}
         prefix={'£'}

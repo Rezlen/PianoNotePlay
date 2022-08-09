@@ -13,7 +13,7 @@ function App() {
       {/*BEM*/}
       <div className='app'>
         <Header />
-        <Routes>
+        <Routes> {/*In React 18, Routes is replaced with Switch, so do NOT change back to Switch */}
           <Route path='/checkout' element={<Checkout />}>
 
           </Route>

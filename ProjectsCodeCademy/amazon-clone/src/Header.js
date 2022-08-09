@@ -3,10 +3,12 @@ import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Link } from 'react-router-dom';
+import { useStateValue } from "./StateProvider";
 
 
 // This function component, reflect the top bar of the home page 
 function Header() {
+  const [{ basket, user }, dispatch] = useStateValue();
   return (
 
     /* Reflects the homepage logo */
@@ -42,14 +44,15 @@ function Header() {
         <Link to='/checkout'>
           <div className='header__optionBasket' >
             <ShoppingBasketIcon />
-            <span className='header__optionLineTwo header__basketCount' > 0 </span>
+            <span className='header__optionLineTwo header__basketCount' >{basket?.length}</span>
+            {/*Important: This {basket?.length} connect the basket & each product in Product.js to count in the basket */}
           </div>
         </Link>
       
       </div>
 
     </div>
-  )
+  );
 }
 
 export default Header

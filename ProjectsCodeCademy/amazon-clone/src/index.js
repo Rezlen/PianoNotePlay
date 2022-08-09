@@ -9,7 +9,7 @@ import { StateProvider } from './StateProvider';
 
 
 const container = document.getElementById('root');
-const root = createRoot(container);
+const root = createRoot(container); {/* In React 18.2 Container & ROOT has been replaced React.Dom; check: https://stackoverflow.com/questions/71668256/deprecation-notice-reactdom-render-is-no-longer-supported-in-react-18 */}
 root.render(
   <React.StrictMode>
     <StateProvider initialState={initialState} reducer={reducer}>
