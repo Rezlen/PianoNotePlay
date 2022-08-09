@@ -1,3 +1,9 @@
+
+html,
+body {
+  font-size: 16px;
+}
+
 .subtotal {
   display: flex;
   flex-direction: column;

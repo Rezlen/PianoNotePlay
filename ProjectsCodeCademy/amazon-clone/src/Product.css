@@ -57,3 +57,6 @@ body {
   background-color:rgb(175, 142, 52);
 }
 
+.product > button:active {
+  border-color: black;
+}
