@@ -4,7 +4,8 @@ import { useStateValue } from './StateProvider';
 
 
 // This page display the FULL details of the item which has been added to the basket
-function CheckoutProduct({id, title, image, price, rating}) {
+function CheckoutProduct({basketIndex, id, title, image, price, rating}) {
+{/*const [{basket}, dispatch] = useStateValue();*/}
   const [{basket}, dispatch] = useStateValue();
 
   // Removes items from the basket
@@ -12,6 +13,7 @@ function CheckoutProduct({id, title, image, price, rating}) {
     dispatch({
       type: 'REMOVE_FROM_BASKET',
       id: id,
+      basketIndex: basketIndex
     })
   }
 

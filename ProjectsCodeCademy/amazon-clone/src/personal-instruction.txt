@@ -21,3 +21,49 @@ so I used two commands:
 
  In react 18.2.0 Different React-DOM  function style must be imported in INDEX.JS, APP.JS,  
 
+--------------------
+ Solution to the issue when removes the item in the basket from the top and not the item you click on:
+https://www.youtube.com/watch?v=RDV3Z1KCBvo comment on the jyotika sethi 5 months ago
+
+You need to modify this line in checkout.js to include the index value and key value. (if you do not include the key value you'll just get an error)
+checkout.js ////
+{basket.map((item, index) => (
+                            <CheckoutProduct
+                                key={index}
+                                basketIndex={index}
+                                id={item.id}
+                                title={item.title}
+                                price={item.price}
+                                image={item.image}
+                            />
+                        ))}
+
+
+Then in ProductCheckout.js add the basketIndex value and use it in the dispatch function
+ProductCheckout.js  ////
+function CheckoutProduct({ basketIndex, id, title, price, image }) {
+    const [, dispatch] = useStateValue();
+
+    const removeFromBasket = () => {
+        dispatch({
+            type: 'REMOVE_FROM_BASKET',
+            basketIndex: basketIndex,
+        })
+    }
+
+Finally in the reducer.js file add the 'REMOVE_FROM_BASKET' event which should look like this
+reducer.js ////
+case 'REMOVE_FROM_BASKET':
+            let newBasket = [...state.basket];
+
+            newBasket.splice(action.basketIndex, 1);
+
+            return {
+                ...state,
+                basket: newBasket
+            };
+
+Hope this helps :)
+
+---------------
+
