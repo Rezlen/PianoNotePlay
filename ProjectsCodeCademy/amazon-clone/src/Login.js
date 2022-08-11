@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // In react-router-dom v6 useHistory() is replaced by useNavigate(). So do not use import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 
 function Login() {
+  const navigate = useNavigate(); // Helps to authenticate the user // In react-router-dom v6 useHistory() is replaced by useNavigate(). so do NOT use const history = useHistory();
   const [email, setEmail] = useState(''); // Do not place NO inside, leave it as empty string
   const [password, setPassword] = useState('');
 
@@ -21,9 +22,9 @@ function Login() {
       .then((auth) => {
           // it successfully created a new user with email and password
          console.log(auth);
-          /*if (auth) {
-              history.push('/')
-          }*/
+          if (auth) {
+            navigate.push('/') // In react-router-dom v6 useHistory() is replaced by useNavigate(). So Do not use history.push('/')
+          }
       })
       .catch(error => alert(error.message))
   }
