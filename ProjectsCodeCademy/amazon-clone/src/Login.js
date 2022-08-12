@@ -12,6 +12,12 @@ function Login() {
   const signIn = e => {
     e.preventDefault();
     // Firebase details come here
+    auth
+    .signInWithEmailAndPassword(email, password)
+    .then(auth => {
+      navigate('/') // In react-router-dom v6 useHistory() is replaced by useNavigate(). So Do not use history.push('/')
+    })
+    .catch(error => alert(error.message))
   }
 
   const register = e => {
@@ -23,7 +29,7 @@ function Login() {
           // it successfully created a new user with email and password
          console.log(auth);
           if (auth) {
-            navigate.push('/') // In react-router-dom v6 useHistory() is replaced by useNavigate(). So Do not use history.push('/')
+            navigate('/') // In react-router-dom v6 useHistory() is replaced by useNavigate(). So Do not use history.push('/')
           }
       })
       .catch(error => alert(error.message))
