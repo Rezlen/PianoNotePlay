@@ -36,3 +36,11 @@ body {
   border-color: #a88734;
   color: black;
 }
+
+.subtotal > button:hover { 
+  background-color:rgb(175, 142, 52);
+}
+
+.subtotal > button:active {
+  border-color: black;
+}

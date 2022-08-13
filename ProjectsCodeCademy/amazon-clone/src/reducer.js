@@ -4,6 +4,7 @@ import { returnTrue } from "react-currency-format/lib/utils";
 
 export const initialState = {
   basket: [],
+  user: null
 };
 
 // Selector function here. This sends the Basket amount to the SUBTOTAL.JS page an displays on basket area
