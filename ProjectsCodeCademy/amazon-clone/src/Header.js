@@ -4,11 +4,18 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Link } from 'react-router-dom';
 import { useStateValue } from "./StateProvider";
+import { auth } from './firebase';
 
 
 // This function component, reflect the top bar of the home page 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
+
+  const handleAuthenticaton = () => {
+    if (user) {
+      auth.signOut();
+    }
+  }
   return (
 
     /* Reflects the homepage logo */
@@ -24,12 +31,11 @@ function Header() {
       </div>
 
       {/* Reflects the 3 options on the homepage top right corner */}
-      <div className='header__nav'>
-
-        <Link to='login'>
-          <div className='header__option' >
-            <span className='header__optionLineOne' > Hello Guest</span>
-            <span className='header__optionLineTwo' > Sign In</span>
+      <div className="header__nav">
+        <Link to={!user && '/login'}>
+          <div onClick={handleAuthenticaton} className="header__option">
+            <span className="header__optionLineOne">Hello {!user ? 'Guest' : user.email}</span>
+            <span className="header__optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
           </div>
         </Link>
 

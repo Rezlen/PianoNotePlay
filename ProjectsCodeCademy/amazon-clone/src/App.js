@@ -11,18 +11,31 @@ import { auth } from './firebase';
 
 
 function App() {
+  const [{}, dispatch] = useStateValue();
 
-  // Who has signed in? This is how we keep track of them.
   useEffect(() => {
     // will only run once when the app component loads...It is similar to IF STATEMENT. It only runs ONCE when app components loads. 
   
+  // Who has signed in? This is how we keep track of them.
     auth.onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>> ", authUser);
 
+      if (authUser) {
+        // the user just logged in / the user was logged in
+        // if the user is logged in & pga refreshes, Firebase keeps the user AUTH (Loggedin)
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
     });
-  }, [])
-
-
+  }, []);
   
   return (
     <Router>

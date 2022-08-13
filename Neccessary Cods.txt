@@ -315,4 +315,23 @@ I.secret = 'Did you know, on browsers you can -with permission- access the conta
            'create a worldwide snowball effect and revolutionize your organization business!';
 
 =============
+============Configure and deploy Firebase Hosting sites==============
+$ npm install -g firebase-tools
+https://www.youtube.com/watch?v=RDV3Z1KCBvo insructio video from minutes: 4:37
+
+firebase login
+firebase init >
+Hosting: Configure and deploy Firebase Hosting sites >
+Please sellect an option > use an existing project > (Choose the project you have created in Firebase)
+What do you want to use as your public directory? (public) build
+Configure as a single-page app (rewrite all urls to /index.html)? (y/N) y
+Set up automatic builds and deploys with GitHub? (y/N) n
+THEN: npm run build
+Lastly: firebase deploy
+Project Console: https://console.firebase.google.com/project/amazo-clone1/overview
+Hosting URL: https://amazo-clone1.web.app
+
+=================================
+
+
 

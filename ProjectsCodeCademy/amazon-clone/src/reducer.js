@@ -40,6 +40,12 @@ const reducer = (state, action) => {
         basket: newBasket
       }
 
+      // This takes the user which has been dispatched from App.js AuthUsers function
+      case "SET_USER":
+        return {
+          ...state,
+          user: action.user
+        }
     default: 
       return state;
   }
