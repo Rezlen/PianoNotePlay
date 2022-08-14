@@ -85,4 +85,10 @@ Lastly: firebase deploy
 Project Console: https://console.firebase.google.com/project/amazo-clone1/overview
 Hosting URL: https://amazo-clone1.web.app
 
-=================================
+=============STRIPE====================
+
+For the payment page ad STRIPE payment tools/code.
+npm i @stripe/stripe-js OR npm i @stripe/stripe-js --force
+Then 
+npm i @stripe/react-stripe-js OR npm i @stripe/react-stripe-js --force
+
