@@ -12,6 +12,7 @@ import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
+//STRIPE_PUBLISHABLE_API_KEY
 const promise = loadStripe(
   "pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
 );
@@ -49,7 +50,7 @@ function App() {
          <Route path='/login' element={<Login />} />
          <Route path='/' element={[<Header />, <Home />]} />
          <Route path='/checkout' element={[<Header />, <Checkout />]} />
-         <Route path='/payment' element={[<Header />, <Elements stripe={Promise} />, <Payment/>]} />
+         <Route path='/payment' element={[<Header />, <Elements stripe={promise} />, <Payment/>]} />
          <Route path='/' element={[<Header />, <Home/>]} />
         </Routes>
       </div>

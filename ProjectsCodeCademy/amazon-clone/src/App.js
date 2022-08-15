@@ -11,8 +11,8 @@ import { auth } from './firebase';
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
-const promise = loadStripe(
+// use STRIPEPROMISE instead o PROMISE alone. That is the standard
+const stripePromise = loadStripe(
   "pk_test_51LWn8FCfw5E16AHfibab9eOG492xJMsQjBriAPYR90K50E0eiOQLYn7dZqenzUChlIzj7mAdgIMThPuATy3K7Izd00h1SPyBYU"
 );
 
@@ -52,7 +52,7 @@ function App() {
          <Route path='/login' element={<Login />} />
          
          <Route path='/checkout' element={[<Header />, <Checkout />]} />
-         <Route path='/payment' element={[<Header />, <Elements stripe={Promise} />, <Payment/>]} />
+         <Route path='/payment' element={[<Header />, <Elements stripe={stripePromise} > <Payment/> </Elements>]} /> {/*whole component PAYMENT you're showing here should be wrapped by Elements, not some part of. <Elements stripe={stripePromise} > <Payment/> </Elements> */}
          <Route path='/' element={[<Header />, <Home/>]} />
         </Routes>
       </div>
