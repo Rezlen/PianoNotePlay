@@ -37,6 +37,7 @@ function Payment() {
     getClientSecret();
 }, [basket])
 
+// below to test after going to the checkout; you see the secret api in the INSPECT
 console.log('THE SECRET IS >>>', clientSecret)
 console.log('👱', user)
 
@@ -70,8 +71,8 @@ console.log('👱', user)
       dispatch({
         type: 'EMPTY_BASKET'
       })
-      // so that after payment the cutomer does not come back too the payment page, they got to the ORDER page.
-      navigate.replace('/orders')
+      // so that after payment the customer does not come back too the payment page, they got to the ORDER page.
+      navigate('/orders')
     })
 
   }

@@ -347,6 +347,24 @@ Functions: Configure a Cloud Functions directory and its files
 ===============
 Functions folder is the full backend. and has its own Node Modules, Json etc. At this point if you do npm INSTALL, it must be in the FUNCTIONS folder, otherwise it messes up things.
 There we create an EXPRESS app & host it on a cloud function, escalable & full backend.
+==========npm i express===========
+While in the functions folder, run NPM I EXPRESS command
+==========npm i cors==============
+==========npm i stripe==============
+Navigate in directories: 
+To navigate into the root directory, use "cd /" 
+To navigate to your home directory, use "cd" or "cd ~" 
+To navigate up one directory level, use "cd .." 
+To navigate to the previous directory (or back), use "cd -"
+=========API Creation=========
+1- App Config 2- Middleware 3-API routes  4- Listen command
+========test the firebase & API test on local========
+firebase emulators:start
+THEN you find the API end point here: +  functions[us-central1-api]: http function initialized (http://localhost:5001/amazo-clone1/us-central1/api).
+And all the logs here: http://localhost:4000/logs?q=metadata.emulator.name%3D%22functions%22
+===========
+
+
 
 
 
