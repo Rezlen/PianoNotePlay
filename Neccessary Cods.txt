@@ -401,7 +401,7 @@ Re-deploying functions: firebase deploy --only functions
 Then redeploy (backend infact): npm run build
 then re-deploy the hosting/front-end: firebase deploy --only hosting
 ==============Sometimes Error===============
-If you stucked in RE-WRITE, you can remove the piece in firebase.jason
+If you stucked in RE-WRITE/Re-Deploy, you can remove the piece in firebase.jason
 
     "rewrites": [
       {
