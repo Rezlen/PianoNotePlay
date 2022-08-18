@@ -1,3 +1,5 @@
+import { getTypographyUtilityClass } from "@mui/material";
+
 ========Steps to build it=================
 
 1- create/import react app/tools/folders: npx create-react-app
@@ -31,6 +33,14 @@ const firebaseConfig = {
 {/*Feed*/}
 {/*Widgets*/}
 10- Create a Header.js file
+11- Instal Material-UI tools by: npm install @mui/material @emotion/react @emotion/styled
+12- then npm install @mui/icons-material
+13- add the magnifier from import SearchIcon from '@mui/icons-material/Search'; to the Div in header & import it on top.
+14- add the SearchIcon to the Div in header
+15- add the input type="text" to the Div in header
+16- Each Icon must be in a Div.
+
+
 
 
 
