@@ -1,6 +1,6 @@
-import { jsx, jsx } from "@emotion/react";
+import { css, jsx, jsx } from "@emotion/react";
 import { getAppBarUtilityClass, getTypographyUtilityClass } from "@mui/material";
-import { Component } from "react";
+import { Component, Component } from "react";
 
 ========Steps to build it=================
 
@@ -45,7 +45,26 @@ const firebaseConfig = {
 18- Start creating the Sidebar.js & css and modify in the App.js. Import it in App.js.
 19- Include Sidebar Component and create its css & js files with RFCE quick import. Sidebar.js is mother components for SidebarRows.jsx.
 20- there you will need SidebarRows, so create its component and css/js Files.
-21- 
+21- In sidebar.js add the Component at he button an their props. Then in sidebarRow.js add the props argument 
+22- Add the SRC, ICON to the function component in the SidebarRow.js.
+23- Do the CSS SlideRow.css until: .sidebarRow > .MuiSvgIcon-root line 23.
+24- Start with the FEED component & pages. This/feed component cover the middle section of the age which includes two sections: 1- Displaying the Reels and 2- Displaying the Posts/message sender
+25- Create the StoryReel.js & css & js files and its component. Import it in the Feed.js
+26- Create the Story.js & .css files & its component:
+// to make it cleaner, instead of argument (props) and props.title, we just use {title & the rest of the props}
+function Story({image, profileSrc, title}) {
+  return (
+    <div className='story'>
+      <Avatar src={profileSrc} /> {/*if there is src, then pass it Avatar with the ProfileSrc */}
+      <h4>{title}</h4>
+    </div>
+  )
+}
+
+27- Then style the Story.css.  THEN go back to the StoryReel.css o position the all stories in the middle (Display Flex). 
+28- Go back to App.css to position the app__body to (Display Flex) in the middle of page.
+28- 
+
 
 
 

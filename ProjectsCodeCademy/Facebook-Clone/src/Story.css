@@ -1,0 +1,29 @@
+.story {
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 7.5rem;
+  height: 12.6rem;
+  box-shadow: 0 31rem 1rem -0.43 rgba(0, 0, 0, 0.75);
+  border-radius: 0.62rem;
+  margin-right: 0.62rem;
+  transition: transform 100ms ease-in; /*Causes the story movement & with the hover below*/
+  cursor: pointer;
+}
+
+.story:hover {
+  transform: scale(1.07);
+}
+
+.story__author {
+  margin: 0.62rem;
+  border: 0.31rem solid #2e81f4;
+}
+
+.story > h4 {
+  position: absolute; /*Because the parent (>story) positoned Relative, this h4 will be relative with in the parent*/
+  bottom: 1.25rem;
+  left: 1.25rem;
+  color: white;
+}
