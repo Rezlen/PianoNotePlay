@@ -1,4 +1,6 @@
-import { getTypographyUtilityClass } from "@mui/material";
+import { jsx, jsx } from "@emotion/react";
+import { getAppBarUtilityClass, getTypographyUtilityClass } from "@mui/material";
+import { Component } from "react";
 
 ========Steps to build it=================
 
@@ -39,6 +41,11 @@ const firebaseConfig = {
 14- add the SearchIcon to the Div in header
 15- add the input type="text" to the Div in header
 16- Each Icon must be in a Div.
+17- Then add the a few icones fromm the Material-US and put each in a <IconButton >.
+18- Start creating the Sidebar.js & css and modify in the App.js. Import it in App.js.
+19- Include Sidebar Component and create its css & js files with RFCE quick import. Sidebar.js is mother components for SidebarRows.jsx.
+20- there you will need SidebarRows, so create its component and css/js Files.
+21- 
 
 
 
