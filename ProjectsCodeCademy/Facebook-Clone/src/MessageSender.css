@@ -1,0 +1,25 @@
+html,
+body {
+  font-size: 16px;
+}
+
+.messageSender {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0rem 0.43rem 0.43rem -0.43rem rgba(0, 0, 0, 0.75);
+  width: 100%;
+}
+
+.messageSender__top {
+  display: flex;
+  border-bottom: 0.06rem solid #e6e6e6;
+  padding: 1rem;
+}
+
+.messageSender__top > form {
+  display: flex;
+  flex: 1;
+}

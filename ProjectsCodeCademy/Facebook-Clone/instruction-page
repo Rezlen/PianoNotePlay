@@ -1,6 +1,6 @@
 import { css, jsx, jsx } from "@emotion/react";
 import { getAppBarUtilityClass, getTypographyUtilityClass } from "@mui/material";
-import { Component, Component } from "react";
+import { Component, Component, Component, Component } from "react";
 
 ========Steps to build it=================
 
@@ -63,7 +63,8 @@ function Story({image, profileSrc, title}) {
 
 27- Then style the Story.css.  THEN go back to the StoryReel.css o position the all stories in the middle (Display Flex). 
 28- Go back to App.css to position the app__body to (Display Flex) in the middle of page.
-28- 
+28- Then Style the Feed.css so all its components display correctly.
+29- Create the second section of the FEED.js & CSS; MessageSender.js & CSS and its Component, import etc. Message sender has its own components of 5 which is devided to TWo sections: Top & Bottom.
 
 
 
