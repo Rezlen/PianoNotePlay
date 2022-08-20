@@ -1,5 +1,5 @@
 import { css, jsx, jsx } from "@emotion/react";
-import { getAppBarUtilityClass, getTypographyUtilityClass } from "@mui/material";
+import { getAppBarUtilityClass, getAppBarUtilityClass, getImageListItemBarUtilityClass, getInputBaseUtilityClass, getTypographyUtilityClass } from "@mui/material";
 import { Component, Component, Component, Component } from "react";
 
 ========Steps to build it=================
@@ -65,6 +65,47 @@ function Story({image, profileSrc, title}) {
 28- Go back to App.css to position the app__body to (Display Flex) in the middle of page.
 28- Then Style the Feed.css so all its components display correctly.
 29- Create the second section of the FEED.js & CSS; MessageSender.js & CSS and its Component, import etc. Message sender has its own components of 5 which is devided to TWo sections: Top & Bottom.
+30- After styling of MessageSendes both parseInt, time to keep & track of the entry to the getInputBaseUtilityClass. Go to the MessgaeSender.js and create a VARIABLE of INPUT and SetInput STATE.
+const [input, setInput] = useState('');
+AND: 
+value={input}
+onChange={(e) => setInput(e.target.value)}
+AND for the URL of the IMAGES.
+
+31- Then go back to the Feed.js to add the post components key, Import it. 
+32- In post.js you need profilePic, image, username, timestamp, message; as your props and make thier {CallBacks}.
+33- Then inside the Feed.js  add the IDs & their values like:
+<Post 
+  profilePic='https://scontent.flhr13-1.fna.fbcdn.net/v/t1.6435-9/71174257_10219137739930243_3997180261132402688_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ddQ-pAIdwDEAX9mDh0q&_nc_ht=scontent.flhr13-1.fna&oh=00_AT-ObuFKOCG2o6iUZZPCT0dzHYgfMMV7I_bYQrjdYk18Kw&oe=63252ECE'
+  message='Wow this works'
+  timestamp='This is the time stamp'
+  username={'John'}
+  image='https://scontent.flhr13-1.fna.fbcdn.net/v/t39.30808-6/211859445_10158300571710872_1739945872121343798_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=lO-7SGBYeBgAX_nVZ98&_nc_oc=AQlbMBQSYcahDre9hkbvCaMZlVuXMmsqQG6cs-1RuxO9eVJXkld4Gzt3gpQS_zwUeUo&_nc_ht=scontent.flhr13-1.fna&oh=00_AT90ioUB0QDNYKOprfAPvVnBhJSkIlnXhfL7FPSKoCiDmg&oe=63056690'
+/>
+
+34- Then STYLE the Post.css THEN add its DIVs in post.js: 
+<div className='post__options'>
+<div className='post__option'>
+  <ThumbUpIcon />
+  <p>Like</p>
+</div>
+</div>
+
+35- then finish the Post style to line 79. The start Widget/Iframe on the right, first ad its button in App.js.
+36- Add the <Iframe></Iframe> DIV inside your Widgets.js and import it in App.js. get the Facebook Ifarem link from:  https://developers.facebook.com/docs/plugins/page-plugin
+37- Time to start the User Authentication. In App.js add const user = null; 
+{!user ? <h1>Login</h1> : (
+  Rest of the Buttons.
+)}
+
+38- Time to create Login.js & css import, export and in the App.js. Inside create div for logo & Const signIn functions.
+39- Then go back to firebase.js and instal firebase in the project: npm i firebase, then Import the firebase in the page and add: const firebaseApp = firebase.initializeApp(firebaseConfig);
+40- While there connect to the DB by: const db = firebaseApp.firestore();  THEN fo the the Google's firestore & connect. https://console.firebase.google.com/u/0/project/facebook-clone-rez/firestore Realtime database in testing mode.
+41- Then While in the firebase.js add the DB VARIABLE & AUTH. In the Google Authentication page select GOOGLE from the Sign In Method.
+42- Then go to the firebase.js and add the AUTH VARIABLE & the AUTH. In the Google Authentication page select GOOGLE from the Sign In Method.AND EXPORT them.
+
+
+
 
 
 

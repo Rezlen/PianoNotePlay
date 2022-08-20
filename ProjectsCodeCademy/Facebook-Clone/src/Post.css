@@ -1,0 +1,72 @@
+html,
+body {
+  font-size: 16px;
+}
+
+.post {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: 0rem 0.31rem 0.43rem -0.43rem rgba(0, 0, 0, 0.75);
+}
+
+.post__top {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 1rem;
+}
+
+.post__avatar {
+  margin-right: 0.62rem;
+}
+
+.post__topInfo > h3 {
+  font-size: medium;
+}
+
+.post__topInfo > p {
+  font-size: small;
+  color: gray;
+}
+
+.post__bottom {
+  margin-top: 0.62rem;
+  margin-bottom: 0.62rem;
+  padding: 1rem 1.5rem;
+}
+
+/* Crucial; this fits the images etc in a frame, prevent expanding out of the window*/
+.post__image > img {
+  width: 100%;
+}
+
+.post__options {
+  padding: 0.62rem;
+  border-top: 0.02rem solid lightgray;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: medium;
+  color: gray;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.post__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.31rem;
+  flex: 1;
+}
+
+.post__option > p {
+  margin-left: 0.62rem;
+}
+
+.post__option:hover {
+  background-color: #e6e6e6;
+  border-radius: 0.62rem;
+}
+
