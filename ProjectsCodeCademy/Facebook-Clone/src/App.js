@@ -6,10 +6,12 @@ import Header from './Header';
 import Login from './Login';
 import Sidebar from './Sidebar';
 import Widgets from './Widgets';
+import { useStateValue } from './StateProvider';
 
 // The app and the web page has 3 main component, which must be physically also positioned in the right place so they are displayed in the right order. 1- Heading 2- SideBar 3-Feed 4- Iframe on the right
 function App() {
-  const user = null;
+  const [{user}, dispatch] = useStateValue();
+  // // React Context API, instead of React REDUX, for data layer.
   return (
     // BEM naming convention
     <div className="app">

@@ -1,8 +1,14 @@
-import firebase from 'firebase';
-
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+// Instruction to use FireBase;  Choose/Create your project on FireBase > Project Setting > FireBase SDK snippet > Config then copy the snippet & paste it here:
 // below SDK Config code, copied from: https://console.firebase.google.com/u/0/project/facebook-clone-rez/settings/general/web:Mjg0NGY2ZjMtNzg5MS00YzQ3LWJkOGEtOTJhYmI4OWYyNjNi
+
+
+// Go to the AUTHENTICATION > Sign-In-Method > then  ENABLE Email/Password
+import firebase from 'firebase/compat/app'; // that is import style for react v8; instead of import firebase from 'firebase'; 
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
 const firebaseConfig = {
   apiKey: "AIzaSyAsD16h8nR-X7JHwrsAo-xTnigeACwvULY",
   authDomain: "facebook-clone-rez.firebaseapp.com",

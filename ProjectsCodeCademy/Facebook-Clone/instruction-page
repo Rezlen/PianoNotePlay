@@ -103,9 +103,85 @@ AND for the URL of the IMAGES.
 40- While there connect to the DB by: const db = firebaseApp.firestore();  THEN fo the the Google's firestore & connect. https://console.firebase.google.com/u/0/project/facebook-clone-rez/firestore Realtime database in testing mode.
 41- Then While in the firebase.js add the DB VARIABLE & AUTH. In the Google Authentication page select GOOGLE from the Sign In Method.
 42- Then go to the firebase.js and add the AUTH VARIABLE & the AUTH. In the Google Authentication page select GOOGLE from the Sign In Method.AND EXPORT them.
+43- Then in the Login .js add the AUTH case:
+const signIn = () => {
+  auth
+    .signInWithPopup(provider)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => alert(error.message));
+};
+
+44- Then create the StateProvider.js + import Export.
+45- The create the reducer.js and import it in the StateProvider.js.
+46- the inside the index.js Import & Exports, & do not gorget the diff between the React DOm or ROOT for react version 8. You can copy those from Amazon Clone project.
+47- Then go to the index.js and add the State and dispatch variable.
+48 then in the Login.js add the StateProvider.js and import export;   
+  const [{state}, dispatch] = useStateValue();
+  dispatch({
+    type: actionTypes.SET_USER,
+    user: result.user,
+  });
+
+49- Then in App.js add the StateProvider.js and import export;   const [{user}, dispatch] = useStateValue();
+50- Connect the profile & the user name to display th export pic name etc. Start with Header.js, Import UseSatateValue and do <Avatar src={user.photoURL}/>.
+51-  The same const [{user}, dispatch] = useStateValue(); in SideBar.js.
+52- Next in MessageSender.js, Header.js, SideBar.js    <Avatar src={user.photoURL}/> <h4>{user.displayName}</h4>
+53- Then inside the Frirebase DB, create automated base for posts:
+  1- StartCollection > TYPE posts > AutoID > FIELD profilePic > Value: https://scontent.flhr13-1.fna.fbcdn.net/v/t1.18169-9/18921941_1464661213555449_8406490878265591879_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=rdTaUapa-yAAX_bl1pE&_nc_ht=scontent.flhr13-1.fna&oh=00_AT8-JnwcVI_8vsI7RTENH4dtSDVVqof-pvzSBRK_CQB6sw&oe=6325BFF9
+  > FIELD message > Value: I am from the Database wow
+  > FIELD timestamp > Type > today's date.
+  > FIELD username > Value: Sssanagah
+  > FIELD image > Value: https://scontent.flhr13-1.fna.fbcdn.net/v/t39.30808-6/211859445_10158300571710872_1739945872121343798_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=lO-7SGBYeBgAX_nVZ98&_nc_oc=AQlbMBQSYcahDre9hkbvCaMZlVuXMmsqQG6cs-1RuxO9eVJXkld4Gzt3gpQS_zwUeUo&_nc_ht=scontent.flhr13-1.fna&oh=00_AT90ioUB0QDNYKOprfAPvVnBhJSkIlnXhfL7FPSKoCiDmg&oe=63056690
+
+54- Then in Feed.js add; const [posts, setPosts] = useState([]);
+useEffect(() => {
+  db.collection('posts').onSnapshot((snapshot) =>
+    setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))) //This pulls IN everything from the Googl's NoSql database based the IDs & its Data.
+  );
+}, []);  
 
 
+55- So now you can remove all the hard coded posts:
+<Post 
+profilePic='https://scontent.flhr13-1.fna.fbcdn.net/v/t1.18169-9/18921941_1464661213555449_8406490878265591879_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=rdTaUapa-yAAX_bl1pE&_nc_ht=scontent.flhr13-1.fna&oh=00_AT8-JnwcVI_8vsI7RTENH4dtSDVVqof-pvzSBRK_CQB6sw&oe=6325BFF9'
+message='Wow this works'
+timestamp='This is the time stamp'
+username={'John'}
+image='https://scontent.flhr13-1.fna.fbcdn.net/v/t39.30808-6/211859445_10158300571710872_1739945872121343798_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=lO-7SGBYeBgAX_nVZ98&_nc_oc=AQlbMBQSYcahDre9hkbvCaMZlVuXMmsqQG6cs-1RuxO9eVJXkld4Gzt3gpQS_zwUeUo&_nc_ht=scontent.flhr13-1.fna&oh=00_AT90ioUB0QDNYKOprfAPvVnBhJSkIlnXhfL7FPSKoCiDmg&oe=63056690'
+/>
+and place 
+{posts.map((post) => (
+  <Post 
+    key={post.id}
+    profilePic={post.data.profilePic}
+    message={post.data.message}
+    timestamp={post.data.timestamp}
+    username={post.data.username}
+    image={post.data.image}
+  />
 
+  and add desc to the useEffect above it as:     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot((snapshot) =>
+
+If you see an error, might be from your timestamp in your Posts.js. Just add this in your P tags: {new Date(timestamp?toDate()).toUTCString()}
+
+56- Then in  MessageSender.js so users can actually posts things.
+db.collection('posts').add({ // this pulls the posted data/posts by the user from actual Firebase server.
+  message: input,
+  timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  profilePic: user.photoURL,
+  username: user.displayName,
+  image: imageUrl
+});
+
+57- Do not forget the following: import firebase from 'firebase/compat/app'; // that is import style for react v8; instead of (import firebase from 'firebase'; )
+58- Time to deploy everything to the Live Server(Google's firebase) by this command: npm i -g firebase-tools THEN this command: firebase login THEN firebase init
+59- Choose:  () Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys
+60- Use an existing project y > choose your project. ? What do you want to use as your public directory? (public) build
+61-  Configure as a single-page app (rewrite all urls to /index.html)? (y/N) y  THEN  Set up automatic builds and deploys with GitHub? No
+62- command: npm run build (This pushes everthing in a streemline into the BUILD folder.)
+========== If you change anything, you must run NPM RUN BUILD again.===================then FIREBASE DEPLOY===============
 
 
 

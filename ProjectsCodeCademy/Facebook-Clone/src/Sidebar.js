@@ -8,11 +8,13 @@ import ChatIcon from '@mui/icons-material/Chat';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ExpandMoreOutlined from '@mui/icons-material/ExpandMoreOutlined'; // It seems no Curly brackets would be accepted
+import { useStateValue } from './StateProvider';// to add the user login/profile pic name etc.
 
 function Sidebar() {
+  const [{user}, dispatch] = useStateValue();
   return (
     <div className='sidebar'>
-      <SidebarRow title='Rez' src='https://media-exp1.licdn.com/dms/image/D4E35AQEGNzmXA9GRBA/profile-framedphoto-shrink_200_200/0/1658819612704?e=1661504400&v=beta&t=d4IZMXu8Iv2GTJrQ3pPXd-MN-U05TBuGNWgtI0ZE7Rc' />
+      <SidebarRow title={user.displayName} src={user.photoURL} />
       <SidebarRow Icon={LocalHospitalIcon} title='Covid 19 Information center' />
       <SidebarRow Icon={EmojiFlagsIcon} title='Pages' />
       <SidebarRow Icon={PeopleIcon} title='Friends' />
