@@ -41,8 +41,8 @@ h2 {
 }
 
 div {
-border: 0.5rem solid #7e927c;
-margin: 1rem;
+  border: 0.5rem solid #7e927c;
+  margin: 1rem;
 }
 
 /*Limits the images, which keeps the images within the frame*/

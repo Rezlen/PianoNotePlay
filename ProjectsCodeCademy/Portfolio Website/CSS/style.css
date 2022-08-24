@@ -6,6 +6,7 @@ body {
   background-color: white;
 }
 
+
 /** {
   border: red 0.25px dotted; 
 } */
@@ -40,6 +41,13 @@ body {
   margin: 0.5rem;
 }
 
+/* Portfolio Borders % size*/
+.Projects4 {
+  border: 0.2rem solid #898989;
+  margin: 0.5rem;
+}
+
+
 h2 {
   text-align: center;
 }
@@ -63,7 +71,7 @@ h2 {
 /*Limits the images*/
 .YourProjectsHere img {
   height: 20rem;
-  width: auto;
+  width: 100%;
 }
 
 /*Puts Business Team Members section in order*/
@@ -84,7 +92,7 @@ h2 {
 .BusinessTeam img {
   height: 20rem;
   width: auto;
-  margin: 0rem 1rem;
+  margin: 0.5rem;
 }
 
 /*To display the Map Iframe-Address- Contact Details*/
@@ -193,8 +201,13 @@ footer {
 /*For Mobile Display*/
 @media only screen and (max-width: 760px) {
   div {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ImageCoverHome {
+
+    height: 100%;
   }
 
 }

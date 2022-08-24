@@ -1,0 +1,7 @@
+==================npm init ========================
+package name: (reactjs-projects) whatsapp-clone
+entry point: (index.js) server.js
+author: Rez
+for other options you can keep pressing enter
+=========== npm i express =============
+create a folder named: backend
