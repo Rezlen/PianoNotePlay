@@ -13,7 +13,7 @@ const { chats } = require("./data/data");
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('API is running');
+  res.send('API is running successfully');
 });
 
 // This requests all of the chats & display here: http://localhost:5000/api/chat
@@ -33,4 +33,19 @@ app.listen(5000, console.log("Server started on PORT 5000"));
 Hiding the POST number: from the server.js file. Create a file named: .env and add: PORT=5000. THEN in the termonal intall (npm i dotenv). THEN Creat its const:
 const express = require("express");
 Then import it on top: const dotenv = require("dotenv");
+==========npm i nodemon=============
+for nodemon, add the word nodemon to the script at package.json.
+======use the POSTMAN app to check the API====== select GET then click SEND.
+============Create the REACT app inside the folder named frontned.
+npx create-react-app frontend
+========Remove Logo=====
+Remove logo and the code from the App.js file to live a simple div and a word to see nothing but the word on the webpage rendered.
+=====https://chakra-ui.com/=============
+For some ease of use of some components, add it to the system/install instanceof. Command: npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion in FRONTEND folder/directory.
+=========Connecting front to back =============
+Because frontEnd is on port 3000 an backEnd on 5000, they do not see eachother. So to link them, in the FrontEnd folder (package.json)  add the proxy line ('proxy': 'http://127.0.01:5000')
+
+====== install npm install react-router-dom (To achieve multiple pages functionality) ==========
+to instal other version use e.g: npm install react-router-dom@5 
+
 
