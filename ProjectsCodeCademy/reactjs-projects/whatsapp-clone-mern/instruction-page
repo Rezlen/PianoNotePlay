@@ -1,3 +1,5 @@
+const createApplication = require("express/lib/express");
+
 ==================npm init ========================
 package name: (reactjs-projects) whatsapp-clone
 entry point: (index.js) server.js
@@ -36,9 +38,9 @@ Then import it on top: const dotenv = require("dotenv");
 ==========npm i nodemon=============
 for nodemon, add the word nodemon to the script at package.json.
 ======use the POSTMAN app to check the API====== select GET then click SEND.
-============Create the REACT app inside the folder named frontned.
+============Create the REACT app inside the folder named frontend.
 npx create-react-app frontend
-========Remove Logo=====
+========Remove Logo=======
 Remove logo and the code from the App.js file to live a simple div and a word to see nothing but the word on the webpage rendered.
 =====https://chakra-ui.com/=============
 For some ease of use of some components, add it to the system/install instanceof. Command: npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion in FRONTEND folder/directory.
@@ -46,6 +48,19 @@ For some ease of use of some components, add it to the system/install instanceof
 Because frontEnd is on port 3000 an backEnd on 5000, they do not see eachother. So to link them, in the FrontEnd folder (package.json)  add the proxy line ('proxy': 'http://127.0.01:5000')
 
 ====== install npm install react-router-dom (To achieve multiple pages functionality) ==========
-to instal other version use e.g: npm install react-router-dom@5 
+to instal other version use e.g: npm install react-router-dom@5
+======create, import, folder PAGES components for our components====
+Create, Import ChatPage.js, HomePage.js, THEN create their key components in App.js.
+Do not forget to wrap/import everything in <BrowserRouter>.
+======= FETCHing, instal/use Axios========import axios from 'axios';
+To render/FETCH data from BackEnd to the FrontEnd, you should use AXIOS package.
+  const fetchChats = async () => {
+    const data = await axios.get('/api/chat');
+    console.log(data);
+  };
 
-
+  Then you must use useEffect which renders something fro the first time. and that thing will be the "fetchChats()" function.
+  useEffect(() => {
+    fetchChats();
+  }, []);
+===============
