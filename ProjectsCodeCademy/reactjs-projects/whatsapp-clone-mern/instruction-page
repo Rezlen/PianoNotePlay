@@ -64,3 +64,23 @@ To render/FETCH data from BackEnd to the FrontEnd, you should use AXIOS package.
     fetchChats();
   }, []);
 ===============
+Then return what you like:
+
+  return (
+    <div>
+      {chats.map((chat) => (
+        <div key={chat._id}>{chat.chatName}</div>
+      ))}
+    </div>
+  );
+==============Creating Schema/model for our data- in root folder install: npm i mongoose ==========
+Chat Data, Message data, Users Data. Structuring how data are going to be stored in our database and with what fields.
+Mongoose connects with our MongDB database.
+// chatName // isGroupChat // users // lastMessage // groupAdmin
+chatModel: import Mongoose then create the required variables(chatModel) & its properties with the path like: type: mongoose.Schema.Types.ObjectId, ref: "User"
+=========Creating Mongoose, messageModel===========
+messageModel: import mongoose on top the create its Const(messageSchema) and its properties: with the path like: type: mongoose.Schema.Types.ObjectId, ref: "User".
+// sender //content //chat //readBy
+========Creating Mongoose userModel.js=============
+
+
