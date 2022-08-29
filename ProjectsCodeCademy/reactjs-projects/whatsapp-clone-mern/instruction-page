@@ -82,5 +82,10 @@ chatModel: import Mongoose then create the required variables(chatModel) & its p
 messageModel: import mongoose on top the create its Const(messageSchema) and its properties: with the path like: type: mongoose.Schema.Types.ObjectId, ref: "User".
 // sender //content //chat //readBy
 ========Creating Mongoose userModel.js=============
+as in previous models:import export and properties: Name, Email, Pass, Pic, IsAdmin.
+=======Creating the HomePage/LandingPage/SignIn/Up page================
+In this project IN LINE styling has been used, using CHACKRA UI styling.
+
+
 
 

@@ -8,7 +8,6 @@ import ChatPage from './Pages/ChatPage';
 function App() {
   return (
     <div className="App">
-      Hello world backend is on port 5000 and front on 3000.
       <Routes>
         <Route path="/" element={<HomePage />} exact />
         <Route path="/chats" element={<ChatPage />} />
