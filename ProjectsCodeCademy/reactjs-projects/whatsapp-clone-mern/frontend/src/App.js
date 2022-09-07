@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // in React version 18.2.0
 import HomePage from './Pages/HomePage';
 import ChatPage from './Pages/ChatPage';
 //import { Button } from "@chakra-ui/react"; // provides some UI components.

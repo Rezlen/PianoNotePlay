@@ -8,7 +8,7 @@ Jan 2022 Update: This project is meant to be written using React Router v5. Reac
 In order to use React Router, you will need to include the react-router-dom package (the version of React Router built specifically for web browsers) in your project by using npm like so:
 
 npm install --save react-router-dom@5.2.0
-Once you have added react-router-dom to your project, you can import one of its router components to add routing to your project. React Router provides several router components however the most common one is the BrowserRouter. The other option and the reasons you might choose one over the other are outside the scope of this lesson, but you can read more about that here.
+Once you have added react-router-dom to your project, you can import one of its router components to add routing to your project. React Router provides several router components however the most common one is the BrowserRouter. The other option and the reasons you might choose one over the other are outside the scope, but you can read more about that here.
 
 For the sake of simplicity and readability, it is common to alias BrowserRouter as Router when importing, like so:
 

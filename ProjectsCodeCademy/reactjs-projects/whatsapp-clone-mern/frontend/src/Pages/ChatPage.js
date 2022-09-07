@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import axios from 'axios'; // Axios is a library that helps us make HTTP requests to external resources.
 
 const ChatPage = () => {
 
