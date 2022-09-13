@@ -40,4 +40,5 @@ function CheckoutProduct({basketIndex, id, title, image, price, rating, hideButt
   )
 }
 
+
 export default CheckoutProduct;
