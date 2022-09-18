@@ -1,4 +1,6 @@
+const { application } = require("express");
 const createApplication = require("express/lib/express");
+const connectDB = require("./backend/config/db");
 
 ==================npm init ========================
 package name: (reactjs-projects) whatsapp-clone
@@ -85,6 +87,161 @@ messageModel: import mongoose on top the create its Const(messageSchema) and its
 as in previous models:import export and properties: Name, Email, Pass, Pic, IsAdmin.
 =======Creating the HomePage/LandingPage/SignIn/Up page================
 In this project IN LINE styling has been used, using CHACKRA UI styling.
+=========To create a Mongo DB & access==========
+Create a free account on MongoDB.com https://account.mongodb.com/account/login Create an organization -> 
+then create a new cluster -> https://cloud.mongodb.com/v2/6325f2b39447ed4f803ccf97#clusters/edit?from=ctaClusterHeader
+then create a new database (SHARED), Then create a user & pass access -> Then in the Network access click on Add IP Address
+Temporarily you can ALLOW ACCESS FROM ANYWHERE then go to Database then click on CONNECT button, then on Connect Your application,
+Driver must be on Node.js  and copy the STRING/URI (The string includes the username and password which connects your app to the MongoDB database).
+Then in your .env file and paste it there just replace the word PASSWORD with the password you created in the user access  Section.
+THEN in your Backend Folder, either create CONFIG folder & db.js file &/or create "const connectDB".
+
+
+
+=======Connecting to MongoDB with Mongoose==========
+In the root folder, create a file named: config.js and add the following code:
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+Then in the server.js file, import the connectDB function and call it:
+const connectDB = require("./config");
+connectDB();
+=======Creating the User Schema & Model==========
+In the root folder, create a file named: userModel.js and add the following code:
+const mongoose = require("mongoose");
+
+const userSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  profilePic: {
+    type: String,
+    default: "",
+  },
+});
+
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
+=======Creating the Chat Schema & Model==========
+In the root folder, create a file named: chatModel.js and add the following code:
+const mongoose = require("mongoose");
+
+const chatSchema = mongoose.Schema(
+  {
+    chatName: {
+      type: String,
+      required: true,
+    },
+    isGroupChat: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    users: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    lastMessage: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Message",
+    },
+    groupAdmin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Chat = mongoose.model("Chat", chatSchema);
+
+module.exports = Chat;
+=======Creating the Message Schema & Model==========
+In the root
+
+=========npm i dotenv================
+To hide the link, create a .env file and add the link there. Then import it in the server.js file.
+=========npm i bcryptjs================
+To hash the password, install bcryptjs.
+=========npm i jsonwebtoken================
+To create a token for the user, install jsonwebtoken.
+=========npm i express-async-handler================
+To handle the errors, install express-async-handler.
+=========npm i multer================
+To upload the image, install multer.
+=========npm i cloudinary================
+To upload the image to the cloud, install cloudinary.
+=========npm i cors================
+To allow the access to the server, install cors.
+=========npm i mongoose================
+To connect the server to the database, install mongoose.
+=========npm i nodemon================
+To run the server, install nodemon.
+=========npm i concurrently================
+To run the server and the client at the same time, install concurrently.
+=========npm i react-router-dom================
+To create multiple pages, install react-router-dom.
+=========npm i react-icons================
+To use icons, install react-icons.
+=========npm i react-chat-engine================
+To use chat engine, install react-chat-engine.
+=========npm i react-scroll-to-bottom================
+To scroll down, install react-scroll-to-bottom.
+=========npm i react-file-base64================
+To convert the image to base64, install react-file-base64.
+=========npm i react-hook-form================
+To use forms, install react-hook-form.
+=========npm i react-router-dom================
+To create multiple pages, install react-router-dom.
+=========npm i react-icons================
+To use icons, install react-icons.
+=========npm i react-chat-engine================
+To use chat engine, install react-chat-engine.
+=========npm i react-scroll-to-bottom================
+To scroll down, install react-scroll-to-bottom.
+=========npm i react-file-base64================
+To convert the image to base64, install react-file-base64.
+=========npm i react-hook-form================
+To use forms, install react-hook-form.
+=========npm i react-router-dom================
+To create multiple pages, install react-router-dom.
+=========npm i react-icons================
+To use icons, install react-icons.
 
 
 

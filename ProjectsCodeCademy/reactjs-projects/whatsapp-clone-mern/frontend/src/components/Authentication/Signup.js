@@ -15,6 +15,8 @@ const Signup = () => {
   const [pic, setPic] = useState();
   const [show, setShow] = useState(false); // {/* If the word SHOW is hidden then show it after clicking AND vice versa. In the InputRightElement*/}
   const handleClick = () => setShow(!show);
+  const postDetails = (pics) => { };
+  const submitHandler = () => { };
 
 
   return (
@@ -84,6 +86,16 @@ const Signup = () => {
           onChange={(e) => postDetails(e.target.files[0])}
         />
       </FormControl>
+
+      <Button
+        colorScheme="blue"
+        width="100%"
+        style={{ marginTop: "15px" }}
+        onClick={submitHandler}
+      >
+        Sign Up
+      </Button>
+
     </VStack>
   );
 }
