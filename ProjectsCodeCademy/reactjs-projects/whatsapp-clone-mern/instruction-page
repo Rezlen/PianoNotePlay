@@ -95,6 +95,7 @@ Temporarily you can ALLOW ACCESS FROM ANYWHERE then go to Database then click on
 Driver must be on Node.js  and copy the STRING/URI (The string includes the username and password which connects your app to the MongoDB database).
 Then in your .env file and paste it there just replace the word PASSWORD with the password you created in the user access  Section.
 THEN in your Backend Folder, either create CONFIG folder & db.js file &/or create "const connectDB".
+Then in server.js add connectDB() method & import it.
 
 
 
