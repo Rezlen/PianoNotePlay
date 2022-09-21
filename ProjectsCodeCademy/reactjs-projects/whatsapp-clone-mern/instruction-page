@@ -95,33 +95,11 @@ Temporarily you can ALLOW ACCESS FROM ANYWHERE then go to Database then click on
 Driver must be on Node.js  and copy the STRING/URI (The string includes the username and password which connects your app to the MongoDB database).
 Then in your .env file and paste it there just replace the word PASSWORD with the password you created in the user access  Section.
 THEN in your Backend Folder, either create CONFIG folder & db.js file &/or create "const connectDB".
-Then in server.js add connectDB() method & import it.
+Then in server.js add connectDB() method & import it. Then NPM START, it should get connected to MongoDB page/database and see this message in you terminal: MongoDB Connected: ac-dlyspm2-shard-00-01.mvsrzw8.mongodb.net
+====Changing the command line colour for visibility======
+Install a COLORS package= npm I colors 
 
 
-
-=======Connecting to MongoDB with Mongoose==========
-In the root folder, create a file named: config.js and add the following code:
-const mongoose = require("mongoose");
-
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
-
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
-  }
-};
-
-module.exports = connectDB;
-Then in the server.js file, import the connectDB function and call it:
-const connectDB = require("./config");
-connectDB();
 =======Creating the User Schema & Model==========
 In the root folder, create a file named: userModel.js and add the following code:
 const mongoose = require("mongoose");

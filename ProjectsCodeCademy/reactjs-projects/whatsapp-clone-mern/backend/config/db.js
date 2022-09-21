@@ -1,5 +1,5 @@
 const mongoose = require("mongoose"); // this get imported from "package.json" file, in the root folder
-//const colors = require("colors");
+const colors = require("colors"); // this is just have colour in your terminal
 
 const connectDB = async () => {
   try {
@@ -9,9 +9,9 @@ const connectDB = async () => {
       // useFindAndModify: true,
     });
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
   } catch (error) {
-    console.log(`Error: ${error.message}`);
+    console.log(`Error: ${error.message}`.red.bold);
     process.exit();
   }
 };
