@@ -98,6 +98,21 @@ THEN in your Backend Folder, either create CONFIG folder & db.js file &/or creat
 Then in server.js add connectDB() method & import it. Then NPM START, it should get connected to MongoDB page/database and see this message in you terminal: MongoDB Connected: ac-dlyspm2-shard-00-01.mvsrzw8.mongodb.net
 ====Changing the command line colour for visibility======
 Install a COLORS package= npm I colors 
+=====User Authentication in backend Then using those API for Login & signup page=========== 
+After connecting to MongoDB, User Authentication in backend Then using those API for Login & signup page
+First creating an end point for the user:
+app.use('/api/user' ,userRoutes) then create "routes" folder for all user related things
+
+========Handeling Errors=========
+Handeling the errors control, download EXPRESS ASYNC HANDLER (npm i express-async-handler)
+
+
+
+
+
+
+
+
 
 
 =======Creating the User Schema & Model==========
