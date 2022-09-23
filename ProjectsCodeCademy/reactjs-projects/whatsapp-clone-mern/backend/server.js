@@ -9,6 +9,8 @@ const app = express();
 dotenv.config();
 connectDB();
 
+app.use(express.json()); // since we are getting user data from frontend, we must tell the json file to accept it. 
+
 app.get('/', (req, res) => {
   res.send("API is running successfully");
 });

@@ -103,9 +103,25 @@ After connecting to MongoDB, User Authentication in backend Then using those API
 First creating an end point for the user:
 app.use('/api/user' ,userRoutes) then create "routes" folder for all user related things
 
-========Handeling Errors=========
-Handeling the errors control, download EXPRESS ASYNC HANDLER (npm i express-async-handler)
+======== Handling Errors =========
+Handling the errors control, download EXPRESS ASYNC HANDLER (npm i express-async-handler)
 
+======== jasonWebToken installation ===========
+Download the JasonWebToken package for "registerUser" function
+JWT authorize what can a user access to.
+===== Test in Postman=== from 12:25 min: https://www.youtube.com/watch?v=nvjYCK9oDRU&list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf&index=15
+Create a new COLLECTION > create a folder inside for Authentication > inside add a new request for REGISTRATION, 
+in registration, choose BODY then at the end of the line choose JSON.
+Then create a new data to test:
+{
+  "name": "Rez So"
+  "email": "Test@Gmail.com"
+  "password": "12345"
+}
+
+Choose POST then click on SEND button
+====== to check the database====
+go to https://cloud.mongodb.com/v2/6325f2b39447ed4f803ccf97#metrics/replicaSet/6326e1e41d5d5d419031e5fa/explorer/test/users/find in collection tab.
 
 
 
