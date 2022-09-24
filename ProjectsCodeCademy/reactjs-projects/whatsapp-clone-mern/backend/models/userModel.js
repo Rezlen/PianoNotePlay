@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema(  // This function retrieve the details of the user
   {
@@ -15,18 +15,19 @@ const userSchema = mongoose.Schema(  // This function retrieve the details of th
   { timestamps: true }
 );
 
-// userSchema.methods.matchPassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
-// userSchema.pre("save", async function (next) {
-//   if (!this.isModified) {
-//     next();
-//   }
+// Saving the password should not be plain text. It should be encrypted. This will confirm it (if (!this.isModified) )
+userSchema.pre("save", async function (next) {
+  if (!this.isModified) {
+    next();
+  }
 
-//   const salt = await bcrypt.genSalt(10);
-//   this.password = await bcrypt.hash(this.password, salt);
-// });
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model("User", userSchema);
 

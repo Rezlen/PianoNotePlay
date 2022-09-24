@@ -123,6 +123,16 @@ Choose POST then click on SEND button
 ====== to check the database====
 go to https://cloud.mongodb.com/v2/6325f2b39447ed4f803ccf97#metrics/replicaSet/6326e1e41d5d5d419031e5fa/explorer/test/users/find in collection tab.
 
+===== Saving the user's password=====
+// You should not store the passwords in plain & visible format. You should encrypt it before saving it. To encrypt it, you should use bcryptjs in your userModel.js file by (userSchema.pre("save", async function). This needs adjustment in userRoutes.js as well as user.controllers.js
+
+======Testing Signin & singup using Postman=========
+Add a new request in your Collection called Login POST and in the url/api/user choose Body>raw 
+
+=====Error handling when a wrong api/http request is sent===
+in server.js 2 error handling function/middleware
+==== For Pic use Cloudinary https://cloudinary.com/ =====
+Go to GEAR > upload > Upload presets:  >  Add Upload Preset > SAVE > Dashboard > 
 
 
 

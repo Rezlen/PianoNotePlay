@@ -4,6 +4,9 @@ const { chats } = require("./data/data");
 const connectDB = require("./config/db");
 const colors = require("colors"); // this is just have colour in your terminal
 const userRoutes = require("./routes/userRoutes");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+
+
 
 const app = express();
 dotenv.config();
@@ -16,6 +19,10 @@ app.get('/', (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+
+// error handling middle ware
+app.use(notFound);
+app.use(errorHandler);
 
 // This requests all of the chats & display here: http://localhost:5000/api/chat
 app.get('/api/chat', (req, res) => {

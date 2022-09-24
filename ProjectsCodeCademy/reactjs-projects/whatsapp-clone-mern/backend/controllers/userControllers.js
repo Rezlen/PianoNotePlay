@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const generateToken = require("../config/generateToken");
 
+
 const registerUser = asyncHandler(async (req, res) => {
 
   const { name, email, password, pic } = req.body;
@@ -30,6 +31,24 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Invalid user data");
   }
+}); 
+
+const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (user && (await user.matchPassword(password))) {    // You should not store the passwords in plain & visible format. You should encrypt it before saving it. To encrypt it, you should use bcryptjs in your userModel.js file by (userSchema.pre("save", async function).
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      pic: user.pic,
+      //isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }
 });
 
-module.exports = { registerUser };
+module.exports = { registerUser, authUser };
