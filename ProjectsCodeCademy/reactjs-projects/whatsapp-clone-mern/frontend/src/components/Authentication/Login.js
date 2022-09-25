@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom"; // In react-router-dom v6 useHistory() is replaced by useNavigate(). So do not use import { Link, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // In react-router-dom v6 useHistory() is replaced by useNavigate(). So do not use import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -54,7 +54,7 @@ const Login = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      // history.push("/chats"); In React 18 you must use the next line:
+      // history.push("/chats"); In React 18 you must use the next line (NANIGATE):
       navigate.push("/chats");
     } catch (error) {
       toast({
@@ -119,6 +119,6 @@ const Login = () => {
       </Button>
     </VStack>
   );
-};;
+};
 
 export default Login;

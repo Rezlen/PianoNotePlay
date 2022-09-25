@@ -132,7 +132,12 @@ Add a new request in your Collection called Login POST and in the url/api/user c
 =====Error handling when a wrong api/http request is sent===
 in server.js 2 error handling function/middleware
 ==== For Pic use Cloudinary https://cloudinary.com/ =====
-Go to GEAR > upload > Upload presets:  >  Add Upload Preset > SAVE > Dashboard > 
+Go to GEAR > upload > Upload presets:  >  Add Upload Preset > SAVE > Dashboard > or just find base url, in this case is: https://api.cloudinary.com/v1_1/rez-cloudinary/image/upload add it in postDetails function in Signup.js page. When uploading an image you should see the details in INSPECT > Console
+then create submitHandler function to submit the data.
+
+==== Clearing Local Storage B =====
+Inspect > Application > Local Storage > (The link)
+
 
 
 

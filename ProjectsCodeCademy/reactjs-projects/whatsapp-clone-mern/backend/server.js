@@ -1,21 +1,20 @@
 const express = require("express");
+const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 const { chats } = require("./data/data");
-const connectDB = require("./config/db");
 const colors = require("colors"); // this is just have colour in your terminal
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
-
-
-const app = express();
 dotenv.config();
 connectDB();
+const app = express();
 
 app.use(express.json()); // since we are getting user data from frontend, we must tell the json file to accept it. 
 
 app.get('/', (req, res) => {
   res.send("API is running successfully");
+  app.use("/api/user", userRoutes);
 });
 
 app.use("/api/user", userRoutes);
