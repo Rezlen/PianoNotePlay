@@ -23,7 +23,8 @@ function isOdd(n) {
    return Math.abs(n % 2) == 1;
 }
 
-for(let count =0; count<=100;count++){
+for (let count = 0; count <= 100; count++){
+
  count%2==0? console.log(`${count} is even`):console.log(`${count} is odd`);
  ;
 }
