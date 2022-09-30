@@ -11,10 +11,10 @@ function find_total(my_list) {
 };
 
 console.log(find_total(my_list));
-
+//------
 
 console.log([1, 2, 3, 4].reduce((a, b) => a + b, 0));
-------------------
+// ------------------
 function isEven(n) {
    return n % 2 == 0;
 }
@@ -22,9 +22,13 @@ function isEven(n) {
 function isOdd(n) {
    return Math.abs(n % 2) == 1;
 }
+// --------------
+for (let count = 0; count <= 5; count++){
 
-for (let count = 0; count <= 100; count++){
+//  count %2==0? console.log(`${count} is even`) : console.log(`${count} is odd`);
+ count % 2 == 0 ? console.log(reduce((a, b) => a + b, 0)) : console.log(`${count} is odd`);
+};
 
- count%2==0? console.log(`${count} is even`):console.log(`${count} is odd`);
- ;
-}
+// ------------------
+
+
