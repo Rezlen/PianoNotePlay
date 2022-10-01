@@ -26,9 +26,14 @@ function isOdd(n) {
 for (let count = 0; count <= 5; count++){
 
 //  count %2==0? console.log(`${count} is even`) : console.log(`${count} is odd`);
- count % 2 == 0 ? console.log(reduce((a, b) => a + b, 0)) : console.log(`${count} is odd`);
+ count % 2 == 0 ? console.log([count].reduce((a, b) => a + b, 0)) : console.log(`${count} is odd`);
 };
 
 // ------------------
-
+var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for(let i = 0; i < array.length; i++){
+  if(array[i] % 2 == 0){
+    console.log(array[i]);
+  }
+}
 
