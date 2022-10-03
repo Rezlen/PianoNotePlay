@@ -115,3 +115,21 @@ console.log(`SumOfArray(ExportedFunction):`, totalArray());
 // // Selector
 // export const getBasketTotal = (basket) =>
 //   basket?.reduce((amount, item) => item.price + amount, 0);
+
+// ----------------------------------------------------
+//           JavaScript; React: Counting click, button
+// ----------------------------------------------------
+
+const { useState } = React;
+
+export const app = () => {
+  const [counter, setCounter] = useState(0);
+  return (
+    <div>
+      <button onClick={() => {
+        setCounter(counter + 1);
+      }}> Increase/Click Me </button>
+    </div>
+  );
+
+}
