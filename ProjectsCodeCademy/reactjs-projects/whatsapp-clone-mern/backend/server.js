@@ -1,7 +1,7 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv");
-const { chats } = require("./data/data");
+// const { chats } = require("./data/data");
 const colors = require("colors"); // this is just have colour in your terminal
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
