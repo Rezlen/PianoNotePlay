@@ -29,7 +29,7 @@ const Signup = () => {
         status: "warning",
         duration: 5000,
         isClosable: true,
-        position: "middle",
+        position: "bottom",
       });
       setPicLoading(false);
       return;
@@ -40,7 +40,7 @@ const Signup = () => {
         status: "warning",
         duration: 5000,
         isClosable: true,
-        position: "middle",
+        position: "bottom",
       });
       return;
     }
