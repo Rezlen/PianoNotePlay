@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom"; // In react-router-dom v6 useHis
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 
-function HomePage() {
-    const navigate = useNavigate();
+const HomePage = () => {
+  // const navigate = useNavigate();
 
-    useEffect(() => {
-      const user = JSON.parse(localStorage.getItem("userInfo"));
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem("userInfo"));
 
-      if (user) navigate.push("/chats");
-    }, [navigate]);
+  //   if (user) navigate.push("/chats");
+  // }, [navigate]);
+
   return (
     <Container maxW="xl" centerContent>
       <Box
