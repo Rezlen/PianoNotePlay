@@ -1,10 +1,19 @@
-import { Box, Container, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Center } from "@chakra-ui/react"; //Imports from chakra-ui.com
+import { Box, Container, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react"; //Imports from chakra-ui.com
 import { React, useEffect } from "react";
 // import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom"; // In react-router-dom v6 useHistory() is replaced by useNavigate(). So do not use import { Link, useHistory } from "react-router-dom";
+
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 
-const HomePage = () => {
+function HomePage() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (user) navigate.push("/chats");
+    }, [navigate]);
   return (
     <Container maxW="xl" centerContent>
       <Box
@@ -35,6 +44,6 @@ const HomePage = () => {
       </Box>
     </Container>
   );
-};
+}
 
 export default HomePage;
