@@ -7,13 +7,13 @@ import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 
 const HomePage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("userInfo"));
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
 
-  //   if (user) navigate.push("/chats");
-  // }, [navigate]);
+    if (user) navigate.push("/chats");
+  }, [navigate]);
 
   return (
     <Container maxW="xl" centerContent>

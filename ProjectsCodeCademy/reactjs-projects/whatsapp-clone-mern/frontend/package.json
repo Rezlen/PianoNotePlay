@@ -5,6 +5,7 @@
   "proxy": "http://127.0.0.1:5000",
   "commnet": "this line connect the frontEnd to the backend so they can access eachother",
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.2.9",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
