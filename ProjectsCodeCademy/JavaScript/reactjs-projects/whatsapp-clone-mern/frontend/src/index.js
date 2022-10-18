@@ -10,13 +10,15 @@ import { BrowserRouter } from "react-router-dom"; // for react version 18.2.0
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ChakraProvider>
-    <BrowserRouter>
-      <ChatProvider>
-        <App />
-      </ChatProvider>
-    </BrowserRouter>
-  </ChakraProvider>,
+  <BrowserRouter>
+    <ChakraProvider>
+      
+        <ChatProvider>
+          <App />
+        </ChatProvider>
+      
+    </ChakraProvider>
+    </BrowserRouter>,
   document.getElementById("root")
 );
 
