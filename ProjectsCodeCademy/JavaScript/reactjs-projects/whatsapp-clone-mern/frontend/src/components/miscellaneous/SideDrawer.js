@@ -54,8 +54,8 @@ function SideDrawer() {
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
-    navigate.push("/");
-  };
+    navigate("/chats"); // it was navigate.push("/chats"); for React Router v6, changed to current view
+  };;
 
   const handleSearch = async () => {
     if (!search) {

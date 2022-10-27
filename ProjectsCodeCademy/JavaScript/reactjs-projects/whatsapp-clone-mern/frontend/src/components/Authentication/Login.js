@@ -55,7 +55,7 @@ const Login = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       // history.push("/chats"); In React 18 you must use the next line (NANIGATE):
-      navigate.push("/chats");
+      navigate("/chats"); // it was navigate.push("/chats"); for React Router v6, changed to current view
     } catch (error) {
       toast({
         title: "Error Occured!",

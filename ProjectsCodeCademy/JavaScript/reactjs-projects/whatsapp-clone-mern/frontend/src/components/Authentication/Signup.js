@@ -46,7 +46,8 @@ const Signup = () => {
     }
     console.log(name, email, password, pic);
     try {
-      const config = { // This is actually API call by AXIOS to store the details in the database.
+      const config = {
+        // This is actually API call by AXIOS to store the details in the database.
         headers: {
           "Content-type": "application/json",
         },
@@ -71,7 +72,7 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data)); // this also stores the data in the LOCAL storage.
       setPicLoading(false);
-      navigate.push("/chats");
+      navigate("/chats"); // it was navigate.push("/chats"); for React Router v6, changed to current view
     } catch (error) {
       toast({
         title: "Error Occured!",

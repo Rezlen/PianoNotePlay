@@ -15,7 +15,7 @@ const ChatProvider = ({ children }) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     setUser(userInfo);
 
-    if (!userInfo) navigate("/"); // Here it was:    if (user) navigate.push("/chats");
+    if (!userInfo) navigate("/"); // Here it was:    if (user) navigate.push("/chats"); for React Router v6, changed to current view
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 

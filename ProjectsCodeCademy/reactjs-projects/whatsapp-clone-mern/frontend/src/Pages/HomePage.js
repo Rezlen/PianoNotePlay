@@ -12,7 +12,7 @@ const HomePage = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (user) navigate("/chats"); // Here it was:    if (user) navigate.push("/chats");
+    if (user) navigate("/chats"); // Here it was:    if (user) navigate.push("/chats"); for React Router v6, changed to current view
   }, [navigate]);
 
   return (
