@@ -142,8 +142,10 @@ deployment: https://www.youtube.com/watch?v=7cfnH1jhj00&list=PLKhlp2qtUcSZsGkxAd
 
 do not forget to add the deployement scrip in package.json:
 
-"heroku-postbuild": ""NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 basically it says; go to front end folder and install all the dependencies, then do NPM RUN BUILD
+
+after adding above line; deployment in HEROKU is failing.
 
 
 
