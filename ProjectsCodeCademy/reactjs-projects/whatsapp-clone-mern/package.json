@@ -4,9 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
-    
+    "start": "nodemon backend/server.js",
+    "server": "nodemon backend/server.js"    
   },
+   "keywords": [
+    "mern",
+    "whatsapp-messaging-app"
+  ],
   "author": "Rez",
   "license": "ISC",
   "dependencies": {
