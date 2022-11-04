@@ -15,7 +15,7 @@ import animationData from "./animations/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "https://whatsapp-clone-messagine.herokuapp.com/"; // "http://localhost:5000 for backend" https://whatsapp-clone-messagine.herokuapp.com/ | https://git.heroku.com/whatsapp-clone-messagine.git"; -> After deployment
+const ENDPOINT = "https://whatsapp-messaging-clone.herokuapp.com/";// Do not mistake this link "https://whatsapp-clone-messagine.herokuapp.com/"; // "http://localhost:5000 for backend" https://whatsapp-clone-messagine.herokuapp.com/ | https://git.heroku.com/whatsapp-clone-messagine.git"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
