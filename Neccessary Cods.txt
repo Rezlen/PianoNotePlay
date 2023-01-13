@@ -1,4 +1,35 @@
-﻿CSS Selector Reference: https://www.w3schools.com/cssref/css_selectors.asp
+﻿////CSS animation, Rainbow color,  https://www.freecodecamp.org/learn/responsive-web-design/applied-visual-design/make-a-css-heartbeat-using-an-infinite-animation-count
+animation-iteration-count: infinite;
+linear-gradient() coulorfull coding bacground
+transform: skewX(-32deg);
+
+///////Beatufull rainbow
+    background-color: transparent;
+
+///// Heart bacground color
+    border-radius: 50%;
+    box-shadow: 25px 10px 0px 0px blue;
+
+////// Css Coulor animation
+@keyframes rainbow{
+  0% {
+  background-color: blue;
+  }
+  50% {
+    background-color: green;
+  }
+  100% {
+    background-color: yellow;
+  }
+}
+////// Infini movement
+animation-iteration-count: infinite
+
+
+
+
+
+CSS Selector Reference: https://www.w3schools.com/cssref/css_selectors.asp
 
 Image Link
 <img src="kayakdc.gif" alt="KayakDoorCounty.net" width="500" height="60"></h1>

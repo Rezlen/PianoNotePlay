@@ -33,7 +33,7 @@
   margin-right: 0.5rem;
 }
 
-.button { /*This positions the its class owner on a specific position; Causes the other menu other than SIGNUP SIGNIN sits on different position */
+.button { /*This positions is the class owner on a specific position; Causes the other menu other than SIGNUP SIGNIN sits on different position */
   order: 2;
 }
 

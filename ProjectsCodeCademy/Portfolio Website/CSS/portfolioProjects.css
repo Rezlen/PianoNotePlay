@@ -6,6 +6,12 @@ body {
   background-color: white;
 }
 
+.nav-item1 img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
+
 /** {
   border: red 0.25px dotted; 
 } */

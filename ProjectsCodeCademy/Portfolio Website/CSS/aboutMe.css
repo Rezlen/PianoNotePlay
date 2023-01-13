@@ -7,6 +7,12 @@ body {
   
 }
 
+.nav-item1 img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
+
 /** {
   border: red 0.25px dotted; 
 } */
@@ -55,7 +61,16 @@ h2 {
 }
 
 .BusinessTeamContent ul li {
-    text-align: left;
+  text-align: left;
+}
+
+.BusinessTeamContent ol li {
+  text-align: left;
+  font-weight: bold;
+}
+
+.GetFutureProof {
+  border: solid red;
 }
 
 /*=======================From here Contact us form with the animation movement of PlaceHolder*/
