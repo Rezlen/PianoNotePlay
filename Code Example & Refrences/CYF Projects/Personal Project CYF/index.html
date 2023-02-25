@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Portfolio Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
+    <link rel="index" type="text/html" href="index.html">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:700" rel="stylesheet">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/Rez-Pic.jpg"
+      type="image/x-icon">
+    <!--Start Script is for Mobile menu display-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $(".toggle").on("click", function () {
+          if ($(".nav-item").hasClass("active")) {
+            $(".nav-item").removeClass("active");
+          }
+          else {
+            $(".nav-item").addClass("active");
+          }
+        })
+      });
+    </script> <!--Ends Script is for Mobile menu display-->
+  </head>
+
+  <body>
+    <header class="c-site-header">
+      <main></main>
+      <nav aria-label="Main Site Links.">
+        <ul class="nav-list">
+          <li class="nav-item1"><a href='index.html'><img
+                src='https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/Rez-Pic.jpg'></a></li>
+          <li class="nav-item"><a href='https://rezlen.github.io/Portfolio-Projects/index.html'
+              title="Find Out About All Businesses Here">Home</a></li>
+          <!--TITLE acts as a tooltip HOWEVER; <span class= "TooltipContent" >Tooltip text</span> a kind of tooltip is SPAN tooltip, check the css page's explanation-->
+          <li class="nav-item" data-tooltip="See Project Portfolios Here"><a
+              href="https://rezlen.github.io/Portfolio-Projects/portfolioProjects.html">Portfolio Projects</a></li>
+          <li class="nav-item"><a href="https://rezlen.github.io/Portfolio-Projects/aboutMe.html">About Me</a></li>
+          <!--Adding TITLE here helps you create TOOLTIP-->
+
+          <li class="nav-item button"><a href="#">Login</a></li>
+          <li class="nav-item button Secondary"><a href="#">Sign Up</a></li>
+          <li class="toggle"><span class="bars"></span>Menu</li>
+        </ul>
+      </nav>
+
+      <!--Top Section area-->
+      <div class="ImageCoverHome">
+        <h1>Rez So: Junior FullStack WebDeveloper</h1>
+        <p>Here you can see & evaluate my completed projects, skills & experience</p>
+      </div>
+    </header>
+    <h2>Completed Projects Portfolio</h2>
+    <div class="YourProjectsHere">
+
+      <div class="Projects4">
+        <h3> Facebook Clone</h3>
+        <a href="https://facebook-clone-rez.web.app/" target="_blank">
+          <img src="https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/facebook-clone.png"
+            title="Facebook-Website" alt="Image Of Facebook-clone">
+        </a>
+        <p> Cloning facebook posting, authentication. React.JS, Context API, NoSql DB, using Google's Firebase &
+          Firestore, Iframe of facebook on the right,</p>
+      </div>
+
+      <div class="Projects4">
+        <h3> Amazon Clone</h3>
+        <a href="https://amazo-clone1.web.app/" target="_blank">
+          <img src="https://github.com/Rezlen/Portfolio-Projects/blob/main/images/Amazon-Clone.png?raw=true"
+            title="Amazon-Clone-Website" alt="Image Of Amazon-Clone">
+        </a>
+        <p> Cloning The World's biggest E-commerce Website, Fully Working, FullStack, Using React.JS, Node.JS,
+          Express.JS, Stripe Payment, NoSql, Google FireBase & Authentication </p>
+      </div>
+
+      <div class="Projects4">
+        <h3> Advance JavaScript Function </h3>
+        <a href="https://rezlen.github.io/numberGusserGame/" target="_blank">
+          <img src="https://github.com/Rezlen/Portfolio-Projects/blob/main/images/numberGusserGame.png?raw=true"
+            title="JavaScript Advance App" alt="Service1Image2">
+        </a>
+        <p> A game of Predicting/guessing numbers & algorithms </p>
+      </div>
+
+
+      <div class="Projects4">
+        <h3> More Projects</h3>
+        <a href="portfolioProjects.html">
+          <img src="https://github.com/Rezlen/Portfolio-Projects/blob/main/images/MoreIMG.png?raw=true"
+            title="Service3ImageTooltip" alt="Service1Image4">
+        </a>
+        <p> Click above to see more of my projects</p>
+      </div>
+
+    </div>
+
+    <!--Bottom Section Area For Team Members display-->
+    <h2>Me & My Team Will Cover & Apply Any Expertise You Need</h2>
+    <div class="BusinessTeam">
+      <a href="aboutMe.html">
+        <div>
+          <img src="https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/Rez-Pic.jpg"
+            title="Team1ImageTooltip" alt="Team1Image">
+          <h3> Rez So</h3>
+        </div>
+      </a>
+      <!--<a href="https://www.google.com/">
+        <div>
+          <img src="images/staff/Employee2.png" title="Team2ImageTooltip" alt="Team2Image">
+          <h3> Pls Ask</h3>
+        </div>
+      </a>
+      <a href="https://www.google.com/">
+        <div>
+          <img src="images/staff/employee-two.webp" title="Team3ImageTooltip" alt="Team3Image">
+          <h3> Team 3</h3>
+        </div>
+      </a>-->
+    </div>
+
+    <!--Bottom Section Area For ContactUs FORM, Map, Address Display-->
+    <div class="ContactDetails">
+      <div>
+        <p>Fill The Form Below To Contact Us. We Get Back To You In Less Than 24hrs</p>
+        <!--ContactUs FORM from here-->
+        <form method="get" action="https://submit-form.com/VlSB85Xy">
+          <input class="field" required="yes" type="text" name="First Name field">
+          <label class="label-field" required="yes" alt="First Name Section" placeholder="First Name"></label>
+          <!--/*The word for "alt" sits as the placeholder then if anything typed, the actual PLACEHOLDER moves on the field's line-->
+
+          <input class="field" required="yes" type="text" name="Last Name field">
+          <label class="label-field" required="yes" alt="Last Name Section" placeholder="Last Name"></label>
+
+          <input class="field" required="yes" type="text" name="Email Address field">
+          <label class="label-field" required="yes" alt="Email Address Section" placeholder="Email Address"></label>
+
+          <textarea class="field CommentFiled" required="yes" type="text" name="Comment field"></textarea>
+          <label class=" label-field" id="CommentLabel" required="yes" alt="Comment Section"
+            placeholder="Comment"></label>
+          <button class="FormSubmitBTN" type="submit">Submit</button>
+
+        </form>
+        <!--ContactUs FORM until here-->
+      </div>
+      <p>WeWork Moorgate, 1 Fore Street, London, EC2Y 5EJ <br>Whatsapp, Phone, Telegram, Instagram: (0044)1234567891</p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.739362939668!2d-0.09248803422963602!3d51.51799752963689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761caba849ec05%3A0x781a75c80a30bd1!2sFore%20St%2C%20London%20EC2Y%205EJ!5e0!3m2!1sen!2suk!4v1648219306618!5m2!1sen!2suk"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <footer class="c-site-footer">All Rights Reserved @2022</footer>
+  </body>
+  <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>

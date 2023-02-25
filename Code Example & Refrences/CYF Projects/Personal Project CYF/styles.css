@@ -1,0 +1,454 @@
+html,
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  background-color: white;
+}
+
+.nav-item1 img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
+
+/** {
+  border: red 0.25px dotted; 
+} */
+
+/*The Menu bar is place in menu.css file in css folder*/
+
+/* Home Cover Image Section */
+.ImageCoverHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("https://github.com/Rezlen/Portfolio-Projects/blob/main/images/feature-1.png?raw=true");
+  background-color: #cccccc;
+  /* Used if the image is unavailable */
+  height: 10rem;
+  /*set a specified height */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
+  width: 100%;
+  color: aliceblue;
+}
+
+.ImageCoverHome h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin: 1rem;
+}
+
+.ImageCoverHome p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+/* Portfolio Borders % size*/
+.Projects4 {
+  border: 0.2rem solid #898989;
+  margin: 0.5rem;
+}
+
+
+h2 {
+  text-align: center;
+}
+
+/*Puts everything in order*/
+.YourProjectsHere {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(241, 247, 235);
+  box-shadow: 0px 0px 10px;
+  flex-wrap: wrap;
+}
+
+.YourProjectsHere a,
+.YourProjectsHere p {
+  text-decoration: none;
+  width: 20rem;
+}
+
+/*Limits the images*/
+.YourProjectsHere img {
+  height: 20rem;
+  width: 100%;
+}
+
+/*Puts Business Team Members section in order*/
+.BusinessTeam {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(241, 247, 235);
+  box-shadow: 0px 0px 10px;
+}
+
+.BusinessTeam a {
+  text-decoration: none;
+}
+
+/*Limits the Team member images*/
+.BusinessTeam img {
+  height: 20rem;
+  width: auto;
+  margin: 0.5rem;
+}
+
+/*To display the Map Iframe-Address- Contact Details*/
+.ContactDetails {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: auto;
+  width: auto;
+  margin: 2rem;
+  background-color: rgb(132, 138, 125);
+  box-shadow: 0px 0px 10px;
+}
+
+
+
+/*From here Contact us form with the animation movement of PlaceHolder*/
+form {
+  margin: 1rem;
+}
+
+.field {
+  box-sizing: border-box;
+  /**/
+  width: 20rem;
+  height: 2.5rem;
+  /*Changing the height of the fields*/
+  margin: 0;
+  padding: 1rem;
+  /*Changing the TYPING PLACE padding inside the fields*/
+  border: 1px solid #ccc;
+  border-radius: 1.5em;
+  background: #fff;
+  resize: none;
+  outline: none;
+}
+
+.label-field {
+  display: flex;
+  /**/
+  pointer-events: none;
+  line-height: 1.25em;
+  margin: -2rem 2rem 1rem;
+  /*Adjusts the placeholder word in middle of the field*/
+  width: 10rem;
+}
+
+.field:focus {
+  /*Changing the border color*/
+  border-color: #00bafa;
+}
+
+.field:focus+.label-field::before {
+  /*Changing the font color*/
+  color: #00bafa;
+}
+
+.field:focus+.label-field:before,
+.field:valid+.label-field:before {
+  transition-duration: 0.2s;
+  /*Adjust the placeholder's 'speed' moving up to it's field's line*/
+  transform: translate(0, -1.1rem) scale(0.9, 0.9);
+  /*The SCALE, changes the placeholder 'word' height or width when moves on the field's line*/
+  /*The TRANSLATE; adjust the amount of movement of the placeholder to go up/down; after entering a content.*/
+}
+
+.label-field:before {
+  content: attr(placeholder);
+  color: #898989;
+  /*Changing the placeholder's font-color*/
+  transition: 0.3s ease-in-out;
+  /*Adjust the placeholder's 'speed' coming back to it's field*/
+  background-image: linear-gradient(to bottom, #fff, #fff);
+  /*Center of the placeholder word coloring*/
+  background-size: 100% 0.5rem;
+  background-repeat: no-repeat;
+  /*Avoids unnecessarily background color under the PLACEHOLDER WORD*/
+  background-position: center;
+  /*Places a background color under the placeholder, when moves up/down on the field's line*/
+}
+
+/* Until here; Contact us form with the animation movement of PlaceHolder*/
+
+.FormSubmitBTN {
+  background-color: #00bafa;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: large;
+  margin-bottom: 1rem;
+}
+
+.FormSubmitBTN:hover {
+  background-color: rgb(72, 37, 228);
+}
+
+.CommentFiled {
+  height: 7rem;
+}
+
+#CommentLabel {
+  transform: translate(0, -4.8rem) scale(0.9, 0.9);
+}
+
+/*Footer area with London's Image*/
+footer {
+  display: flex;
+  align-items: flex-start;
+  background-image: url("https://github.com/Rezlen/Portfolio-Projects/blob/main/images/footer-copy.png?raw=true");
+  height: 20rem;
+  /* set a specified height */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* Resize the background image to cover the entire container */
+}
+
+.ContactDetails p {
+  margin: 0.5rem;
+}
+
+/* Menu CSS Starts here */
+
+/* convert all "UL" to FLEX box then place them far right "FLEX END". "List Style" removes the BULLET circle */
+.nav-list {
+  box-sizing: border-box;
+  background-color: antiquewhite;
+  list-style: none;
+  box-shadow: 0px 0px 10px;
+  display: flex;
+  /**/
+  flex-wrap: wrap;
+  /**/
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-item {
+  width: 100%;
+  text-align: center;
+  order: 3;
+  display: none;
+  /*This hides the menu in small screen then JavaScript activates them by adding class ACTIVATE to the menu so it displays/ACtIVATE the menu*/
+  margin-top: 0.5rem;
+}
+
+.nav-item.active {
+  display: block;
+  /*JavaScript adds the class ACTIVATE to display the menu as BLOCK on small screens*/
+}
+
+.button.Secondary {
+  border-bottom: 1px rgb(34, 202, 28) solid;
+}
+
+.toggle {
+  cursor: pointer;
+  order: 1;
+  margin-top: 0.6rem;
+  margin-right: 0.5rem;
+}
+
+.button {
+  /*This positions the its class owner on a specific position; Causes the other menu other than SIGNUP SIGNIN sits on different position */
+  order: 2;
+}
+
+/*This creates the bar for the toggle element for responsive view
+If you remove the whole BARS css, the word menu stays there and still does the menu work beautifully,
+so the THREE bars are not necessary*/
+.bars {
+  background: #898989;
+  display: inline-block;
+  height: 2px;
+  width: 1rem;
+  position: relative;
+}
+
+.bars::before,
+.bars::after {
+  background: #898989;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height: 3px;
+  width: 1rem;
+}
+
+.bars::before {
+  top: -0.7rem;
+}
+
+.bars::after {
+  top: -0.35rem;
+}
+
+/*The THREE Toggles bar is here*/
+
+/*=================
+Starts Tablet/Mobile Display CSS
+===============*/
+
+@media all and (min-width: 29rem) {
+  .nav-item {
+    justify-content: center;
+  }
+
+  .nav-item1 {
+    flex: 1;
+  }
+
+  .nav-item.button {
+    width: auto;
+    order: 1;
+    display: block;
+  }
+
+  .toggle {
+    order: 2;
+  }
+
+  .button.secondary {
+    border: 0;
+  }
+
+  .button a {
+    padding: 0.5rem 1rem;
+  }
+
+}
+
+/*=================
+Ends Tablet/Mobile Display CSS
+===============*/
+
+/*=================
+Starts Desktops Display CSS
+===============*/
+
+@media all and (min-width: 48rem) {
+  .nav-item {
+    display: block;
+    width: auto;
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  .logo {
+    order: 0;
+  }
+
+  .nav-item {
+    order: 1;
+  }
+
+  .button {
+    order: 2;
+  }
+
+  .nav-list li {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .YourProjectsHere p {
+    text-decoration: underline;
+  }
+}
+
+/*=================
+Ends Desktops Display CSS
+===============*/
+
+/* "Text Decoration" removes the underline the bullet point */
+.nav-item a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* This gives the background color & bigger padding when hovers*/
+.nav-item a:hover {
+  background-color: rgb(95, 194, 92);
+  padding: 0.25rem 0.25rem;
+}
+
+/* place the first "LI" on different position
+.nav-item1 {
+  margin-right: auto;
+}
+/* place the first child on different position
+.nav-item:first-child {
+  margin-right: auto;
+}
+*/
+
+/* SPAN tooltip: As well as adding simple title like; "title="Find Out About Us Here""to the line of the WORDING, you can create tooltip this way:
+In some situation also, you can use  - data-tooltip= "Hello -
+.nav-list .TooltipContent {
+  visibility: hidden;
+}
+/*
+Another TOOLTIP Structure is using ::before ::after PSEUDO elements like: */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  margin-top: 0.05rem;
+  padding: 0.5rem;
+  background-color: #b4babb;
+  border-radius: 0.5rem;
+}
+
+/*
+.nav-item:hover .TooltipContent {
+  visibility: visible;
+}
+*/
+
+/* Menu CSS Ends here */
+
+
+/*For Mobile Display*/
+@media only screen and (max-width: 760px) {
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ImageCoverHome {
+
+    height: 100%;
+  }
+
+}
+
+
