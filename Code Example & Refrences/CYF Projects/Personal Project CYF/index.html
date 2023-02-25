@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
   <head>
     <title>Portfolio Website</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    <link rel="stylesheet" type="text/css" href="CSS/menu.css">
-    <link rel="index" type="text/html" href="index.html">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:700" rel="stylesheet">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/Rez-Pic.jpg"
       type="image/x-icon">
@@ -34,7 +32,7 @@
       <nav aria-label="Main Site Links.">
         <ul class="nav-list">
           <li class="nav-item1"><a href='index.html'><img
-                src='https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/Rez-Pic.jpg'></a></li>
+                src='https://raw.githubusercontent.com/Rezlen/Portfolio-Projects/main/images/Rez-Pic.jpg' alt="Rez Pic"></a></li>
           <li class="nav-item"><a href='https://rezlen.github.io/Portfolio-Projects/index.html'
               title="Find Out About All Businesses Here">Home</a></li>
           <!--TITLE acts as a tooltip HOWEVER; <span class= "TooltipContent" >Tooltip text</span> a kind of tooltip is SPAN tooltip, check the css page's explanation-->
@@ -130,18 +128,18 @@
         <!--ContactUs FORM from here-->
         <form method="get" action="https://submit-form.com/VlSB85Xy">
           <input class="field" required="yes" type="text" name="First Name field">
-          <label class="label-field" required="yes" alt="First Name Section" placeholder="First Name"></label>
+          <label class="label-field" required="yes" alt="First Name Section" placeholder="First Name" aria-labelledby="FirstName"></label>
           <!--/*The word for "alt" sits as the placeholder then if anything typed, the actual PLACEHOLDER moves on the field's line-->
 
           <input class="field" required="yes" type="text" name="Last Name field">
-          <label class="label-field" required="yes" alt="Last Name Section" placeholder="Last Name"></label>
+          <label class="label-field" required="yes" alt="Last Name Section" placeholder="Last Name" aria-labelledby="LastName"></label>
 
           <input class="field" required="yes" type="text" name="Email Address field">
-          <label class="label-field" required="yes" alt="Email Address Section" placeholder="Email Address"></label>
+          <label class="label-field" required="yes" alt="Email Address Section" placeholder="Email Address" aria-labelledby="EmailAddress"></label>
 
           <textarea class="field CommentFiled" required="yes" type="text" name="Comment field"></textarea>
           <label class=" label-field" id="CommentLabel" required="yes" alt="Comment Section"
-            placeholder="Comment"></label>
+            placeholder="Comment" aria-labelledby="CommentArea"></label>
           <button class="FormSubmitBTN" type="submit">Submit</button>
 
         </form>
@@ -150,7 +148,7 @@
       <p>WeWork Moorgate, 1 Fore Street, London, EC2Y 5EJ <br>Whatsapp, Phone, Telegram, Instagram: (0044)1234567891</p>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.739362939668!2d-0.09248803422963602!3d51.51799752963689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761caba849ec05%3A0x781a75c80a30bd1!2sFore%20St%2C%20London%20EC2Y%205EJ!5e0!3m2!1sen!2suk!4v1648219306618!5m2!1sen!2suk"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="GoogleAddress"></iframe>
     </div>
 
     <footer class="c-site-footer">All Rights Reserved @2022</footer>
